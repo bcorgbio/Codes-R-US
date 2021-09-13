@@ -1,17 +1,26 @@
 library (ggplot2)
 library(tidyverse)
+
 setwd("~/Desktop/Codes-R-Us/Codes-R-US/scales1")
+
+# dat variable containing the scales dataset
 dat <- read.csv("scales.csv")
 dim(dat)
 head(dat)
+
+# reports the class of each column in the dataset
 class(dat$N)
 class(dat$quadrant)
 class(dat$species)
 class(dat$specimen)
+
+# reports the dimensions of the dataset
 class(dat[,1])
 class(dat[,2])
 class(dat[,3])
 class(dat[,4])
+
+#summary of scales and specimens samples for each species
 mean(dat$N)
 mean(dat$quadrant)
 sapply(dat,class)
@@ -46,6 +55,8 @@ for(i in species){
     ggplot()+geom_boxplot(aes(x=quadrant,y=N))+ggtitle(i)
   print(p)
 }
+
+# produces a pdf containin the figures 
 pdf("species.quadrant.pdf")
 for(i in species){
   p <- dat %>%
