@@ -56,7 +56,7 @@ for(i in species){
   print(p)
 }
 
-# produces a pdf containin the figures 
+# produces a pdf containing the figures 
 pdf("species.quadrant.pdf")
 for(i in species){
   p <- dat %>%
