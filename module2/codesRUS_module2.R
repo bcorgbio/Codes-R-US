@@ -26,9 +26,14 @@ pseed2 <- pseed2%>%
   mutate(bl.s = cm.s/bl)%>%
   print()
 
-## using ggplot to plot specific fin amp vs. speed
+# using ggplot to plot specific fin amp vs. speed
 pseed2%>%
   ggplot(aes(x=bl.s, y=amp.bl)) + geom_point()
 ## cleaning up plot
 pseed2%>%
   ggplot(aes(x=bl.s, y=amp.bl)) + geom_point(alpha=0.01)
+
+# plotting left pelvic fin
+pseed2%>%
+  filter(date=="2019-06-17-151149", fin=="L")%>%
+  ggplot(aes(x=frame, y=amp.bl))+geom_point()
