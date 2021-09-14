@@ -37,3 +37,18 @@ pseed2%>%
 pseed2%>%
   filter(date=="2019-06-17-151149", fin=="L")%>%
   ggplot(aes(x=frame, y=amp.bl))+geom_point()
+
+#Installing and loading package
+install.packages("features")
+library(features)
+
+#Exploring features() function
+exp1 <- pseed2 %>%
+  filter(date=="2019-06-17-151149", fin=="L")
+f1 <- features(x =exp1$frame, y=exp1$amp.bl) -> f1
+fget(f1)
+
+#plotting vertical lines corresponding to critical points
+pseed2%>%
+  filter(date=="2019-06-17-151149", fin=="L")%>%
+  ggplot(aes(x=frame, y=amp.bl))+geom_point()+geom_vline(xintercept = fget(f1)$crit.pts)
