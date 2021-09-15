@@ -100,3 +100,17 @@ pseed.wide <- pseed2 %>%
   pivot_wider(names_from = fin,values_from = amp.bl) %>%
   mutate(amp.sum=L+R)%>%
   print() 
+
+pseed2%>%
+  group_by(date)%>%
+  mutate(peak=frame %in% find.peaks(frme,amp.sum))%>%
+  filter(peak==T)
+
+pseed.max%>%
+  ggplot(aes(x=bl.s, y=amp.sum))+ geom_point() + geom_smooth(method="lm")
+
+pseed.max %>%
+  group_by(fish,bl.s) %>%
+  summarize(mean.max=mean(amp.sum))%>%
+  ggplot(aes(x=bl.s, y=mean.max, col=fish)) + geom_point() + geom_smooth(methos = "lm")
+
