@@ -132,17 +132,11 @@ pseed.wide <- pseed2 %>%
   print() 
 
 ### Code for sum of amplitude of both fins over range of speeds
-pseed.wide
-
-#creating new tibble
-pseed.sum.max <- pseed.wide
-pseed.sum.max
-
-
 
 #creating a new tibble
 pseed.sum.max <- pseed.wide
 pseed.sum.max
+
 #finding peaks for all data using amp.sum instead of amp.bl
 pseed.sum.max <- pseed.sum.max%>%
   group_by(date)%>%
@@ -161,6 +155,6 @@ pseed.sum.max %>%
   ggplot(aes(x=bl.s, y=mean.max, col=fish)) + geom_point() + geom_smooth(method = "lm")
 
 #widening data set 
-pseed.wide <- pseed.sum.max %>%
+pseed.sum.max <- pseed.sum.max %>%
   mutate(amp.sum.mean=mean(amp.sum))%>%
   print() 
