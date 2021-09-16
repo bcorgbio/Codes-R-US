@@ -132,6 +132,13 @@ pseed.wide <- pseed2 %>%
   print() 
 
 ### Code for sum of amplitude of both fins over range of speeds
+pseed.wide
+
+#creating new tibble
+pseed.sum.max <- pseed.wide
+pseed.sum.max
+
+
 
 #creating a new tibble
 pseed.sum.max <- pseed.wide
