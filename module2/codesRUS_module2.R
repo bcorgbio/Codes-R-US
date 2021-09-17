@@ -186,3 +186,6 @@ pseed.sum.max <- pseed.sum.max%>%
   print()
 
 ### Plotting the metabolic power output of each fin vs mean maximum of amp.sum
+pseed.sum.max%>%
+  ggplot(aes(x=met.rate, y=amp.sum.mean))+ geom_point() + geom_smooth(method="lm")
+
