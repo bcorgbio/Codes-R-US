@@ -170,12 +170,12 @@ pseed.sum.max <- pseed.sum.max %>%
 
 pseed.sum.max
 ### Work on plotting mean amp.sum vs. swimming speed w/ error bars corresponding to SE of amp.sum
-pd <- position_dodge(0.1)
 
 ggplot(pseed.sum.max, aes(x=bl.s, y=amp.sum.mean, colour=fish)) +
-  geom_errorbar(aes(ymin=amp.sum.mean-amp.sum.se, ymax=amp.sum.mean+amp.sum.se), width=.1, position=pd)+
-  geom_line(position=pd) +
-  geom_point(position=pd)
+  geom_errorbar(aes(ymin=amp.sum.mean-amp.sum.se, ymax=amp.sum.mean+amp.sum.se), width=.1)+
+  geom_point() +
+  geom_line() +
+  geom_smooth(method="lm")
 
 ### Using metabolic rate file and merging the met.rate by fish and speed
 metrate<- read_csv("pseed.met.rate.csv")
