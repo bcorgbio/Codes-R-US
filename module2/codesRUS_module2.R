@@ -176,3 +176,13 @@ ggplot(pseed.sum.max, aes(x=bl.s, y=amp.sum.mean, colour=fish)) +
   geom_errorbar(aes(ymin=amp.sum.mean-amp.sum.se, ymax=amp.sum.mean+amp.sum.se), width=.1, position=pd)+
   geom_line(position=pd) +
   geom_point(position=pd)
+
+### Using metabolic rate file and merging the met.rate by fish and speed
+metrate<- read_csv("pseed.met.rate.csv")
+
+pseed.sum.max
+pseed.sum.max <- pseed.sum.max%>%
+  inner_join(metrate, by=c("fish"="fish", "date"="date", "m.s"="m.s", "cm.s"="cm.s", "bl.s"="bl.s"))%>%
+  print()
+
+### Plotting the metabolic power output of each fin vs mean maximum of amp.sum
