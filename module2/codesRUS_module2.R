@@ -158,3 +158,21 @@ pseed.sum.max %>%
 pseed.sum.max <- pseed.sum.max %>%
   mutate(amp.sum.mean=mean(amp.sum))%>%
   print() 
+
+
+### Work on SE
+
+standard_error <- function(x) sd(x) / sqrt(length(x))
+
+pseed.sum.max <- pseed.sum.max %>%
+  group_by(fish, bl.s) %>%
+  mutate(amp.sum.se = standard_error(amp.sum))
+
+pseed.sum.max
+### Work on plotting mean amp.sum vs. swimming speed w/ error bars corresponding to SE of amp.sum
+pd <- position_dodge(0.1)
+
+ggplot(pseed.sum.max, aes(x=bl.s, y=amp.sum.mean, colour=fish)) +
+  geom_errorbar(aes(ymin=amp.sum.mean-amp.sum.se, ymax=amp.sum.mean+amp.sum.se), width=.1, position=pd)+
+  geom_line(position=pd) +
+  geom_point(position=pd)
