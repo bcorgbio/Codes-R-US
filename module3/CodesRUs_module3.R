@@ -74,5 +74,66 @@ summary(anole.lm)
 #fitting allometric model with nls
 ## need to specify starting values for parameters in our model w list 
 ## nls conducts search of model parameter values to find those that reduce the sum of squares of the residuals
+## starting points are estimated on scaling coefficent (beta; approximately 1)
+## & intercept (alpha; close to but not 0)
 anole.allo <- nls(HTotal~a*SVL^b, start=list(b=1, a=1), data=anole2)
+# calling summary 
+## see that the parameters a & b are significant = both are likely explanatory parameters
+## doesn't produce an r squared value
 summary(anole.allo)
+
+#how well does this data fit the model ? is it better than the lm() model?
+##    p-values = if low reject null, if high dont reject null
+## we've assessed the null hyp that SVL has no effect on HTotal & rejected it through linear and allometric tests
+### obvious: limbs get longer as individual lizards grow longer
+
+# rest of the question: does hind-limb length vary linearly or allometrically
+## could perform likelihood ratio tests
+### compare the likelihood of two nested models
+#### likelihood = probability, given a model and set of parameter values, of obtaining a particular set of data
+### right approach for us - find the model, linear or allometric, with a higher likelihood of describing our morphological data better therefore is better approximation of hindlimb-size relationship
+### can only be used in limited cases - when comparing two models when one is a special case of the other
+#### one model is the dame as the other except is more complex (one or more parameters = means other independent variables)
+## we don't have nested models but different model families: one linear, one allometric
+
+##alternative = information theory approach
+### use the AIC = compares the lieklihood of model against number of parameters estimated
+### can be described as favoring the model that provides the best fit to the data with as few parameters as possible
+### sensitive to sample size; use AICc which penalizes models that have small sample sizes relative to number of parameters
+
+#Computing AICc of both models then compare their fit
+#Calculating the relative support of each model using AIC weights
+#AICc from MuMIn package
+anole.aic <- AICc(anole.lm, anole.allo)
+
+#aicw from the geiger package
+anole.aicw <- aicw(anole.aic$AICc)
+
+print(anole.aicw)
+
+#Can see that anole.allo (2) has a lower AIC score 
+## lower score indicates better fit
+
+
+
+#MORE COMPLEX VISUALIZATIONS & MODELS
+
+#consider the effect of ecomorph on the hindlimb-SVL relationships
+#use log-transformed data 
+
+#visualizing hindlimb-SVL relationships for each ecomorph in ggplot
+##passed log-transformed data to ggplot, specifying SVL for x-values and HTotal for y, then added point and line
+## added another argument which colors all the added geometries according to the column values Ecomorph2
+anole.log%>%
+  ggplot(aes(HTotal, SVL, col=Ecomorph2))+geom_point()+geom_smooth(method="lm")
+
+#need to consider ecomorph as important variable explaining the hindlimb-SVL relationship
+#constructing model to incude new variable
+anole.log.eco.lm <- lm(HTotal~SVL*Ecomorph2, anole.log)
+summary(anole.log.eco.lm)
+
+#performing ANOVA test on model (two-way analysis of covariance)
+## assessing the effect of a categorical variable (Ecomorph2) in context of how HTotal covaries with SVL
+# results = reject the null hyp that ecomorph groups do not have separate hindlimb-SVL relationships
+## 
+anova(anole.log.eco.lm)
