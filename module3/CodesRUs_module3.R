@@ -128,12 +128,19 @@ anole.log%>%
   ggplot(aes(HTotal, SVL, col=Ecomorph2))+geom_point()+geom_smooth(method="lm")
 
 #need to consider ecomorph as important variable explaining the hindlimb-SVL relationship
-#constructing model to incude new variable
+#constructing model to include new variable
 anole.log.eco.lm <- lm(HTotal~SVL*Ecomorph2, anole.log)
 summary(anole.log.eco.lm)
 
 #performing ANOVA test on model (two-way analysis of covariance)
 ## assessing the effect of a categorical variable (Ecomorph2) in context of how HTotal covaries with SVL
 # results = reject the null hyp that ecomorph groups do not have separate hindlimb-SVL relationships
-## 
+## established ecomorph has significant effect on hindlimb-SVL relationship
 anova(anole.log.eco.lm)
+#really want to know if adding Ecomorph2 parameter results in a better fit
+#establishing model with log-transformed data and compare with AIC and AICw
+anole.log.lm <- lm(HTotal~SVL, anole.log)
+anova(anole.log.lm)
+anole.log.aic <- AICc(anole.log.lm, anole.log.eco.lm)
+aicw(anole.log.aic$AICc)
+#
