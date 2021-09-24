@@ -143,4 +143,156 @@ anole.log.lm <- lm(HTotal~SVL, anole.log)
 anova(anole.log.lm)
 anole.log.aic <- AICc(anole.log.lm, anole.log.eco.lm)
 aicw(anole.log.aic$AICc)
-#
+
+#Residuals = how much any one data point varies from the prediction
+#given global model that predicts hindlimb length based on SVL --> can determine how much each species deviates from prediction
+#take residual for each species and look for patterns by plotting them versus ecomorph
+
+#computing the residuals based on global anole.log.lm model
+#used mutate to establish a new res column that contains the residuals
+#redefined anole.log as a tibble containing this new column
+anole.log <- anole.log %>%
+  mutate(res=residuals(anole.log.lm))
+
+#plotting the residuals against Ecomorph2
+anole.log %>%
+  ggplot(aes(Ecomorph2,res)) + geom_point()
+### can see that the deviations are greatest in the twig and trunk-ground ecomorphs
+
+#better summarization of the data --> including median residual for each ecomorph
+#use ggplot do it through geom_boxplot()
+p.eco <- anole.log %>%
+  ggplot(aes(x=Ecomorph2, y=res)) + geom_boxplot()
+print(p.eco)
+### summary of hindlimb-SVL residual data according to ecomorph
+
+#desire to visualize the mean of values in groups rather than median
+p.eco + geom_boxplot() + stat_summary(fun=mean, geom="point", size=3)
+### added point with stat_summary geom
+### applies a summarizing function to already established group & plots the value of the summary with specifies geom
+### applied mean function and point with size 3
+
+
+
+#NOT SO FAST: PHYLOGENY MATTERS
+
+#Ecomorph is an important explanatory variable in highlimb-SVL relationship
+#Need to account for evolutionary history
+## some species are more closely related --> cannot be seen as independent samples
+## have to observe the covariance with phylogenetic position
+
+#need to use phylogenetic comparative methods (PCMs)
+#to perform phylogenetic generalized least squares (PGLS) --> establish covariation matrix with tree & assume the characters evolved under evolutionary model
+anole.tree <- read.tree("anole.tre")
+plot(anole.tree, cex=0.4)
+###cex stands for character expansion factor - how size of the text should be adjusted
+
+# have tree to use our PGLS regression analysis
+# need to see what we mean by an evolutionary model
+## under what process or mode does a trait evolve over a tree
+
+#performing PGLS under two different models: both with simple regression models that doesn't include ecomorph and models that do
+#PGLS under BM, no ecomorph
+pgls.BM1 <- gls(HTotal ~SVL, correlation=corBrownian(1,phy=anole.tree, form=~Species), data=anole.log, method="ML")
+
+#PGLS under BM, w ecomorph
+pgls.BM2 <- gls(HTotal ~SVL *Ecomorph2, correlation=corBrownian(1, phy=anole.tree, form=~Species), data=anole.log, method="ML")
+
+#PGLS under OU, no ecomorph
+pgls.OU1 <- gls(HTotal ~SVL, correlation=corMartins(0, phy=anole.tree, form=~Species), data=anole.log, method="ML")
+
+#PGLS under OU, w ecomorph
+pgls.OU2 <- gls(HTotal~SVL *Ecomorph2, correlation=corMartins(0, phy=anole.tree, form=~Species), data=anole.log, method="ML")
+
+### set up generalized least squares models that establish a correlation matrix based on BM and OU models of evolution
+## corBrownian() from ape package for BM models & corMartins from ape for OU models
+## parameters estimated under maximum likelihood with ML
+## have to specify the tree and the column names that will form the covariation matrix species
+
+#perform AIC operations to see which models fit that data best
+anole.phylo.aic <- AICc(pgls.BM1, pgls.BM2, pgls.OU1, pgls.OU2)
+aicw(anole.phylo.aic$AICc)
+### can say that phylogenetically corrected regression model that includes Ecomorph2 with traits evolving under BM is the best fit
+## lowest values = best fit
+### OU models specify a pull to some global optimum --> rejected
+
+#The traits have evolved randomly, but randomly within each lineage
+
+#consider whether Ecomorph is significant factor in predicting the hindlimb-SVL relationship in phylogenetic context by performing an ANOVA on best fitting model
+anova(pgls.BM2)
+### ecomorph2 has significant effect on relationship with p<0.0001
+### isn't as strong as a factor when considering phylogeny
+
+#coming back to residuals of hindlimb-SVL relationship considering BM evolution
+## mutating and redefining anole.log data to include a column for phylogenetically corrected residuals
+## plotting them against ecomorph 
+anole.log <- anole.log %>%
+  mutate(phylo.res=residuals(pgls.BM2))
+p.eco.phylo <- anole.log %>%
+  ggplot(aes(x=Ecomorph2, y=phylo.res))+geom_boxplot()+stat_summary(fun=mean, geom="point", size=3)
+print(p.eco.phylo)
+
+
+
+#PLOTTING MORE WITH LESS
+
+#comparing phylogenetically corrected residuals with the uncorrected residuals
+## make anole.log tibble longer with respect to the two types of residuals along with another identifying which type of residual the value belongs to
+anole.log %>%
+  dplyr::select(Ecomorph2, res, phylo.res) %>%
+  pivot_longer(cols=c("res", "phylo.res")) %>%
+  print %>%
+  ggplot(aes(x=Ecomorph2, y=value)) +geom_boxplot() + stat_summary(fun=mean, geom="point", size=3) + facet_grid(name~., scales="free_y") + ylab("residual")
+### selected 3 columns of interest and the phylogenetically corrected residual in anole.log and passed that to a pivoting function
+### specified the columns that will make tibble longer
+### constructed two new columns: one for values other for names of column from which it came
+## ecomorph2 column remains & there's a single column for the residual values and another identifying the values by name
+#For each entry of an individual ecomorph in the tibble, there's two types of residuals identified by name, along with their values in value
+## plot a boxplot of both residuals for each ecomorph using boxplot code from above and modifying to produce the facets
+### rather than having the y values equal res or phylo.res, have it equal value in our tibble which reflects the values for both types of residuals in our new tibble
+## added facet_grid to plot with name = get each type of residual plotted as boxplot against ecomorph in a separate row
+## added scales=free_y which allows the scales on the y axis to be different in each row
+
+
+#PROJECT REPORT CODE
+
+#2
+
+#Constructing two simple linear models that assesses effect of PH and ArbPD by including them as covariates in the models
+anole.log.arbpd.lm <- lm(HTotal~SVL+ArbPD, anole.log)
+summary(anole.log.arbpd.lm)
+anova(anole.log.arbpd.lm)
+
+
+anole.log.ph.lm <- lm(HTotal~SVL+PH, anole.log)
+summary(anole.log.ph.lm)
+anova(anole.log.ph.lm)
+
+
+#3
+
+#Exploring how both ArbPD and PH effect the hindlimb-SVL relationship
+#Plotting the residuals of the simple linear models against covariates
+
+#computing the residuals based on global anole.log.arpd.lm and anole.log.ph.lm model
+#used mutate to establish a new res column that contains the residuals
+#redefined anole.log as a tibble containing this new column
+
+#before
+anole.log
+#after 1
+anole.log <- anole.log %>%
+  mutate(res.arbpd=residuals(anole.log.arbpd.lm))
+anole.log
+#after 2
+anole.log <- anole.log %>%
+  mutate(res.ph=residuals(anole.log.ph.lm))
+anole.log
+
+#plotting the residuals against covariates
+anole.log %>%
+  ggplot(aes(ArbPD,res.arbpd)) + geom_point()
+
+anole.log %>%
+  ggplot(aes(PH,res.ph)) + geom_point()
+
