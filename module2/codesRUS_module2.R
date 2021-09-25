@@ -26,6 +26,9 @@ pseed2 <- pseed2%>%
   mutate(bl.s = cm.s/bl)%>%
   print()
 
+
+#[CPK] This (and much more) is an example. Asked y'all not to include theses [- 1 point]
+
 # using ggplot to plot specific fin amp vs. speed
 pseed2%>%
   ggplot(aes(x=bl.s, y=amp.bl)) + geom_point()
@@ -38,8 +41,9 @@ pseed2%>%
   filter(date=="2019-06-17-151149", fin=="L")%>%
   ggplot(aes(x=frame, y=amp.bl))+geom_point()
 
+#[CPK] Keep library calls at top, the convention and don't install packages in the script. Comment out.
 #Installing and loading package
-install.packages("features")
+#install.packages("features")
 library(features)
 
 #Exploring features() function
@@ -154,6 +158,8 @@ pseed.sum.max %>%
   summarize(mean.max=mean(amp.sum))%>%
   ggplot(aes(x=bl.s, y=mean.max, col=fish)) + geom_point() + geom_smooth(method = "lm")
 
+
+#[CPK] Need summarize rather than mutate
 #widening data set 
 pseed.sum.max <- pseed.sum.max %>%
   mutate(amp.sum.mean=mean(amp.sum))%>%
@@ -164,6 +170,8 @@ pseed.sum.max <- pseed.sum.max %>%
 
 standard_error <- function(x) sd(x) / sqrt(length(x))
 
+
+#[CPK] This won't compute se by group, but mutate. Must you summarize, just like for mean
 pseed.sum.max <- pseed.sum.max %>%
   group_by(fish, bl.s) %>%
   mutate(amp.sum.se = standard_error(amp.sum))
@@ -171,12 +179,16 @@ pseed.sum.max <- pseed.sum.max %>%
 pseed.sum.max
 ### Work on plotting mean amp.sum vs. swimming speed w/ error bars corresponding to SE of amp.sum
 
+
+#[CPK] Why the connected lines. Shouldn't there be a regression lien.
 ggplot(pseed.sum.max, aes(x=bl.s, y=amp.sum.mean, colour=fish)) +
   geom_errorbar(aes(ymin=amp.sum.mean-amp.sum.se, ymax=amp.sum.mean+amp.sum.se), width=.1)+
   geom_point() +
   geom_line() +
   geom_smooth(method="lm")
 
+
+#[CPK] File not in your repo!!! Had to add!! [-1]
 ### Using metabolic rate file and merging the met.rate by fish and speed
 metrate<- read_csv("pseed.met.rate.csv")
 
@@ -186,6 +198,36 @@ pseed.sum.max <- pseed.sum.max%>%
   print()
 
 ### Plotting the metabolic power output of each fin vs mean maximum of amp.sum
+#[CPK] we need metabolic power output of each fish vs. mean maximum of amp.sum.[-1]
 pseed.sum.max%>%
   ggplot(aes(x=met.rate, y=amp.sum.mean))+ geom_point() + geom_smooth(method="lm")
+
+### [CPK]: This is what I woulda done:
+
+#2/3
+
+pseed.sum.max <- pseed.sum.max%>%
+  group_by(fish,bl.s)%>%
+  summarize(amp.sum.mean=mean(amp.sum),
+            amp.sum.se=standard_error(amp.sum))
+
+#4
+pseed.sum.max %>%ggplot(aes(x=bl.s, y=amp.sum.mean, col = fish)) + geom_point(size=2) + geom_errorbar(aes(ymin=amp.sum.mean-amp.sum.se, ymax=amp.sum.mean+amp.sum.se), width = 0.05, size = 0.5)+geom_smooth(method="lm")+theme_classic()
+
+pseed.met <- read_csv("pseed.met.rate.csv")
+
+pseed.met.sum <- pseed.met%>%
+  group_by(fish,bl.s)%>%
+  summarize(met.mean=mean(met.rate),
+            met.se=standard_error(met.rate))
+
+pseed.met.kin <- pseed.sum.max%>%
+  left_join(pseed.met.sum)%>%
+  group_by(fish,bl.s)
+
+#6
+pseed.met.kin%>%
+  ggplot(aes(x=amp.sum.mean,y=met.mean,col=fish))+geom_point()+geom_errorbar(aes(ymin=met.mean-met.se,ymax= met.mean+met.se))+geom_smooth(method="lm")
+
+
 

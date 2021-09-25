@@ -14,6 +14,10 @@ setwd("~/Desktop/Codes-R-Us/Codes-R-US/scales1")
 
 dat <- read.csv("./scales1/scales.csv")
 
+
+# [CPK] from here on, some lines you don't need.  I know the dim of the data and what the first few lines look like, etc. Please stick to addressing the tasks.
+
+
 dim(dat)
 head(dat)
 
@@ -22,6 +26,7 @@ class(dat$N)
 class(dat$quadrant)
 class(dat$species)
 class(dat$specimen)
+
 
 # reports the dimensions of the dataset
 class(dat[,1])
@@ -75,5 +80,10 @@ for(i in species){
 }
 dev.off()
 list.files(pattern=".pdf")
+
+
+#Grade=10/10 ("Spot on" for both rubric items)
+#Well done.
+
 
 #test push sep13
