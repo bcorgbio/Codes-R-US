@@ -112,6 +112,21 @@ aicw(anole.phylo.aic$AICc)
 
 #6 
 
+#residuals of hindlimb-SVL relationship considering effects of covariates (BM3)
+#mutating and redefining anole.log data to include a column for residuals relating to the best fitting PGLS model
+
+anole.log <- anole.log %>%
+  mutate(PHPD.res=residuals(pgls.BM3))
+
+anole.log
+p.eco.phpd <- anole.log %>%
+  ggplot(aes(x=PH, y=PHPD.res)) + geom_boxplot() + stat_summary(fun=mean, geom="point", size=2)
+print(p.eco.phpd)
+anole.log
+p.eco.phpd <- anole.log %>%
+  ggplot(aes(x=ArbPD, y=PHPD.res)) + geom_boxplot() + stat_summary(fun=mean, geom="point", size=2)
+print(p.eco.phpd)
+
 #Plot that visualizes the differences in residual values of the covariates on the hindlimb residuals
 #visualizing the effect of covariates on hindlimb-SVL residuals of the best fitting PGLS model (BM3)
 
