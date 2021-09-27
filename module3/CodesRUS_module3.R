@@ -1,3 +1,7 @@
+###Project Code
+
+#1
+
 #load libraries
 library(tidyverse)
 library(ape)
@@ -40,7 +44,6 @@ print(p.eco.phylo)
 anole.tree <- read.tree("anole.tre")
 plot(anole.tree, cex=0.4)
 
-#PROJECT REPORT CODE
 
 #2
 
@@ -48,8 +51,6 @@ plot(anole.tree, cex=0.4)
 anole.log.arbpd.lm <- lm(HTotal~SVL+ArbPD, anole.log)
 summary(anole.log.arbpd.lm)
 anova(anole.log.arbpd.lm)
-
-anole.log.lm <- lm(HTotal~SVL, anole.log)
 
 anole.log.ph.lm <- lm(HTotal~SVL+PH, anole.log)
 summary(anole.log.ph.lm)
@@ -67,13 +68,13 @@ anova(anole.log.ph.lm)
 
 #before
 anole.log
-#after 1
 anole.log <- anole.log %>%
   mutate(pd.res=residuals(anole.log.arbpd.lm))
+#after adding ArbPD residuals
 anole.log
-#after 2
 anole.log <- anole.log %>%
   mutate(ph.res=residuals(anole.log.ph.lm))
+#after adding PH residuals
 anole.log
 
 #plotting the residuals against covariates
@@ -110,10 +111,20 @@ aicw(anole.phylo.aic$AICc)
 # both covariates are significant predictors of hindlimb length in a phylogenetic context
 
 #6 
-#Plot that visualizes the effect of the covariates on the hindlimb residuals of the best fitting PGLS model (BM3)
+
+#Plot that visualizes the differences in residual values of the covariates on the hindlimb residuals
 anole.log %>%
   dplyr::select(Ecomorph2, res, pd.res, ph.res) %>%
   pivot_longer(cols=c("res", "pd.res", "ph.res")) %>%
   print %>%
-  ggplot(aes(x=Ecomorph2, y=value)) +geom_boxplot() + stat_summary(fun=mean, geom="point", size=1) + facet_grid(name~., scales="free_y") + ylab("residual")
+  ggplot(aes(x=Ecomorph2, y=value)) +geom_boxplot() + stat_summary(fun=mean, geom="point", size=2) + facet_grid(name~., scales="free_y") + ylab("residual")
 
+#residuals of hindlimb-SVL relationship considering effects of covariates (BM3)
+#mutating and redefining anole.log data to include a column for residuals relating to the best fitting PGLS model
+#plotting them against Ecomorph2
+anole.log <- anole.log %>%
+  mutate(PHPD.res=residuals(pgls.BM3))
+anole.log
+p.eco.phpd <- anole.log %>%
+  ggplot(aes(x=Ecomorph2, y=PHPD.res)) + geom_boxplot() + stat_summary(fun=mean, geom="point", size=2)
+print(p.eco.phpd)
