@@ -128,3 +128,4 @@ anole.log
 p.eco.phpd <- anole.log %>%
   ggplot(aes(x=Ecomorph2, y=PHPD.res)) + geom_boxplot() + stat_summary(fun=mean, geom="point", size=2)
 print(p.eco.phpd)
+
