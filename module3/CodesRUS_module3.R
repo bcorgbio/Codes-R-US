@@ -113,19 +113,12 @@ aicw(anole.phylo.aic$AICc)
 #6 
 
 #Plot that visualizes the differences in residual values of the covariates on the hindlimb residuals
-anole.log %>%
-  dplyr::select(Ecomorph2, res, pd.res, ph.res) %>%
-  pivot_longer(cols=c("res", "pd.res", "ph.res")) %>%
-  print %>%
-  ggplot(aes(x=Ecomorph2, y=value)) +geom_boxplot() + stat_summary(fun=mean, geom="point", size=2) + facet_grid(name~., scales="free_y") + ylab("residual")
+#visualizing the effect of covariates on hindlimb-SVL residuals of the best fitting PGLS model (BM3)
 
-#residuals of hindlimb-SVL relationship considering effects of covariates (BM3)
-#mutating and redefining anole.log data to include a column for residuals relating to the best fitting PGLS model
-#plotting them against Ecomorph2
-anole.log <- anole.log %>%
-  mutate(PHPD.res=residuals(pgls.BM3))
-anole.log
-p.eco.phpd <- anole.log %>%
-  ggplot(aes(x=Ecomorph2, y=PHPD.res)) + geom_boxplot() + stat_summary(fun=mean, geom="point", size=2)
-print(p.eco.phpd)
+##passed log-transformed data to ggplot, specifying hindlimb-SVL residuals for x-values and covariate residuals for y, then added point and line
+## added another argument which colors all the added geometries according to the column values Ecomorph2
+anole.log%>%
+  ggplot(aes(PH, PHPD.res, col=Ecomorph2))+geom_point()+geom_smooth(method="lm")
 
+anole.log%>%
+  ggplot(aes(ArbPD, PHPD.res, col=Ecomorph2))+geom_point()+geom_smooth(method="lm")
