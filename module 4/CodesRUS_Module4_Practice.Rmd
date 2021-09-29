@@ -3,13 +3,34 @@ title: "Project 4"
 author: "CodesRUS"
 date: "9/29/2021"
 output: html_document
+bibliography: BIOL3140.bib
 ---
+1. Visualize how hind limb length varies with size (i.e., allometry!)
+2. Visualize and assess how hind limb length vs. size relationship covary with ecological niche
+3. Learn more complex operations in `ggplot` than we've undertaken so far.
+4. Evaluate this hindlimb-size relationship using standard frequentist models within and without a phylogenetic context
+5. Using an information theory approach, assess the fit of phylogenetically corrected models of hind-limb variation under different modes of character evolution
+
+<center>
+[![An anolis lizard](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Green_anole.jpg/320px-Green_anole.jpg)](https://upload.wikimedia.org/wikipedia/common/thumb/4/4b/Green_anole.jpg/320px-Green_anole.jpg)
+</center>
+
+<center>
+![](svl_small.png)
+</center>
+
+@hagey2017there studied the hind-limb-ecomorph relationship in anoles.
+
+A recent study considered the hindlimb-ecomorph relationship in anoles [@hagey2017there].
+
 ```{r, include=FALSE}
 library(tidyverse) #always
 library(ape) # for evo analysis
 library(nlme) #ditto
 library(MuMIn) #for AIC
 library(geiger) #for eco analysis
+library(knitr)
+library(rmarkdown)
 ```
 
 ```{r, "load the data"}
@@ -20,7 +41,7 @@ anole.tree <- read.tree("anole.tre")
 
 ```{r, "join, filter, mutate to log"}
 anole2 <- anole %>%
-  left_jion(anole.eco) %>%
+  left_join(anole.eco) %>%
   filter(!Ecomorph%in%c("U","CH"))%>%
   na.omit()
 
@@ -63,4 +84,23 @@ p.eco.phylo <- anole.log %>%
 
 print(p.eco.phylo)
 ```
+
+```{r}
+n.spec <- anole.log%>%
+  group_by(Ecomorph2)%>%
+  summarise(n.species=n())
+
+n.spec%>%
+  kable()
+
+n.spec %>%
+  kable(caption = "Number of species within each anole ecomorph included in this study")
+
+paged_table(anole.log, options = list(rows.print = 15))
+```
+
+```{r}
+
+```
+
 
