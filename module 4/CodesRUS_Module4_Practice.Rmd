@@ -28,7 +28,7 @@ A total of three data sets were used in this project: a phylogenetic relationshi
 
 ## Discussion
 
-Results from ANOVA test confirmed ecomorph having significant effect on hindlimb-SVL relationship in anoles. According to the PGLS model that includes ectomorph and under BM, specific hindlimb-SVL traits were evolved randomly within each lineage to best fit in specific ecological niches. The condensed magnitude of residuals in the model suggests strong phylogenetic influence on hindlimb-SVL relationship.
+Results from ANOVA test confirmed ecomorph having significant effect on hindlimb-SVL relationship in anoles. According to the PGLS model that includes ecomorph and under BM, specific hindlimb-SVL traits were evolved randomly within each lineage to best fit in specific ecological niches. The condensed magnitude of residuals in the model suggests strong phylogenetic influence on hindlimb-SVL relationship.
 
 @hagey2017there studied the hind-limb-ecomorph relationship in anoles.
 
