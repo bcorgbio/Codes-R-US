@@ -14,7 +14,6 @@ bibliography: BIOL3140.bib
 ## Introduction
 
 Ecomorphology is the study that allows people to understand the relationship between the morphology of the organism and its environment. In the Module3 project, we focus on the ecomorphology of anoles, a genus of iguanian reptiles with exceptional diversity[@hagey2017there]. The main purpose of the project is to visualize the difference of allometric relationship between hind limb length and size of Anolis lizard and how hind limb length vs. size relationship covaries with the ecological niche. To analyze our data, we compute standard error and create models based on the measurement of total hind-limb length, perch height, and perch diameter of various ecomorphs.
-
 <center>
 [![An anolis lizard](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Green_anole.jpg/320px-Green_anole.jpg)](https://upload.wikimedia.org/wikipedia/common/thumb/4/4b/Green_anole.jpg/320px-Green_anole.jpg)
 </center>
@@ -22,6 +21,10 @@ Ecomorphology is the study that allows people to understand the relationship bet
 <center>
 ![](svl_small.png)
 </center>
+
+## Methods
+
+A total of three data sets were used in this project: a phylogenetic relationships tree data of anoles @poe2017phylogenetic, a morphological data and a ecomorphological data of these anoles @hagey2-17there; unique data and that of missing value were filtered prior to analysis, remainder were combined and log transformed, then used to create a linear model and a non-linear allometric model of hindlimb vs. SVL that are subsequently compared using AIC. PGLS models were created with or without ectomorph as covariant and under Brownian motion (BM) and Ornstein-Uhlenbeck (OU) models respectively. Analysis of perch diameter vs. perch height were performed with the same method as above.
 
 @hagey2017there studied the hind-limb-ecomorph relationship in anoles.
 
