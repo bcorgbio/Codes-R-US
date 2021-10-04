@@ -45,7 +45,8 @@ Zhiyuan Wang:method and discussion
 
 @hagey2017there studied the hind-limb-ecomorph relationship in anoles.
 
-A recent study considered the hindlimb-ecomorph relationship in anoles [@hagey2017there].
+@poe2017phylogenetic was the source of the phylogenetic tree used in the PGLS analysis.  
+
 
 ```{r, include=FALSE}
 library(tidyverse) #always
@@ -101,7 +102,13 @@ anole.log <- anole.log %>%
   mutate(phylo.res=residuals(pgls.BM2))
 ```
 
-```{r, "plot residuals", fig.cap="Boxplot of phylogenetically corrected hindlimb residuals versus anole ecomorph"}
+```{r, fig.cap="Regression Plot of Log-transformed HTotal (x-axis) vs SVL (y-axis) From Updated Anole Data Set (Anole2) With Points Colored By Ecomorph2"}
+anole.log%>%
+  ggplot(aes(HTotal, SVL, col=Ecomorph2))+geom_point()+geom_smooth(method="lm")
+```
+
+
+```{r, "plot residuals", fig.cap="Boxplot of phylogenetically corrected hindlimb residuals versus anole ecomorph (data from updated anole2 data set)"}
 #plot residuals
 p.eco.phylo <- anole.log %>%
   ggplot(aes(x=Ecomorph2, y=phylo.res)) + geom_boxplot() + stat_summary(fun=mean, geom="point", size=3)
@@ -118,13 +125,8 @@ n.spec%>%
   kable()
 
 n.spec %>%
-  kable(caption = "Number of species within each anole ecomorph included in this study")
+  kable(caption = "Number Of Species Within Each Anole Ecomorph Included In This Study")
 
 paged_table(anole.log, options = list(rows.print = 15))
 ```
-
-```{r}
-
-```
-
 
