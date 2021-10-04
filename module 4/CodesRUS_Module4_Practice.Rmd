@@ -36,7 +36,7 @@ Results from ANOVA test confirmed ecomorph having significant effect on hindlimb
 
 ## Contributions
 
-Amada Napoli:
+Amanda Napoli:
 Haoran Zeng:introduction and result
 Nick Graziano:
 Zhiyuan Wang:method and discussion
