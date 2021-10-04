@@ -13,7 +13,7 @@ bibliography: BIOL3140.bib
 
 ## Introduction
 
-Ecomorphology is the study that allows people to understand the relationship between the morphology of the organism and its environment. In the Module3 project, we focus on the ecomorphology of anoles, a genus of iguanian reptiles with exceptional diversity[@hagey2017there]. The main purpose of the project is to visualize the difference of allometric relationship between hind limb length and size of Anolis lizard and how hind limb length vs. size relationship covaries with the ecological niche. To analyze our data, we compute standard error and create models based on the measurement of total hind-limb length, perch height, and perch diameter of various ecomorphs.
+Ecomorphology is the study that allows people to understand the relationship between the morphology of the organism and its environment. In the Module3 project, we focused on the ecomorphology of anoles, a genus of iguanian reptiles with exceptional diversity[@hagey2017there]. The main purpose of the project is to visualize the difference of allometric relationship between hind limb length and size of Anolis lizard and how hind limb length vs. size relationship covaries with the ecological niche. To analyze our data, we computed standard error and created models based on the measurement of total hind-limb length, perch height, and perch diameter of various ecomorphs.
 <center>
 [![An anolis lizard](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Green_anole.jpg/320px-Green_anole.jpg)](https://upload.wikimedia.org/wikipedia/common/thumb/4/4b/Green_anole.jpg/320px-Green_anole.jpg)
 </center>
@@ -24,21 +24,21 @@ Ecomorphology is the study that allows people to understand the relationship bet
 
 ## Methods
 
-A total of three data sets were used in this project: a phylogenetic relationships tree data of anoles @poe2017phylogenetic, a morphological data and a ecomorphological data of these anoles @hagey2017there; unique data and that of missing value were filtered prior to analysis, remainder were combined and log transformed, then used to create a linear model and a non-linear allometric model of hindlimb vs. SVL that are subsequently compared using AIC. PGLS models were created with or without ectomorph as covariant and under Brownian motion (BM) and Ornstein-Uhlenbeck (OU) models respectively. Analysis of perch diameter vs. perch height were performed with the same method as above.
+A total of three data sets were used in this project: a phylogenetic relationships tree data of anoles @poe2017phylogenetic, a morphological data and a ecomorphological data of these anoles @hagey2017there. Unique data and that of missing values were filtered prior to analysis, the remaining values were then combined and log transformed in order to create a linear model and a non-linear allometric model of hindlimb vs. SVL that are subsequently compared using AIC. PGLS models were created with or without ecomorph as the covariant and under Brownian motion (BM) and Ornstein-Uhlenbeck (OU) models, respectively. Analysis of perch diameter vs. perch height were performed with the same methods as explained above.
 
 ## Results
 
-The initial comparison between the linear and allometric model of Htotal vs. SVL showed the allometric model had a better fit with a lower AIC value. Next, we visualized the hindlimb-SVL relationship with ecomorph as a covariant. The null hypothesis that ecomorphs did not have separate hind limb to size relationships was rejected due to p=3.761e-09 from ANOVA test, which demonstrated the ecomorph played an important role to influence the hindlimb-SVL relationship. This model also has a better fit according to our AIC and AICw value. The hindlimb-SVL relationship then was plotted by considering the potential influence of phylogeny; Phylogenetic generalized least squares under BM with ecomorph has the best fit based on AIC operation. At our last step, the PGLS model with the hindlimb-SVL relationship accounting for perch height, perch diameter, and perch height + perch diameter was created under the BM model; perch diameter and perch diameter +perch was both significant based on AICc and AICw.
+The initial comparison between the linear and allometric model of Htotal vs. SVL showed the allometric model had a better fit with a lower AIC value. Next, we visualized the hindlimb-SVL relationship with ecomorph as a covariant. The null hypothesis that ecomorphs did not have separate hind-limb to size relationships was rejected due to p=3.761e-09 from ANOVA test, which demonstrated that the ecomorph played an important role to influence the hindlimb-SVL relationship. This model also has a better fit according to our AIC and AICw value. The hindlimb-SVL relationship was then plotted by considering the potential influence of phylogeny; The phylogenetic generalized least squares analysis under BM with ecomorph had the best fit based on AIC operation. At our last step, the PGLS model with the hindlimb-SVL relationship accounting for perch height, perch diameter, and perch height + perch diameter was created under the BM model; both covarients, perch diameter + perch height, together were discovered to be significant predictors of relationship in a phylogentic context based on AICc and AICw.
 
 ## Discussion
 
-Results from ANOVA test confirmed ecomorph having significant effect on hindlimb-SVL relationship in anoles. According to the PGLS model that includes ecomorph and under BM, specific hindlimb-SVL traits were evolved randomly within each lineage to best fit in specific ecological niches. The condensed magnitude of residuals in the model suggests strong phylogenetic influence on hindlimb-SVL relationship.
+Results from ANOVA test confirmed ecomorph having significant effect on hindlimb-SVL relationship in anoles. According to the PGLS model that included ecomorph and were placed under BM, specific hindlimb-SVL traits were evolved randomly within each lineage to best fit in specific ecological niches. The condensed magnitude of residuals in the model suggested strong phylogenetic influence on hindlimb-SVL relationship, as did perch diameter and perch height as they were found to be significant predictors. 
 
 ## Contributions
 
-Amanda Napoli:
+Amanda Napoli:reviews, edits, and data 
 Haoran Zeng:introduction and result
-Nick Graziano:
+Nick Graziano: reviews, edits, and data 
 Zhiyuan Wang:method and discussion
 
 ## Reference
