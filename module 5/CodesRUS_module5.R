@@ -9,9 +9,10 @@ for(i in dat.f){
   activity <- gsub(".csv","",met.dat[2]) #store second element, dropping CSV with gsub()
   dat.l[[i]]<- read_csv(i)%>%
     mutate(who=who,activity=activity) #read, then store data with additional columns of metada in list as position unique to i
-  
 }
-dat <- do.call(rbind,dat.l) #combine the list into table
+
+dat <- do.call(rbind,dat.l) %>% #combine the list into table
+  print()
 
 dat%>%
   ggplot()+geom_boxplot(aes(x=activity,y=degC))+facet_grid(.~who) #plot to see what we get
