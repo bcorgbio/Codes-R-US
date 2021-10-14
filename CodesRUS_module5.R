@@ -1,0 +1,23 @@
+library(tidyverse)
+dat.f <- list.files(pattern = "couch|active.csv") %>% #find the files
+  print()
+  
+dat.l <- list() #make an empty list
+
+for(i in dat.f){
+  met.dat<- unlist(strsplit(i,"_")) %>% #split of the filename string
+    print()
+  who <- met.dat[1] %>% #store the first element
+    print()
+  activity <- gsub(".csv","",met.dat[2]) %>% #store second element, dropping CSV with gsub()
+    print()
+  dat.l[[i]]<- read_csv(i)%>%
+    mutate(who=who,activity=activity) %>% #read, then store data with additional columns of metada in list as position unique to i
+    print()
+}
+
+dat <- do.call(rbind,dat.l) %>% #combine the list into table
+  print()
+  
+dat%>%
+  ggplot()+geom_boxplot(aes(x=activity,y=degC))+facet_grid(.~who) #plot to see what we get
