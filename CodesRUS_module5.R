@@ -17,4 +17,3 @@ dat <- do.call(rbind,dat.l) #combine the list into table
   
 dat%>%
   ggplot()+geom_boxplot(aes(x=activity,y=degC))+facet_grid(.~who) #plot to see what we get
-
