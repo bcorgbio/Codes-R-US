@@ -10,18 +10,11 @@ As human being, we always have the physiological capacity to maintain stable bod
 ### Methods 
 To assess the effect of physical activity on body temperature, axillary temperature readings before and after a period of physical activity were recorded from all four group members using a DHT11 sensor connected to Arduino (fig.1). For each member, body temperatures at inactive states and after 5 minutes of jumping jack were recorded for 100 seconds. Each member’s mean temperature was plotted with +/- 1 standard deviation, and differences between each members’ temperature changes were compared. 
 
+### Result 
+plot
+
 ### Discussion
 
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
 ### Contribution
 Amanda Napoli:
