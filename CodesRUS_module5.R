@@ -16,6 +16,8 @@ for(i in dat.f){
     print()
 }
 
+print(dat.l)
+
 dat <- do.call(rbind,dat.l) %>% #combine the list into table
   print()
   
