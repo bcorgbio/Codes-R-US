@@ -5,8 +5,7 @@ date: "10/17/2021"
 output: html_document
 ---
 ### Intro
-
-
+As human being, we always have the physiological capacity to maintain stable body temperature under various conditions. If our body temperature becomes too high or too low, the hypothalamus in the brain will trigger corresponding thermoregulatory defense, such as sweating and shivering. Since thermoregulatory defenses are very effective in most conditions, body temperature rarely changes more than a few tenths of a degree from the ideal body temperature. (!!!!!Add citation Here!!!!!!!!) The purpose of this investigation is to measure the change of body temperature with different activity levels and how this change in different people. We use the DHT11 sensor to measure the variance of body temperature and apply ggplot in R-studio to visualize our data. 
 
 ### Methods 
 To assess the effect of physical activity on body temperature, axillary temperature readings before and after a period of physical activity were recorded from all four group members using a DHT11 sensor connected to Arduino (fig.1). For each member, body temperatures at inactive states and after 5 minutes of jumping jack were recorded for 100 seconds. Each member’s mean temperature was plotted with +/- 1 standard deviation, and differences between each members’ temperature changes were compared. 
