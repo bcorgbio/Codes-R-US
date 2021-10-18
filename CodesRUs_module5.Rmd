@@ -9,9 +9,10 @@ bibliography: BIOL3140.bib
 As human beings, we always have the physiological capacity to maintain a stable body temperature under various conditions. If our body temperature becomes too high or too low, the hypothalamus in the brain will trigger a corresponding thermoregulatory defense, such as sweating or shivering. Since thermoregulatory defenses are very effective in most conditions, one's body temperature rarely changes more than a few tenths of a degree from the ideal body temperature (@king1961energy). The purpose of this investigation is to measure the change in body temperature with different activity levels and how this differs between multiple people. We used the DHT11 sensor to measure the variance of body temperature, altered and combined all the data into a single table, and then used ggplot in R-studio to visualize our data - which depicted separate sections for each subject, temperature readings for altering activity levels, along with means and standard deviation lines for each set of recordings. 
 
 ### Methods 
-To assess the effect of physical activity on body temperature, auxillary temperature readings before and after a period of physical activity were recorded from all four group members using a DHT11 sensor connected to Arduino (depicted below). 
+To assess the effect of physical activity on body temperature, auxillary temperature readings before and after a period of physical activity were recorded from all four group members using a DHT11 sensor connected to Arduino (depicted below).  
 <center>
-![](Arduino_Uno.png)
+![](Arduino_Uno.png)  
+</center>
 For each member, body temperatures at inactive states and after 5 minutes of jumping jack were recorded for 100 seconds. Each member’s mean temperature was plotted with +/- 1 standard deviation, and differences between each members’ temperature changes were compared. It is important to note that body temperature recordings were made through clothing for all test subjects to minimize touch exposure. 
 
 ### Result 
@@ -39,15 +40,17 @@ dat%>%
   ggplot()+geom_boxplot(aes(x=activity,y=degC))+facet_grid(.~who) #plot to see what we get
 
 ```
+  
+After obtaining both resting and active temperatures for each of the four members, a clear trend arose. For Amanda, Steven and Tony, the mean active temperature was actually lower than the mean resting temperature, yet the opposite was true for Nick's data. Between the four members, the temperatures remained mostly consistent as everyone had body temperatures ranging between 27.5 and 36.5 degrees Celsius. On the box plot graph depicted above, the spread of all of the recorded temperatures can be seen and used for comparison. Standard deviations for each group member, for both their mean active and resting temperatures, are depicted by the extending lines which allow for identification and quantification of any errors within our data collection. 
 
 ### Discussion
-Following the previous research, during exercise, 80% of energy consumption is converted into heat and only 20% of energy consumption is used by muscle contraction (@nagashima2012exercise). Due to thermoregulation, the body undergoes heat loss mechanisms, and changes in blood volume or blood flow distribution (@fortney1985exercise). While an increase in body temperature may not be observed as a result of light exercise, it is understood that both high ambient temperatures and prolonged exercise can lead to an increase in core temperature as body rehydration under these circumstance may not be adequate enough to maintain homeostasis (@fortney1985exercise).
+Following the previous research, during exercise, 80% of energy consumption is converted into heat and only 20% of energy consumption is used by muscle contraction (@nagashima2012exercise). Due to thermoregulation, the body undergoes heat loss mechanisms, and changes in blood volume or blood flow distribution (@fortney1985exercise). While an increase in body temperature may not be observed as a result of light exercise, it is understood that both high ambient temperatures and prolonged exercise can lead to an increase in core temperature as body rehydration under these circumstance may not be adequate enough to maintain homeostasis (@fortney1985exercise).  
 Given this understanding, we similarly did not see an increase in temperature from three out of the four group members(Tony, Amanda, and Steven). Only Nick’s body temperature increased after completing 5 minutes of jumping jacks. This could be as a result of more strenuous activity performed by Nick along with possibly his body being less hydrated and therefore unable to thermoregulate and properly maintain homeostasis. Our findings were moderately consistent with our research. One possible aspect of our study that could have impacted our results was that we put the sensor on our clothes when we measured the data. While this could impact the accuracy of the readings, the precision between activity levels of each individual along with the readings between all four members remained intact.
 
 
 ### Contribution
-Amanda Napoli:
-Nick Graziano: 
-Haoran Zeng: Introduction, Discussion, Device Assembly 
-Zhiyuan Wang: Device Assembly/Programming, Methods
+Amanda Napoli: Results, Discussion, Revisions & Edits, Bibliography  
+Nick Graziano: Results, Revisions & Edits, Bibliography  
+Haoran Zeng: Introduction, Discussion, Device Assembly  
+Zhiyuan Wang: Device Assembly/Programming, Methods  
 
