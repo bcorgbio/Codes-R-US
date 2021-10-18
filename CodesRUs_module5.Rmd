@@ -48,9 +48,10 @@ Following the previous research, during exercise, 80% of energy consumption is c
 Given this understanding, we similarly did not see an increase in temperature from three out of the four group members(Tony, Amanda, and Steven). Only Nick’s body temperature increased after completing 5 minutes of jumping jacks. This could be as a result of more strenuous activity performed by Nick along with possibly his body being less hydrated and therefore unable to thermoregulate and properly maintain homeostasis. Our findings were moderately consistent with our research. One possible aspect of our study that could have impacted our results was that we put the sensor on our clothes when we measured the data. While this could impact the accuracy of the readings, the precision between activity levels of each individual along with the readings between all four members remained intact.
 
 
-### Contribution
+### Contributions
 Amanda Napoli: Results, Discussion, Revisions & Edits, Bibliography  
 Nick Graziano: Results, Revisions & Edits, Bibliography  
 Haoran Zeng: Introduction, Discussion, Device Assembly  
 Zhiyuan Wang: Device Assembly/Programming, Methods  
 
+### References
