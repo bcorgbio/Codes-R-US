@@ -5,7 +5,7 @@ date: "10/17/2021"
 output: html_document
 bibliography: BIOL3140.bib
 ---
-### Intro
+### Introduction
 As human beings, we always have the physiological capacity to maintain a stable body temperature under various conditions. If our body temperature becomes too high or too low, the hypothalamus in the brain will trigger a corresponding thermoregulatory defense, such as sweating or shivering. Since thermoregulatory defenses are very effective in most conditions, one's body temperature rarely changes more than a few tenths of a degree from the ideal body temperature (@king1961energy). The purpose of this investigation is to measure the change in body temperature with different activity levels and how this differs between multiple people. We used the DHT11 sensor to measure the variance of body temperature, altered and combined all the data into a single table, and then used ggplot in R-studio to visualize our data - which depicted separate sections for each subject, temperature readings for altering activity levels, along with means and standard deviation lines for each set of recordings. 
 
 ### Methods 
@@ -15,7 +15,7 @@ To assess the effect of physical activity on body temperature, auxillary tempera
 </center>
 For each member, body temperatures at inactive states and after 5 minutes of jumping jack were recorded for 100 seconds. Each member’s mean temperature was plotted with +/- 1 standard deviation, and differences between each members’ temperature changes were compared. It is important to note that body temperature recordings were made through clothing for all test subjects to minimize touch exposure. 
 
-### Result 
+### Results 
 ```{r}
 library(tidyverse)
 dat.f <- list.files(pattern = "couch|active.csv") %>% #find the files
