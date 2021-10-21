@@ -13,7 +13,8 @@ for(i in f){
   f.i <- f.i[,coln]
   colnames(f.i) <- "Temp"
   f.l[[i]] <- f.i%>%
-    mutate(N=1:n(),Temp=as.numeric(Temp),subject=sub,Time=time,mass=mass)
+    mutate(N=1:n(),Temp=as.numeric(Temp),subject=sub,Time=time,mass=mass)%>%
+    print()
 }
 
 dat <- do.call(rbind,f.l)
@@ -25,4 +26,4 @@ dat%>%
   print()
 
 dat%>%
-  ggplot()+geom_boxplot(aes(x=mass,y=Temp))+facet_grid(.~Time) #plot to see what we get
+  ggplot()+geom_boxplot(aes(x=mass,y=Temp))+facet_grid(.~subject) #plot to see what we get
