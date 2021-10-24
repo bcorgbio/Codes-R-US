@@ -13,6 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Introduction
 
 ## Methods
+To collect body temperature in the subject of our team, a simple temperature recording data-acquisition system (DAQ) is assembled using an Elegoo Arduino clone and DHT11 sensor; 15 minutes of axial temperature reading was recorded in daytime and early in the morning respectively. To evaluate scaling relationship between mean temperature difference and mass within human subjects, we filtered out outlying data and constructed a linear model using ggplot. To analyze inter-specific relationship, we combined human data with 51 non-human mammals data and applied the same linear model.
 
 ## Results
 
