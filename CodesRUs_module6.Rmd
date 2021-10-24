@@ -11,6 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Introduction
+The ability to maintain constant internal temperature is a crucial skill for birds and mammals. Our brain and neural network only function at the ideal temperature range. (@morrison2019central) However, all mammals engage in some types of heterothermy, either regional or temporal, to modulate the metabolic demand or better survive in certain environments.(@mitchell2002adaptive) In this module, we use EDT 11  sensor to measure the change of temperature in the human body during day and night time to find the relationship between temperature difference and body mass. Also, we use downloaded data to find the relationship between temperature difference and body across different mammals.  To analyze these relationships, we create linear models based on the temperature measurement and body mass by ggplot in R-studio.
 
 ## Methods
 To collect body temperature in the subject of our team, a simple temperature recording data-acquisition system (DAQ) is assembled using an Elegoo Arduino clone and DHT11 sensor; 15 minutes of axial temperature reading was recorded in daytime and early in the morning respectively. To evaluate scaling relationship between mean temperature difference and mass within human subjects, we filtered out outlying data and constructed a linear model using ggplot. To analyze inter-specific relationship, we combined human data with 51 non-human mammals data and applied the same linear model.
