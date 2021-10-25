@@ -1,5 +1,5 @@
 ---
-title: "CodeRUs_module6"
+title: "Project 6"
 author: "CodesRUs"
 date: "10/24/2021"
 output: html_document
@@ -50,7 +50,7 @@ dat <- do.call(rbind,f.l)
 ```
 
 
-```{r, "plotting inter-specific data", fig.cap="Linear Model Depicting Log Tranformed Mean Mass (x-axis) vs Log Transformed Mean Temperature Change (y-axis) From Our Human Data Set"}
+```{r, "plotting inter-specific data", fig.cap="Linear Model Depicting Log Tranformed Mean Mass (x-axis) vs Log Transformed Mean Temperature Change (y-axis) From Our Human Data Set", message=FALSE, warning=FALSE}
 
 dat2 <- dat%>%
   group_by(subject,Time,mass)%>%
@@ -66,7 +66,7 @@ dat2%>%
 
 Our results show that there is no apparent relationship between body temperature difference and mass within human subjects.  There is a slight downward trend, in the data; meaning as mass increases, the difference in mean temperatures slightly decreases. The slope of the graph just slightly negative initially, and close to zero after the log transformation. 
 
-```{r, "plotting intra-specific data without log transformation", fig.cap="Linear Model Depicting Mean Mass (x-axis) vs Mean Temperature Change (y-axis) of Each Species From Data Set (mammals)"}
+```{r, "plotting intra-specific data without log transformation", fig.cap="Linear Model Depicting Mean Mass (x-axis) vs Mean Temperature Change (y-axis) of Each Species From Data Set (mammals)", message=FALSE, warning=FALSE}
 #Inter-specific Scaling
 mean.mass = colMeans(dat2[2], na.rm=TRUE)
 mean.h.temp= colMeans(dat2[3], na.rm=TRUE)
@@ -89,7 +89,7 @@ mammals.dat %>%
 
 Following the intra-specific scaling data analysis, mean mass and temperature change were calculated and then added to our inter-specific data set. At first, a linear model representing mean mass values against mean temperature change values was conducted. This representation doesn't allow for accurate understandings so the data was then log transformed.
 
-```{r, "plotting intra-specific data with log transformations", fig.cap="Linear Model Depicting Log Tranformed Mean Mass (x-axis) vs Log Transformed Mean Temperature Change (y-axis) of Each Species From Data Set (mammals)"}
+```{r, "plotting intra-specific data with log transformations", fig.cap="Linear Model Depicting Log Tranformed Mean Mass (x-axis) vs Log Transformed Mean Temperature Change (y-axis) of Each Species From Data Set (mammals)", message=FALSE, warning=FALSE}
 
 mammals.dat %>%
   ggplot(aes(log(mass.g),log(td)))+geom_point()+geom_smooth(method="lm")
@@ -108,5 +108,6 @@ When the human data is combined with other mammalian species, a negative relatio
 
 
 ## Contributions
+For this project, Tony collected all of our data and worked on the Methods and References sections. Steven worked on the Introduction and References sections. Nick worked on the Results and Discussion sections. Amanda created the graphs and worked on the Results and Discussions sections. All team members carried out editing at the end.
 
 ## References
