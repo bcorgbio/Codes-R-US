@@ -23,9 +23,12 @@ To collect body temperature in the subject of our team, a simple temperature rec
 To evaluate scaling relationship between mean temperature difference and mass within human subjects, we filtered out outlying data and constructed a linear model using ggplot. To analyze inter-specific relationship, we combined human data with 51 non-human mammals data and applied the same linear model.
 
 ## Results
-```{r}
+```{r, include=FALSE}
 library(tidyverse)
+library(knitr)
+```
 
+```{r, "loading data and creating proper data set", echo=TRUE, results=FALSE, message=FALSE}
 f <- list.files("./proj6data",pattern=".csv",full.names=T)
 
 f.l <- list()
@@ -34,7 +37,6 @@ for(i in f){
   if(ncol(f.i)==1) coln <- 1
   if(ncol(f.i)==2) coln <- 2
   m <- strsplit(i,"_")%>%unlist
-  print(m)
   sub <- m[2]%>%tolower()
   time <- m[3]%>%tolower()
   mass <- as.numeric(gsub(".csv","",m[4]))
@@ -47,7 +49,8 @@ for(i in f){
 dat <- do.call(rbind,f.l)
 ```
 
-```{r, fig.cap="Linear Model Depicting Log Tranformed Mean Mass (x-axis) vs Log Transformed Mean Temperature Change (y-axis) From Our Human Data Set"}
+
+```{r, "plotting inter-specific data", fig.cap="Linear Model Depicting Log Tranformed Mean Mass (x-axis) vs Log Transformed Mean Temperature Change (y-axis) From Our Human Data Set"}
 
 dat2 <- dat%>%
   group_by(subject,Time,mass)%>%
@@ -63,7 +66,7 @@ dat2%>%
 
 Our results show that there is no apparent relationship between body temperature difference and mass within human subjects.  There is a slight downward trend, in the data; meaning as mass increases, the difference in mean temperatures slightly decreases. The slope of the graph just slightly negative initially, and close to zero after the log transformation. 
 
-```{r, fig.cap="Linear Model Depicting Mean Mass (x-axis) vs Mean Temperature Change (y-axis) of Each Species From Data Set (mammals)"}
+```{r, "plotting intra-specific data without log transformation", fig.cap="Linear Model Depicting Mean Mass (x-axis) vs Mean Temperature Change (y-axis) of Each Species From Data Set (mammals)"}
 #Inter-specific Scaling
 mean.mass = colMeans(dat2[2], na.rm=TRUE)
 mean.h.temp= colMeans(dat2[3], na.rm=TRUE)
@@ -86,7 +89,7 @@ mammals.dat %>%
 
 Following the intra-specific scaling data analysis, mean mass and temperature change were calculated and then added to our inter-specific data set. At first, a linear model representing mean mass values against mean temperature change values was conducted. This representation doesn't allow for accurate understandings so the data was then log transformed.
 
-```{r, fig.cap="Linear Model Depicting Log Tranformed Mean Mass (x-axis) vs Log Transformed Mean Temperature Change (y-axis) of Each Species From Data Set (mammals)"}
+```{r, "plotting intra-specific data with log transformations", fig.cap="Linear Model Depicting Log Tranformed Mean Mass (x-axis) vs Log Transformed Mean Temperature Change (y-axis) of Each Species From Data Set (mammals)"}
 
 mammals.dat %>%
   ggplot(aes(log(mass.g),log(td)))+geom_point()+geom_smooth(method="lm")
@@ -101,7 +104,7 @@ When the human data is combined with other mammalian data, a negative scaling be
 In humans specifically, the data provided no clear relationship between mass and mean body temperature difference. This would be an allometric growth relationship as the change in mass does not equal the change in the difference in mean temperatures. The data helps to demonstrate that there are stable mechanisms controlling heat loss in humans and these appear to be for the most part consistent across individual human subjects as mass does not greatly differ. Within a small range of masses, we have similar metabolic rates further demonstrating the stability of human body temperature.
 
 
-When the human data is combined with other mammalian species, a negative relationship is seen. While not a perfectly isometric relationship since the changes in the magnitude of mass and temperature are not directly equal, it is far closer than that of the data consisting of only humans.This demonstrates that the control of temperature oscillations does in fact vary across different mammalian species. Similar studies have been carried out in all different types of mammals and have shown that there is a complex relationship between metabolic rate, body mass, and body temperature (@clarke2008scailing). This aligns with our data as we do not see a strong relationship when specifically looking at the human species, but we see a more prominent relationship when data from many mammalian species are combined. 
+When the human data is combined with other mammalian species, a negative relationship is seen. While not a perfectly isometric relationship since the changes in the magnitude of mass and temperature are not directly equal, it is far closer than that of the data consisting of only humans.This demonstrates that the control of temperature oscillations does in fact vary across different mammalian species. Similar studies have been carried out in all different types of mammals and have shown that there is a complex relationship between metabolic rate, body mass, and body temperature (@clarke2008scaling). This aligns with our data as we do not see a strong relationship when specifically looking at the human species, but we see a more prominent relationship when data from many mammalian species are combined. 
 
 
 ## Contributions
