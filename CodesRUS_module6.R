@@ -36,28 +36,24 @@ dat2%>%
 
 
 #Inter-specific Scaling
-mean.mass = colMeans(dat2[2], na.rm=TRUE)%>%
-  print()
-mean.h.temp= colMeans(dat2[3], na.rm=TRUE)%>%
-  print()
-mean.l.temp = colMeans(dat2[4], na.rm=TRUE)%>%
-  print()
+mean.mass = colMeans(dat2[2], na.rm=TRUE)
+mean.h.temp= colMeans(dat2[3], na.rm=TRUE)
+mean.l.temp = colMeans(dat2[4], na.rm=TRUE)
 
-Human.Data <- data.frame("Primata","Homo sapiens", mean.mass, mean.h.temp, mean.l.temp)%>%
-  print()
-names(Human.Data) <- c("Order", "species","mass.g", "T.high", "T.low")%>%
-  print()
-print(Human.Data)
+Human.Data <- data.frame("Primata","Homo sapiens", mean.mass, mean.h.temp, mean.l.temp)
+names(Human.Data) <- c("Order", "species","mass.g", "T.high", "T.low")
 
-mammals <- read.csv("mammal.temp.csv")%>%
-  print()
+mammals <- read.csv("mammal.temp.csv")
 mammals.df <- rbind(mammals, Human.Data)
-print(mammals.df)
 
 temp.change <- mammals.df%>%
   mutate(td=abs(T.high-T.low))
 
-mammals.dat <- temp.change%>%
+mammals.dat <- temp.change
+
+mammals.dat %>%
+  ggplot(aes(mass.g,td))+geom_point()+geom_smooth(method="lm")
 
 mammals.dat %>%
   ggplot(aes(log(mass.g),log(td)))+geom_point()+geom_smooth(method="lm")
+
