@@ -20,6 +20,10 @@ To collect body temperature in the subject of our team, a simple temperature rec
 
 ## Discussions
 
+Our results show that there is no apparent relationship between body temperature difference and mass within the subjects, which demonstrates mechanisms controlling heat loss is stable across human.
+
+A negative scaling between body temperature difference and mass was found across mammals, which demonstrates that the control of temperature oscillation does vary across different mammal species.
+
 ## Contributions
 
 ## References
