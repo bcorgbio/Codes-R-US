@@ -7,6 +7,8 @@ library(dplyr)
 library(ggplot2)
 library(MuMIn)
 library(nlme)
+library(ape)
+library(phytools)
 
 m.phy <- read.tree("mammal.tree.pruned.txt")
 m.phy$tip.label <- gsub("(\\w+)_(\\w+)","\\1 \\2",m.phy$tip.label)
@@ -20,8 +22,7 @@ plot(m.phy)
 plot(m.phy5)
 plot(m.phy0)
 
-library(ape)
-library(phytools)
+
 
 sim.trait <- runif(Ntip(m.phy))
 
@@ -33,32 +34,44 @@ sim.sig <- phylosig(m.phy,sim.trait,method="lambda",test=T)
 
 print(sim.sig)
 
-mammal.temp<-read.csv("mammal.temp2.csv")
+mammal.temp <- read.csv("mammal.temp2.csv")
 mammal.temp <- mammal.temp%>%
-  mutate(T.delta = abs(T.high-T.low)
-  )
-
+  mutate(T.delta = abs(T.high-T.low))
+##print(mammal.temp)
 mammal.temp.log <- mammal.temp %>%
   mutate_at(c("mass.g", "T.high", "T.low", "T.delta"), log)
+##print(mammal.temp.log)
+
 
 ###question 1
 
-##generate graph of body mass vs.temperature difference 
+##generate log-log graph of body mass vs.temperature difference 
 mammal.temp.log%>%
-  ggplot(aes(mass.g,T.delta))+geom_point()+geom_smooth(method = "lm")
+  ggplot(aes(mass.g,T.delta))+geom_point()+geom_smooth(method = "lm", se = F)
 
-##generate graph of body mass vs.maximum temperature
+##generate log-log graph of body mass vs.maximum temperature
 mammal.temp.log%>%
-  ggplot(aes(mass.g,T.high))+geom_point()+geom_smooth(method = "lm")
+  ggplot(aes(mass.g,T.high))+geom_point()+geom_smooth(method = "lm", se = F)
 
-##generate graph of body mass vs.minimum temperature 
+##generate log-log graph of body mass vs.minimum temperature 
 mammal.temp.log%>%
-  ggplot(aes(mass.g,T.low))+geom_point()+geom_smooth(method = "lm")
+  ggplot(aes(mass.g,T.low))+geom_point()+geom_smooth(method = "lm", se= F)
+
+
+## linear models
+mammal.diff.lm <- lm(T.delta ~ mass.g, mammal.temp.log)
+mammal.high.lm <- lm(T.high ~ mass.g, mammal.temp.log)
+mammal.low.lm <- lm(T.low ~ mass.g, mammal.temp.log)
+
+mammal.temp.aic <- AICc(mammal.diff.lm, mammal.high.lm, mammal.low.lm)
+mammal.temp.aicw <- aicw(mammal.temp.aic$AICc)
+print(mammal.temp.aicw)
+# linear model of mammal.high.lm is the best fit given lowest value in chart
 
 
 ###question 2
 
-##evaluate lamda value and p-value to find signficant phylogentic signal in the four variables
+##evaluate lambda value and p-value to find significant phylogenetic signal in the four variables
 
 mass.trait <- mammal.temp$mass.g
 names(mass.trait) <- mammal.temp.log$species
