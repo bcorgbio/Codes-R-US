@@ -1,5 +1,3 @@
-
-
 #Pagel’s Lambda
 
 library(geiger)
@@ -23,15 +21,10 @@ plot(m.phy5)
 plot(m.phy0)
 
 
-
 sim.trait <- runif(Ntip(m.phy))
-
 names(sim.trait) <- m.phy$tip.label
-
 print(sim.trait)
-
 sim.sig <- phylosig(m.phy,sim.trait,method="lambda",test=T)
-
 print(sim.sig)
 
 mammal.temp <- read.csv("mammal.temp2.csv")
@@ -67,6 +60,26 @@ mammal.temp.aic <- AICc(mammal.diff.lm, mammal.high.lm, mammal.low.lm)
 mammal.temp.aicw <- aicw(mammal.temp.aic$AICc)
 print(mammal.temp.aicw)
 # linear model of mammal.high.lm is the best fit given lowest value in chart
+summary(mammal.diff.lm)
+summary(mammal.high.lm)
+summary(mammal.low.lm)
+
+mammal.lm.table <- matrix(c(1.07127, -0.11518, 3.6480114, -0.0010265, 3.577075, 0.003091), ncol=2, byrow = TRUE)
+rownames(mammal.lm.table) <- c("Delta", "High", "Low")
+colnames(mammal.lm.table) <- c("Intercept", "mass.g")
+mammal.lm.table <- as.table(mammal.lm.table)
+print(mammal.lm.table)
+
+##Summary for Slope and Intercept values of Linear Models
+#Temp Delta
+## (Intercept)  1.07127
+## mass.g      -0.11518
+#Temp High
+## (Intercept)  3.6480114
+## mass.g      -0.0010265
+#Temp Low
+## (Intercept) 3.577075
+## mass.g      0.003091
 
 
 ###question 2
@@ -79,11 +92,11 @@ print(mass.trait)
 mass.trait <- phylosig(m.phy,mass.trait,method="lambda",test=T)
 print(mass.trait)
 
-Tdelta.trait <- mammal.temp$T.delta
-names(Tdelta.trait) <- mammal.temp.log$species
-print(Tdelta.trait)
-Tdelta.trait <- phylosig(m.phy,Tdelta.trait,method="lambda",test=T)
-print(Tdelta.trait)
+T.delta.trait <- mammal.temp$T.delta
+names(T.delta.trait) <- mammal.temp.log$species
+print(T.delta.trait)
+T.delta.trait <- phylosig(m.phy,T.delta.trait,method="lambda",test=T)
+print(T.delta.trait)
 
 T.low.trait <- mammal.temp$T.low
 names(T.low.trait) <- mammal.temp.log$species
@@ -97,6 +110,15 @@ print(T.high.trait)
 T.high.trait <- phylosig(m.phy,T.high.trait,method="lambda",test=T)
 print(T.high.trait)
 
+
+### Make an Actual Table
+
+phylo.sig.table <- matrix(c(0.999934, 1.83952e-11, 0.580389, 0.00776833, 0.791644, 0.00298335, 0.869769, 0.0409622), ncol=2, byrow = TRUE)
+rownames(phylo.sig.table) <- c("Mass", "T.delta", "T.low", "T.high")
+colnames(phylo.sig.table) <- c("Lamba", "p-value")
+phylo.sig.table <- as.table(phylo.sig.table)
+print(phylo.sig.table)
+
 ##           Lambda        p-value
 ## mass      0.999934     1.83952e-11 
 ## T.delta   0.580389     0.00776833 
@@ -104,48 +126,113 @@ print(T.high.trait)
 ## T.high    0.869769     0.0409622 
 
 
-## Mass is most the significant signal because it has highest phylogenetic signal lambda and lowest P value. 
-
+## The mass has the highest Lambda value and lowest p-value. So the most signification phylogentic signal is mass. 
+##Other signals are also significant because their lambda values are high and p-values are below 0.05.
 
 ### Question 3
 
 ##After we find mass is the most significant signal, we use BM and OU model to test which variable is the best covariance with mass.(T.high?T.low?or T.delta?)
-pgls.BM1 <- gls(mass.g~ T.high, correlation = corBrownian(1, phy = m.phy, form =~species), data = mammal.temp, method = "ML")
-pgls.BM2 <- gls(mass.g~ T.low, correlation = corBrownian(1, phy = m.phy, form =~species), data = mammal.temp, method = "ML")
-pgls.BM3 <- gls(mass.g~T.delta, correlation = corBrownian(1, phy = m.phy, form =~species), data = mammal.temp, method = "ML")
-pgls.log.BM1 <- gls(mass.g~ T.high, correlation = corBrownian(1, phy = m.phy, form =~species), data = mammal.temp.log, method = "ML")
-pgls.log.BM2 <- gls(mass.g~ T.low, correlation = corBrownian(1, phy = m.phy, form =~species), data = mammal.temp.log, method = "ML")
-pgls.log.BM3 <- gls(mass.g~T.delta, correlation = corBrownian(1, phy = m.phy, form =~species), data = mammal.temp.log, method = "ML")
+## We apply PGLS analysis and BM/OU model to find the best fit
+#without PGLS analysis, but use BM model
+log.BM1 <- gls(T.high~ mass.g, correlation = corBrownian(1, phy = m.phy, form =~species), data = mammal.temp.log, method = "ML")
+log.BM2 <- gls(T.low~ mass.g, correlation = corBrownian(1, phy = m.phy, form =~species), data = mammal.temp.log, method = "ML")
+log.BM3 <- gls(T.delta~ mass.g, correlation = corBrownian(1, phy = m.phy, form =~species), data = mammal.temp.log, method = "ML")
+
+#with PGLS analysis and BM model
+pgls.BM1 <- gls(T.high~ mass.g, correlation = corBrownian(1, phy = m.phy, form =~species), data = mammal.temp, method = "ML")
+pgls.BM2 <- gls(T.low~ mass.g, correlation = corBrownian(1, phy = m.phy, form =~species), data = mammal.temp, method = "ML")
+pgls.BM3 <- gls(T.delta~mass.g, correlation = corBrownian(1, phy = m.phy, form =~species), data = mammal.temp, method = "ML")
+pgls.log.BM1 <- gls(T.high~ mass.g, correlation = corBrownian(1, phy = m.phy, form =~species), data = mammal.temp.log, method = "ML")
+pgls.log.BM2 <- gls(T.low~ mass.g, correlation = corBrownian(1, phy = m.phy, form =~species), data = mammal.temp.log, method = "ML")
+pgls.log.BM3 <- gls(T.delta~mass.g, correlation = corBrownian(1, phy = m.phy, form =~species), data = mammal.temp.log, method = "ML")
 
 treenew<-m.phy
 treenew$edge.length<-treenew$edge.length*1000
 
-pgls.OU1 <- gls(mass.g~ T.high, correlation = corMartins(0, phy = treenew, form=~species), data = mammal.temp, method = "ML")
-pgls.OU2<- gls(mass.g~ T.low , correlation= corMartins(0, phy=treenew, form = ~species), data = mammal.temp, method = "ML")
-pgls.OU3 <- gls(mass.g~T.delta, correlation = corMartins(0, phy = treenew, form=~species), data = mammal.temp, method = "ML")
-pgls.log.OU1 <- gls(mass.g~ T.high, correlation = corMartins(0, phy = treenew, form=~species), data = mammal.temp.log, method = "ML")
-pgls.log.OU2<- gls(mass.g~ T.low , correlation= corMartins(0, phy=treenew, form = ~species), data = mammal.temp.log, method = "ML")
-pgls.log.OU3 <- gls(mass.g~T.delta, correlation = corMartins(0, phy = treenew, form=~species), data = mammal.temp.log, method = "ML")
+#without PGLS analysis,but use OU model
+log.OU1 <- gls(T.high~ mass.g, correlation = corMartins(1, phy = treenew, form=~species), data = mammal.temp.log, method = "ML")
+log.OU2<- gls(T.low~ mass.g, correlation= corMartins(1, phy=treenew, form = ~species), data = mammal.temp.log, method = "ML")
+log.OU3 <- gls(T.delta~mass.g, correlation = corMartins(1, phy = treenew, form=~species), data = mammal.temp.log, method = "ML")
+
+#with PGLS analysis and OU model
+pgls.OU1 <- gls(T.high~ mass.g, correlation = corMartins(1, phy = treenew, form=~species), data = mammal.temp, method = "ML")
+pgls.OU2<- gls(T.low~ mass.g, correlation= corMartins(1, phy=treenew, form = ~species), data = mammal.temp, method = "ML")
+pgls.OU3 <- gls(T.delta~mass.g, correlation = corMartins(1, phy = treenew, form=~species), data = mammal.temp, method = "ML")
+pgls.log.OU1 <- gls(T.high~mass.g, correlation = corMartins(1, phy = treenew, form=~species), data = mammal.temp.log, method = "ML")
+pgls.log.OU2<- gls(T.low~mass.g, correlation= corMartins(1, phy=treenew, form = ~species), data = mammal.temp.log, method = "ML")
+pgls.log.OU3 <- gls(T.delta~mass.g, correlation = corMartins(1, phy = treenew, form=~species), data = mammal.temp.log, method = "ML")
+
+## predictions from PGLS
+mammal.temp.log$phy.pred.T.high <- predict(pgls.log.OU1)
+mammal.temp.log$phy.pred.T.low <- predict(pgls.log.OU2)
+mammal.temp.log$phy.pred.T.delta <- predict(pgls.log.OU3)
+##print(mammal.temp.log)
 
 ##perform AIC test
 mammal.temp.phylo.aic<-AICc(pgls.log.BM1,pgls.log.BM2,pgls.log.BM3,pgls.log.OU1,pgls.log.OU2,pgls.log.OU3)
 aicw(mammal.temp.phylo.aic$AICc)
 
-##    fit     delta            w
-##1 215.9847  6.087645 4.110737e-02
-##2 214.4116  4.514543 9.026394e-02
-##3 209.8970  0.000000 8.626505e-01
-##4 221.9914 12.094348 2.039767e-03
-##5 220.6755 10.778479 3.938384e-03
-##6 255.4238 45.526747 1.121573e-10
+### Make an Actual Table
+phylo.aic.table <- matrix(c(-240.80123, 0.988891, 3.788469e-01, -201.22363, 40.566492, 9.644881e-10, 104.08271, 345.872838, 4.873783e-76, -241.79012, 0.000000, 6.211531e-01, -207.29113, 34.498994, 2.003721e-08, 94.73602, 336.526139, 5.217663e-74), ncol=3, byrow = TRUE)
+colnames(phylo.aic.table) <- c("fit", "delta", "w")
+rownames(phylo.aic.table) <- c("Log.BM.High", "Log.BM.Low", "Log.Bm.Delta", "Log.OU.High", "Log.OU.Low", "Log.OU.Delta")
+phylo.aic.table <- as.table(phylo.aic.table)
+print(phylo.aic.table)
 
-##Based on our AIC test, the T.delta has the lowest value. The T.delta is the most significant one with the mass. 
+##fit      delta            w
+##1 -240.80123   0.988891 3.788469e-01
+##2 -201.22363  40.566492 9.644881e-10
+##3  104.08271 345.872838 4.873783e-76
+##4 -241.79012   0.000000 6.211531e-01
+##5 -207.29113  34.498994 2.003721e-08
+##6   94.73602 336.526139 5.217663e-74
+
+##Based on our AIC test, the T.high has the lowest value given the log transformed data under OU. The T.high is the most significant one with the mass. 
 
 
 ### Question 4
 
 ##perform ANOVA test for the most significant variable 
 
-anova(pgls.log.BM3)
+anova(pgls.log.OU1)
+anova(pgls.log.OU2)
+anova(pgls.log.OU3)
+
+summary(pgls.log.OU1)
+summary(pgls.log.OU2)
+summary(pgls.log.OU3)
+
+coef(pgls.log.OU1)
+coef(pgls.log.OU2)
+coef(pgls.log.OU3)
+
+mammal.temp.log%>%
+  ggplot(aes(mass.g, T.delta)) + geom_point() + geom_smooth(method = "lm", se = F) + geom_line(aes(y=phy.pred.T.delta))
+mammal.temp.log%>%
+  ggplot(aes(mass.g, T.high)) + geom_point() + geom_smooth(method = "lm", se = F) + geom_line(aes(y=phy.pred.T.high))
+mammal.temp.log%>%
+  ggplot(aes(mass.g, T.low)) + geom_point() + geom_smooth(method = "lm", se = F) + geom_line(aes(y=phy.pred.T.low))
 
 
+T.high.phylo.aic <- AICc(pgls.BM1, pgls.OU1, pgls.log.BM1, pgls.log.OU1)
+aicw(T.high.phylo.aic$AICc)
+print(T.high.phylo.aic)
+#Log OU model fits best
+anova(pgls.log.OU1)
+
+# Mortola's model
+anova(pgls.OU1)
+
+T.low.phylo.aic <- AICc(pgls.BM2, pgls.OU2, pgls.log.BM2, pgls.log.OU2)
+aicw(T.low.phylo.aic$AICc)
+print(T.low.phylo.aic)
+#Log OU model fits the best
+anova(pgls.log.OU2)
+#
+
+T.delta.phylo.aic <- AICc(pgls.BM3, pgls.OU3, pgls.log.BM3, pgls.log.OU3)
+aicw(T.delta.phylo.aic$AICc)
+print(T.delta.phylo.aic)
+#log OU model fits the best
+anova(pgls.log.OU3)
+#
