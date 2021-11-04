@@ -60,15 +60,21 @@ mammal.temp.log%>%
   ggplot(aes(mass.g,T.delta))+geom_point()+geom_smooth(method = "lm", se = F)
 ```
 
+The first graph shows the log-log regression model of ΔT and mass recreated from data received from Mortola and Lanthier’s 2004 study on the relationship of body temperature and mass in species; specifically considering mass specific metabolic rate. This graph exhibits a downward trend with the  ΔT intercept coming out to be 1.07127 and the slope of the regression line was just slightly negative at -0.1118.
+
 ```{r, "Log-Log Regression Model with T.high", fig.cap="Figure 3: Log-Log Regression Model Using Temperature Max", warning=FALSE, echo=FALSE}
 mammal.temp.log%>%
   ggplot(aes(mass.g,T.high))+geom_point()+geom_smooth(method = "lm", se = F)
 ```
 
+Our second graph represents another log-log regression model based off of Mortola and Lanthier’s data , but instead this one is determining the relationship between Max Temperature and mass. While this graph still depicts a downward slope, it is much less. Specifically, the slope was -0.0010265 with the temperature intercept coming out to be 3.6480114.
+
 ```{r, "Log-Log Regression Model with T.low", fig.cap="Figure 4: Log-Log Regression Model Using Temperature Min", warning=FALSE, echo=FALSE}
 mammal.temp.log%>%
   ggplot(aes(mass.g,T.low))+geom_point()+geom_smooth(method = "lm", se= F)
 ```
+
+This final graph recreates the log-log regression model of Mortola and Lanthier’s 2004 study comparing the minimum temperatures with the mass of the organisms. This graph depicts a positive slope of 0.003091 and a minimum temperature intercept of 3.577075.   
 
 The above models are reproductions of the scaling relationships (log-log regression models) Mortola and Lanthier (2004) for temperature min (Tmin), temperature max (Tmax), and temperature difference (Tdelta).
 
@@ -78,7 +84,7 @@ mammal.high.lm <- lm(T.high ~ mass.g, mammal.temp.log)
 mammal.low.lm <- lm(T.low ~ mass.g, mammal.temp.log)
 ```
 
-```{r, "AICw Linear Models", fig.cap="AICw Linear Models", warning=FALSE, echo=FALSE}
+```{r, "AICw Linear Models", fig.cap="Table 1: AICw Linear Models", warning=FALSE, echo=FALSE}
 mammal.temp.aic <- AICc(mammal.diff.lm, mammal.high.lm, mammal.low.lm)
 mammal.temp.aicw <- aicw(mammal.temp.aic$AICc)
 print(mammal.temp.aicw)
@@ -91,7 +97,7 @@ summary(mammal.high.lm)
 summary(mammal.low.lm)
 ```
 
-```{r, "Table for Slope And Intercept Values of Linear Models", fig.cap="Table 1: Slope And Intercept Values of Linear Models", warning=FALSE, echo=FALSE}
+```{r, "Table for Slope And Intercept Values of Linear Models", fig.cap="Table 2: Slope And Intercept Values of Linear Models", warning=FALSE, echo=FALSE}
 mammal.lm.table <- matrix(c(1.07127, -0.11518, 3.6480114, -0.0010265, 3.577075, 0.003091), ncol=2, byrow = TRUE)
 rownames(mammal.lm.table) <- c("Delta", "High", "Low")
 colnames(mammal.lm.table) <- c("Intercept", "Slope")
@@ -103,23 +109,23 @@ The above table shows the slope and intercept values of the linear models given 
 
 ```{r, "Evaluting Lambda Values and P-Values to Find the Significant Phylogentic Signal in the Four Variables", include=FALSE}
 mass.trait <- mammal.temp$mass.g
-names(mass.trait) <- mammal.temp.log$species
+names(mass.trait) <- m.phy$tip.label
 mass.trait <- phylosig(m.phy,mass.trait,method="lambda",test=T)
 
 T.delta.trait <- mammal.temp$T.delta
-names(T.delta.trait) <- mammal.temp.log$species
+names(T.delta.trait) <- m.phy$tip.label
 T.delta.trait <- phylosig(m.phy,T.delta.trait,method="lambda",test=T)
 
 T.low.trait <- mammal.temp$T.low
-names(T.low.trait) <- mammal.temp.log$species
+names(T.low.trait) <- m.phy$tip.label
 T.low.trait <- phylosig(m.phy,T.low.trait,method="lambda",test=T)
 
 T.high.trait <- mammal.temp$T.high
-names(T.high.trait) <- mammal.temp.log$species
+names(T.high.trait) <- m.phy$tip.label
 T.high.trait <- phylosig(m.phy,T.high.trait,method="lambda",test=T)
 ```
 
-```{r, "Table of Lambda Values and P-Values In Order to Find the Significant Phylogentic Signal in the Four Variables", fig.cap= "Table 2: Lambda Values and P-Values To Find the Significant Phylogentic Signal in the Four Variables", warning=FALSE, echo=FALSE}
+```{r, "Table of Lambda Values and P-Values In Order to Find the Significant Phylogentic Signal in the Four Variables", fig.cap= "Table 3: Lambda Values and P-Values To Find the Significant Phylogentic Signal in the Four Variables", warning=FALSE, echo=FALSE}
 phylo.sig.table <- matrix(c(0.999934, 1.83952e-11, 0.580389, 0.00776833, 0.791644, 0.00298335, 0.869769, 0.0409622), ncol=2, byrow = TRUE)
 rownames(phylo.sig.table) <- c("Mass", "T.delta", "T.low", "T.high")
 colnames(phylo.sig.table) <- c("Lamba", "p-value")
@@ -127,7 +133,7 @@ phylo.sig.table <- as.table(phylo.sig.table)
 print(phylo.sig.table)
 ```
 
-The above table shows the lambda values and p-values given the different temperature variables applied in order to find the significant phylogentic signal.
+To further investigate the relationship between body mass and temperature in different species we produced a phylogenetic corrected model of Mortola and Lanthier’s data. From this we determined Pagel’s Lambda in order to assess for phylogenetic signaling. For mass we found a Lambda value of 0.99934 and a p-value of 1.83952e-11; this Lambda value was the closest to 1 out of all of the variables and had the lowest p-value making it most significant in determining phylogenetic signaling. T max resulted in the next highest lambda value of 0.869769 with a p-value of 0.0409622. This was followed by T min and ΔT having lambdas of 0.791644 and 0.580389 and p-values of 0.00298335 and 0.00776833, respectively. All of the lambdas were between 0 and 1, and all of the p-values were below 0.05.  
 
 ```{r, "Applying PGLS Analysis and BM/OU models to find the best fit", include=FALSE}
 #without PGLS analysis, but use BM model
@@ -144,20 +150,20 @@ pgls.log.BM2 <- gls(T.low~ mass.g, correlation = corBrownian(1, phy = m.phy, for
 pgls.log.BM3 <- gls(T.delta~mass.g, correlation = corBrownian(1, phy = m.phy, form =~species), data = mammal.temp.log, method = "ML")
 
 #without PGLS analysis,but use OU model
-log.OU1 <- gls(T.high~ mass.g, correlation = corMartins(1, phy = treenew, form=~species), data = mammal.temp.log, method = "ML")
-log.OU2<- gls(T.low~ mass.g, correlation= corMartins(1, phy=treenew, form = ~species), data = mammal.temp.log, method = "ML")
-log.OU3 <- gls(T.delta~mass.g, correlation = corMartins(1, phy = treenew, form=~species), data = mammal.temp.log, method = "ML")
+log.OU1 <- gls(T.high~ mass.g, correlation = corMartins(5, phy = treenew, form=~species), data = mammal.temp.log, method = "ML")
+log.OU2<- gls(T.low~ mass.g, correlation= corMartins(5, phy=treenew, form = ~species), data = mammal.temp.log, method = "ML")
+log.OU3 <- gls(T.delta~mass.g, correlation = corMartins(5, phy = treenew, form=~species), data = mammal.temp.log, method = "ML")
 
 treenew<-m.phy
 treenew$edge.length<-treenew$edge.length*1000
 
 #with PGLS analysis and OU model
-pgls.OU1 <- gls(T.high~ mass.g, correlation = corMartins(1, phy = treenew, form=~species), data = mammal.temp, method = "ML")
-pgls.OU2<- gls(T.low~ mass.g, correlation= corMartins(1, phy=treenew, form = ~species), data = mammal.temp, method = "ML")
-pgls.OU3 <- gls(T.delta~mass.g, correlation = corMartins(1, phy = treenew, form=~species), data = mammal.temp, method = "ML")
-pgls.log.OU1 <- gls(T.high~mass.g, correlation = corMartins(1, phy = treenew, form=~species), data = mammal.temp.log, method = "ML")
-pgls.log.OU2<- gls(T.low~mass.g, correlation= corMartins(1, phy=treenew, form = ~species), data = mammal.temp.log, method = "ML")
-pgls.log.OU3 <- gls(T.delta~mass.g, correlation = corMartins(1, phy = treenew, form=~species), data = mammal.temp.log, method = "ML")
+pgls.OU1 <- gls(T.high~ mass.g, correlation = corMartins(5, phy = treenew, form=~species), data = mammal.temp, method = "ML")
+pgls.OU2<- gls(T.low~ mass.g, correlation= corMartins(5, phy=treenew, form = ~species), data = mammal.temp, method = "ML")
+pgls.OU3 <- gls(T.delta~mass.g, correlation = corMartins(5, phy = treenew, form=~species), data = mammal.temp, method = "ML")
+pgls.log.OU1 <- gls(T.high~mass.g, correlation = corMartins(5, phy = treenew, form=~species), data = mammal.temp.log, method = "ML")
+pgls.log.OU2<- gls(T.low~mass.g, correlation= corMartins(5, phy=treenew, form = ~species), data = mammal.temp.log, method = "ML")
+pgls.log.OU3 <- gls(T.delta~mass.g, correlation = corMartins(5, phy = treenew, form=~species), data = mammal.temp.log, method = "ML")
 ```
 
 ```{r, "Predictions from PGLS", include=FALSE}
@@ -171,7 +177,7 @@ mammal.temp.phylo.aic<-AICc(pgls.log.BM1,pgls.log.BM2,pgls.log.BM3,pgls.log.OU1,
 aicw(mammal.temp.phylo.aic$AICc)
 ```
 
-```{r, "Table of AIC Test Placed on the Log Transformed Data Given Different Temperature Variables", fig.cap="Table 3: AIC Test Placed on the Log Transformed Data Given Different Temperature Variables", warning=FALSE, echo=FALSE}
+```{r, "Table of AIC Test Placed on the Log Transformed Data Given Different Temperature Variables", fig.cap="Table 4: AIC Test Placed on the Log Transformed Data Given Different Temperature Variables", warning=FALSE, echo=FALSE}
 phylo.aic.table <- matrix(c(-240.80123, 0.988891, 3.788469e-01, -201.22363, 40.566492, 9.644881e-10, 104.08271, 345.872838, 4.873783e-76, -241.79012, 0.000000, 6.211531e-01, -207.29113, 34.498994, 2.003721e-08, 94.73602, 336.526139, 5.217663e-74), ncol=3, byrow = TRUE)
 colnames(phylo.aic.table) <- c("fit", "delta", "w")
 rownames(phylo.aic.table) <- c("Log.BM.High", "Log.BM.Low", "Log.Bm.Delta", "Log.OU.High", "Log.OU.Low", "Log.OU.Delta")
@@ -189,7 +195,9 @@ summary(pgls.log.OU2)
 summary(pgls.log.OU3)
 ```
 
-```{r, "Table of ANOVA values for the CorMartins PGLS Analysis of the Log Transformed Data", fig.cap="Table 4: ANOVA values for the CorMartins PGLS Analysis of the Log Transformed Data", warning=FALSE, echo=FALSE}
+As mass was found to be most significant in phylogenetic signaling, PGLS and BM/OU models were used to test which of the variables fits the data best. The scaling coefficient (slope) of each of the models were as followed: 
+
+```{r, "Table of ANOVA values for the CorMartins PGLS Analysis of the Log Transformed Data", fig.cap="Table 5: ANOVA values for the CorMartins PGLS Analysis of the Log Transformed Data", warning=FALSE, echo=FALSE}
 mammal.lm.table <- matrix(c(1.0712689, -0.1151818, 3.6480114, -0.0010265, 3.577075, 0.003091), ncol=2, byrow = TRUE)
 rownames(mammal.lm.table) <- c("Delta", "High", "Low")
 colnames(mammal.lm.table) <- c("Intercept", "Slope")
@@ -203,22 +211,22 @@ coef(pgls.log.OU2)
 coef(pgls.log.OU3)
 ```
 
-```{r, "Linear Model Plot of Temperature Difference Variable Using Phylogentic Relations", fig.cap="Linear Model of Temperature Difference Variable Using Phylogentic Relations", warning=FALSE, echo=FALSE}
+```{r, "Linear Model Plot of Temperature Difference Variable Using Phylogentic Relations", fig.cap="Figure 5: Linear Model of Temperature Difference Variable Using Phylogentic Relations", warning=FALSE, echo=FALSE}
 mammal.temp.log%>%
   ggplot(aes(mass.g, T.delta)) + geom_point() + geom_smooth(method = "lm", se = F) + geom_line(aes(y=phy.pred.T.delta))
 ```
 
-```{r, "Linear Model Plot of Temperature High Variable Using Phylogentic Relations", fig.cap="Linear Model of Temperature Max Variable Using Phylogentic Relations", warning=FALSE, echo=FALSE}
+```{r, "Linear Model Plot of Temperature High Variable Using Phylogentic Relations", fig.cap="Figure 6: Linear Model of Temperature Max Variable Using Phylogentic Relations", warning=FALSE, echo=FALSE}
 mammal.temp.log%>%
   ggplot(aes(mass.g, T.high)) + geom_point() + geom_smooth(method = "lm", se = F) + geom_line(aes(y=phy.pred.T.high))
 ```
 
-```{r, "Linear Model Plot of Temperature Low Variable Using Phylogentic Relations", fig.cap="Linear Model of Temperature Min Variable Using Phylogentic Relations", warning=FALSE, echo=FALSE}
+```{r, "Linear Model Plot of Temperature Low Variable Using Phylogentic Relations", fig.cap="Figure 7: Linear Model of Temperature Min Variable Using Phylogentic Relations", warning=FALSE, echo=FALSE}
 mammal.temp.log%>%
   ggplot(aes(mass.g, T.low)) + geom_point() + geom_smooth(method = "lm", se = F) + geom_line(aes(y=phy.pred.T.low))
 ```
 
-```{r, "AICc and AICw Analysis for models with Temperature High Variable", fig.cap="Values for the Models with Temperature Max Variable Using AICc and AICw Analysis", warning=FALSE, echo=FALSE}
+```{r, "AICc and AICw Analysis for models with Temperature High Variable", fig.cap="Table 6: Values for the Models with Temperature Max Variable Using AICc and AICw Analysis", warning=FALSE, echo=FALSE}
 T.high.phylo.aic <- AICc(pgls.BM1, pgls.OU1, pgls.log.BM1, pgls.log.OU1, mammal.high.lm)
 aicw(T.high.phylo.aic$AICc)
 print(T.high.phylo.aic)
@@ -226,13 +234,13 @@ print(T.high.phylo.aic)
 
 Based on these values and the ones calculated prior, the log OU model fits the best given temperature max variable application. 
 
-```{r, "ANOVA test On the Best Fit Model From Above", fig.cap="ANOVA Test On the OU Log Given the Temperature Max Variable", warning=FALSE, echo=FALSE}
+```{r, "ANOVA test On the Best Fit Model From Above with Temperature High Variable", fig.cap="Table 7: ANOVA Test On the OU Log Given the Temperature Max Variable", warning=FALSE, echo=FALSE}
 anova(pgls.log.OU1)
 ```
 
 Based on the ANOVA test above, the mass is determined to be significant given temperature max through the f-ratio being close to 1 (f-value = 1.1).
 
-```{r, "AICc and AICw Analysis for models with Temperature Low Variable", fig.cap="Values for the Models with Temperature Low Variable Using AICc and AICw Analysis", warning=FALSE, echo=FALSE}
+```{r, "AICc and AICw Analysis for models with Temperature Low Variable", fig.cap="Table 8: Values for the Models with Temperature Low Variable Using AICc and AICw Analysis", warning=FALSE, echo=FALSE}
 T.low.phylo.aic <- AICc(pgls.BM2, pgls.OU2, pgls.log.BM2, pgls.log.OU2, mammal.low.lm)
 aicw(T.low.phylo.aic$AICc)
 print(T.low.phylo.aic)
@@ -241,13 +249,13 @@ print(T.high.phylo.aic)
 
 Based on these values and the ones calculated prior, the log OU model fits the best given temperature max variable application.
 
-```{r, "ANOVA test On the Best Fit Model From Above", fig.cap="ANOVA Test On the OU Log Given the Temperature Min Variable", warning=FALSE, echo=FALSE}
+```{r, "ANOVA test On the Best Fit Model From Above with Temperature Low Variable", fig.cap="Table 9: ANOVA Test On the OU Log Given the Temperature Min Variable", warning=FALSE, echo=FALSE}
 anova(pgls.log.OU2)
 ```
 
 Based on the ANOVA test above, the mass is determined to be significant given temperature max through the f-ratio being close to 1 (f-value = 4.9).
 
-```{r, "AICc and AICw Analysis for models with Temperature Difference Variable", fig.cap="Values for the Models with Temperature DIfference Variable Using AICc and AICw Analysis", warning=FALSE, echo=FALSE}
+```{r, "AICc and AICw Analysis for models with Temperature Difference Variable", fig.cap="Table 10: Values for the Models with Temperature DIfference Variable Using AICc and AICw Analysis", warning=FALSE, echo=FALSE}
 T.delta.phylo.aic <- AICc(pgls.BM3, pgls.OU3, pgls.log.BM3, pgls.log.OU3, mammal.diff.lm)
 aicw(T.delta.phylo.aic$AICc)
 print(T.delta.phylo.aic)
@@ -255,8 +263,14 @@ print(T.delta.phylo.aic)
 
 Based on these values and the ones calculated prior, the log OU model fits the best given temperature min variable application.
 
-```{r, "ANOVA test On the Best Fit Model From Above", fig.cap="ANOVA Test On the OU Log Given the Temperature Difference Variable", warning=FALSE, echo=FALSE}
+```{r, "ANOVA test On the Best Fit Model From Above with Temperature Difference Variable", fig.cap="Table 11: ANOVA Test On the OU Log Given the Temperature Difference Variable", warning=FALSE, echo=FALSE}
 anova(pgls.log.OU3)
 ```
 
 Based on the ANOVA test above, the mass is determined not to be significant given temperature difference through the f-ratio being close to 1 (f-value = 20.582613).
+
+
+### Discussion
+As phylogenetic relationships were not analyzed in Mortola and Lanthier’s study, it is important to consider how their findings could differ if they did consider that variable. Initially, the relationships between mass and our three variables (ΔT, T max, and T min) were plotted just as they were in Mortola and Lanthier’s 2004 study with log-log regressions. After assessing the phylogenetic signals of our four variables (Mass, ΔT, T max, and T min), the results showed that all of the variables contained some sort of phylogenetic signaling as each lambda value was between 0 and 1. Mass specifically had the most significant phylogenetic signaling as its lambda value was closest to 1 out of all of the variables. This means that the mass to body temperature relationship of certain species is more likely to resemble that of another species that is phylogenetically similar versus a species found farther away on a tree. The p-value was also less than 0.05 making this statistically significant. After using BM and OU models to determine what model and variable fit best with our data given mass had the most significant phylogenetic signaling, it became clear that T max with the OU model exhibited the data best. This means that T max is the best covariant with mass. Further analysis with ANOVA testing showed from the f values that mass was significant in certain CorMartins analyses (i.e. the models using temperature max and temperature min).  
+
+Based on this data, there is ground to challenge, or at least add to, the findings found by Mortola and Lanthier in their 2004 study. They are not necessarily wrong in their results, but they did not account for all variables. Our data shows that there is in fact phylogenetic signaling that takes place in species regarding mass and temperature relationships. Their results are still significant but could be refined. Similar studies have been completed that agree with our results regarding phylogeny. One such example, (insert bibliography here), concluded that the phylogenetic signal of relevant metabolic rates differed between lineages. This shows how phylogeny plays an important role in mass and temperature relations and adding these important variables would have been beneficial to Mortola and Lanthier’s study. 
