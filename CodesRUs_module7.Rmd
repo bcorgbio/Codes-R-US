@@ -1,0 +1,10 @@
+---
+title: "\Project 7"
+author: "CodesRUs"
+date: "11/3/2021"
+output: html_document
+bibliography: BIOL3140.bib
+---
+
+### Introduction
+When conducting comparative analyses on traits measured from related species, phylogenic structures are not always taken in consideration, one reason being that phylogenetic comparative models might overlook the importance of abrupt shifts ini traits produced by singular events (@garamszegi2014modern). In order to find out whether phylogenic signal is indeed present in the Tb oscillations of different species or not, we reexamined the data from Mortola and Lanthier (2004) using Pagel’s lamba, and then proceeded to compared the scaling of Tb variables between the ones we applied with PGLS and the original result from Mortola and Lanthier (2004).
