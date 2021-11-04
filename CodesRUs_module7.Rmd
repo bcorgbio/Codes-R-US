@@ -11,3 +11,60 @@ When conducting comparative analyses on traits measured from related species, ph
 
 ### Methods
 In this study, we try to produce a phylogenetically corrected model measuring the relationship between body mass and temperature in different species. We first produce a linear model of T.high, T.low, and T.diff to find the best fit. Then, we use Pagel’s Lambda to find significant phylogenetic signals and p-value. After we find the significance of four variables, we apply PLGS analysis and log-transformed with Brownian model/Ornstein-Uhlenbeck (OU) models to evaluate character evolution over a phylogenetic tree. We find the best fit model from BM and OU model by calculating the AIC score. At the end of the project, we perform ANOVA test to compare the significance between our best fit model and Montrola’s model.
+
+###Results
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, include=FALSE}
+library(geiger)
+library(dplyr)
+library(ggplot2)
+library(MuMIn)
+library(nlme)
+library(ape)
+library(phytools)
+```
+
+```{r, include=FALSE}
+m.phy <- read.tree("mammal.tree.pruned.txt")
+m.phy$tip.label <- gsub("(\\w+)_(\\w+)","\\1\\2",m.phy$tip.label)
+
+sim.trait <- runif(Ntip(m.phy))
+names(sim.trait) <- m.phy$tip.label
+sim.sig <- phylosig(m.phy,sim.trait,method="lambda",test=T)
+
+mammal.temp <- read.csv("mammal.temp2.csv")
+mammal.temp <- mammal.temp%>%
+  mutate(T.delta = abs(T.high-T.low))
+mammal.temp.log <- mammal.temp %>%
+  mutate_at(c("mass.g", "T.high", "T.low", "T.delta"), log)
+```
+
+```{r, "Log-Log Regression Model with T.delta", fig.cap="Figure 1: Log-Log Regression Model Using Temperature Difference", warning=FALSE, echo=FALSE}
+mammal.temp.log%>%
+  ggplot(aes(mass.g,T.delta))+geom_point()+geom_smooth(method = "lm", se = F)
+```
+
+```{r, "Log-Log Regression Model with T.high", fig.cap="Figure 2: Log-Log Regression Model Using Temperature Max", warning=FALSE, echo=FALSE}
+mammal.temp.log%>%
+  ggplot(aes(mass.g,T.high))+geom_point()+geom_smooth(method = "lm", se = F)
+```
+
+```{r, "Log-Log Regression Model with T.low", fig.cap="Figure 3: Log-Log Regression Model Using Temperature Min", warning=FALSE, echo=FALSE}
+mammal.temp.log%>%
+  ggplot(aes(mass.g,T.low))+geom_point()+geom_smooth(method = "lm", se= F)
+```
+
+```{r, "Forming the Linear Models", include=FALSE}
+mammal.diff.lm <- lm(T.delta ~ mass.g, mammal.temp.log)
+mammal.high.lm <- lm(T.high ~ mass.g, mammal.temp.log)
+mammal.low.lm <- lm(T.low ~ mass.g, mammal.temp.log)
+
+```
+
+```{r, "}
+
+```
+

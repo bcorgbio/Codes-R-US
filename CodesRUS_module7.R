@@ -66,7 +66,7 @@ summary(mammal.low.lm)
 
 mammal.lm.table <- matrix(c(1.07127, -0.11518, 3.6480114, -0.0010265, 3.577075, 0.003091), ncol=2, byrow = TRUE)
 rownames(mammal.lm.table) <- c("Delta", "High", "Low")
-colnames(mammal.lm.table) <- c("Intercept", "mass.g")
+colnames(mammal.lm.table) <- c("Intercept", "Slope")
 mammal.lm.table <- as.table(mammal.lm.table)
 print(mammal.lm.table)
 
@@ -202,6 +202,12 @@ summary(pgls.log.OU1)
 summary(pgls.log.OU2)
 summary(pgls.log.OU3)
 
+mammal.lm.table <- matrix(c(1.0712689, -0.1151818, 3.6480114, -0.0010265, 3.577075, 0.003091), ncol=2, byrow = TRUE)
+rownames(mammal.lm.table) <- c("Delta", "High", "Low")
+colnames(mammal.lm.table) <- c("Intercept", "Slope")
+mammal.lm.table <- as.table(mammal.lm.table)
+print(mammal.lm.table)
+
 coef(pgls.log.OU1)
 coef(pgls.log.OU2)
 coef(pgls.log.OU3)
@@ -213,26 +219,24 @@ mammal.temp.log%>%
 mammal.temp.log%>%
   ggplot(aes(mass.g, T.low)) + geom_point() + geom_smooth(method = "lm", se = F) + geom_line(aes(y=phy.pred.T.low))
 
-
-T.high.phylo.aic <- AICc(pgls.BM1, pgls.OU1, pgls.log.BM1, pgls.log.OU1)
+# AICc and AICw for new models, T.high
+T.high.phylo.aic <- AICc(pgls.BM1, pgls.OU1, pgls.log.BM1, pgls.log.OU1, mammal.high.lm)
 aicw(T.high.phylo.aic$AICc)
 print(T.high.phylo.aic)
 #Log OU model fits best
 anova(pgls.log.OU1)
+#mass is significant
 
-# Mortola's model
-anova(pgls.OU1)
-
-T.low.phylo.aic <- AICc(pgls.BM2, pgls.OU2, pgls.log.BM2, pgls.log.OU2)
+T.low.phylo.aic <- AICc(pgls.BM2, pgls.OU2, pgls.log.BM2, pgls.log.OU2, mammal.low.lm)
 aicw(T.low.phylo.aic$AICc)
 print(T.low.phylo.aic)
 #Log OU model fits the best
 anova(pgls.log.OU2)
-#
+#mass is significant
 
-T.delta.phylo.aic <- AICc(pgls.BM3, pgls.OU3, pgls.log.BM3, pgls.log.OU3)
+T.delta.phylo.aic <- AICc(pgls.BM3, pgls.OU3, pgls.log.BM3, pgls.log.OU3, mammal.diff.lm)
 aicw(T.delta.phylo.aic$AICc)
 print(T.delta.phylo.aic)
 #log OU model fits the best
 anova(pgls.log.OU3)
-#
+#mass is not significant
