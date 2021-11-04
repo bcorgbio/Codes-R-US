@@ -230,7 +230,7 @@ Based on these values and the ones calculated prior, the log OU model fits the b
 anova(pgls.log.OU1)
 ```
 
-Based on the ANOVA test above, the mass is determined to be significant through the p-value given.
+Based on the ANOVA test above, the mass is determined to be significant given temperature max through the f-ratio being close to 1 (f-value = 1.1).
 
 ```{r, "AICc and AICw Analysis for models with Temperature Low Variable", fig.cap="Values for the Models with Temperature Low Variable Using AICc and AICw Analysis", warning=FALSE, echo=FALSE}
 T.low.phylo.aic <- AICc(pgls.BM2, pgls.OU2, pgls.log.BM2, pgls.log.OU2, mammal.low.lm)
@@ -245,7 +245,7 @@ Based on these values and the ones calculated prior, the log OU model fits the b
 anova(pgls.log.OU2)
 ```
 
-Based on the ANOVA test above, the mass is determined to be significant through the p-value given.
+Based on the ANOVA test above, the mass is determined to be significant given temperature max through the f-ratio being close to 1 (f-value = 4.9).
 
 ```{r, "AICc and AICw Analysis for models with Temperature Difference Variable", fig.cap="Values for the Models with Temperature DIfference Variable Using AICc and AICw Analysis", warning=FALSE, echo=FALSE}
 T.delta.phylo.aic <- AICc(pgls.BM3, pgls.OU3, pgls.log.BM3, pgls.log.OU3, mammal.diff.lm)
@@ -253,10 +253,10 @@ aicw(T.delta.phylo.aic$AICc)
 print(T.delta.phylo.aic)
 ```
 
-Based on these values and the ones calculated prior, the log OU model fits the best given temperature max variable application.
+Based on these values and the ones calculated prior, the log OU model fits the best given temperature min variable application.
 
 ```{r, "ANOVA test On the Best Fit Model From Above", fig.cap="ANOVA Test On the OU Log Given the Temperature Difference Variable", warning=FALSE, echo=FALSE}
 anova(pgls.log.OU3)
 ```
 
-Based on the ANOVA test above, the mass is determined to not be significant through the p-value given.
+Based on the ANOVA test above, the mass is determined not to be significant given temperature difference through the f-ratio being close to 1 (f-value = 20.582613).
