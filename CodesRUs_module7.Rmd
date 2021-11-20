@@ -137,7 +137,7 @@ To further investigate the relationship between body mass and temperature in dif
 
 ```{r, "Applying PGLS Analysis and BM/OU models to find the best fit", include=FALSE}
 #without PGLS analysis, but use BM model
-log.BM1 <- gls(T.high~ mass.g, correlation = corBrownian(1, phy = m.phy, form =~species), data = mammal.temp.log, method = "ML")
+log.BM1 <- gls(T.high~ mass.g, correlation = corBrownian(10, phy = m.phy, form =~species), data = mammal.temp.log, method = "ML")
 log.BM2 <- gls(T.low~ mass.g, correlation = corBrownian(1, phy = m.phy, form =~species), data = mammal.temp.log, method = "ML")
 log.BM3 <- gls(T.delta~ mass.g, correlation = corBrownian(1, phy = m.phy, form =~species), data = mammal.temp.log, method = "ML")
 
@@ -165,6 +165,7 @@ pgls.log.OU1 <- gls(T.high~mass.g, correlation = corMartins(5, phy = treenew, fo
 pgls.log.OU2<- gls(T.low~mass.g, correlation= corMartins(5, phy=treenew, form = ~species), data = mammal.temp.log, method = "ML")
 pgls.log.OU3 <- gls(T.delta~mass.g, correlation = corMartins(5, phy = treenew, form=~species), data = mammal.temp.log, method = "ML")
 ```
+
 
 ```{r, "Predictions from PGLS", include=FALSE}
 mammal.temp.log$phy.pred.T.high <- predict(pgls.log.OU1)

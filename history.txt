@@ -1,0 +1,1432 @@
+commit 1116bb61012883e8d8e4c7293f91d51bb3674405
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Thu Nov 4 16:29:20 2021 -0400
+
+    Project 7 Rmd File w/ SOS email issues
+
+ CodesRUs_module7.Rmd | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+commit 02cd9fd26b869bc2eedcec48c42fb5d77565fbdc
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Thu Nov 4 16:11:57 2021 -0400
+
+    bib file update
+
+ BIOL3140.bib | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+
+commit 6a44a018ff091dc2bc9f4223dee9bc2cc2328c20
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Thu Nov 4 16:08:28 2021 -0400
+
+    SOS!!!
+
+ CodesRUs_module7.Rmd | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit b3ab47256232562958958cdb25660cd45ae72a85
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Thu Nov 4 16:05:05 2021 -0400
+
+    SOS
+
+ CodesRUs_module7.Rmd | 70 +++++++++++++++++++++++++++++++---------------------
+ 1 file changed, 42 insertions(+), 28 deletions(-)
+
+commit 20ffbce291ed91d0d16a1b7ae9d8e6c9de11230d
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Thu Nov 4 01:30:36 2021 -0400
+
+    fixed the result sections
+
+ CodesRUs_module7.Rmd | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+commit fa8832862da2c94b899f613a11c4c2c6922f0856
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Thu Nov 4 01:20:55 2021 -0400
+
+    think the code chunks are all included
+
+ CodesRUs_module7.Rmd | 132 +++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 132 insertions(+)
+
+commit 8f2101b015749fedf41f075e17ba9c620556a121
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Thu Nov 4 00:34:32 2021 -0400
+
+    some more of the results section written
+
+ CodesRUs_module7.Rmd | 68 ++++++++++++++++++++++++++++++++++++++++++++++++----
+ 1 file changed, 64 insertions(+), 4 deletions(-)
+
+commit 7417ac45ad2261e8c51d51c43e3b257eba0d8c44
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Wed Nov 3 23:20:38 2021 -0400
+
+    fixed some code, added some more, working on results section
+
+ CodesRUS_module7.R   | 24 +++++++++++++---------
+ CodesRUs_module7.Rmd | 57 ++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 71 insertions(+), 10 deletions(-)
+
+commit a3d9b93cd7918e30b96950c5ef2b84a5d7bf2a89
+Author: TonyZhiyuanWang <wangcjm@bc.edu>
+Date:   Wed Nov 3 21:26:07 2021 -0400
+
+    methods
+
+ CodesRUs_module7.Rmd | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+commit 63176852021988f4998af07f0c95a996d536aeca
+Author: TonyZhiyuanWang <wangcjm@bc.edu>
+Date:   Wed Nov 3 20:30:37 2021 -0400
+
+    edit
+
+ CodesRUs_module7.Rmd | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit e8f1baadc86f7b1edef8f658609eeb35e502431b
+Author: TonyZhiyuanWang <wangcjm@bc.edu>
+Date:   Wed Nov 3 20:24:55 2021 -0400
+
+    edit
+
+ CodesRUs_module7.Rmd | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 48398bee8a0ed2a7a1a61b898d8f1e87c9b99747
+Author: TonyZhiyuanWang <wangcjm@bc.edu>
+Date:   Wed Nov 3 20:22:27 2021 -0400
+
+    new bib
+
+ BIOL3140.bib | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+commit 2a4735b9bb75ee623b9df5ed2c4207b9a1d7f5e8
+Author: TonyZhiyuanWang <89791497+TonyZhiyuanWang@users.noreply.github.com>
+Date:   Wed Nov 3 20:19:23 2021 -0400
+
+    Add files via upload
+
+ CodesRUs_module7.Rmd | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+commit 91c3fffd8a000e608a5ffb0e56c9637ae713fe86
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Wed Nov 3 16:51:26 2021 -0400
+
+    some extra code at the end
+
+ CodesRUS_module7.R | 157 +++++++++++++++++++++++++++++++++++++++++------------
+ 1 file changed, 122 insertions(+), 35 deletions(-)
+
+commit e7fdf1df9737bff05ca6656ddb71da482ae4d2bf
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Wed Nov 3 14:33:57 2021 -0400
+
+    working on code
+
+ CodesRUS_module7.R | 39 ++++++++++++++++++++++++++-------------
+ 1 file changed, 26 insertions(+), 13 deletions(-)
+
+commit 983c138a84fcf13b56621cc2fde8b587866f9943
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Wed Nov 3 09:42:59 2021 -0400
+
+    files
+
+ mammal.temp2.csv       | 53 ++++++++++++++++++++++++++++++++++++++++++++++++++
+ mammal.tree.pruned.txt |  1 +
+ 2 files changed, 54 insertions(+)
+
+commit 430e4fe0b0afc7a9a33687502741b445c3e6ee4f
+Author: TonyZhiyuanWang <wangcjm@bc.edu>
+Date:   Tue Nov 2 19:14:54 2021 -0400
+
+    update
+
+ CodesRUS_module7.R | 50 ++++++++++++++++++++++++++++++++++++++++++++++++--
+ 1 file changed, 48 insertions(+), 2 deletions(-)
+
+commit 4b3d645c7374c16e7b22d521c5f905d9d3c517c6
+Author: ckenaley <cpkenaley@gmail.com>
+Date:   Mon Nov 1 20:36:59 2021 -0400
+
+    proj6 feedback
+
+ Coders-R-US_Module_6_Feedback.html | 1910 ++++++++++++++++++++++++++++++++++++
+ CodesRUs_module6_commennts.Rmd     |  137 +++
+ CodesRUs_module6_commennts.html    |  556 +++++++++++
+ 3 files changed, 2603 insertions(+)
+
+commit 6a7a9d7e3b4f34304448467b697a6d6b14048efe
+Author: TonyZhiyuanWang <89791497+TonyZhiyuanWang@users.noreply.github.com>
+Date:   Sun Oct 31 21:33:59 2021 -0400
+
+    Rename CodesRUS_module7 to CodesRUS_module7.R
+
+ CodesRUS_module7 => CodesRUS_module7.R | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 86a9b6f426908d867f50939b9bc9956113ae5fb9
+Author: TonyZhiyuanWang <89791497+TonyZhiyuanWang@users.noreply.github.com>
+Date:   Sun Oct 31 21:33:33 2021 -0400
+
+    Create CodesRUS_module7
+
+ CodesRUS_module7 | 92 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 92 insertions(+)
+
+commit 7124e86a60197420a6c245d4934f4d1ffb287515
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Sun Oct 24 23:12:15 2021 -0400
+
+    it all should be here
+
+ CodesRUs_module6.Rmd | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+commit ed6d5b216ced3299eabe012507f13cb4b6f57efd
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Sun Oct 24 23:05:26 2021 -0400
+
+    small edit
+
+ CodesRUs_module6.html | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+commit f8f8318e7a8b0d521c344520b1e1afcda10f8f2c
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Sun Oct 24 23:02:17 2021 -0400
+
+    should be all done
+
+ CodesRUs_module6.html | 571 +-------------------------------------------------
+ 1 file changed, 6 insertions(+), 565 deletions(-)
+
+commit e137d85402930c2c9b1d499e9131c9126eaa2e50
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Sun Oct 24 22:55:48 2021 -0400
+
+    editting report
+
+ CodesRUs_module6.Rmd  |  15 +-
+ CodesRUs_module6.html | 909 ++++++++++++++++++++++++++++++++++++++++++++++++++
+ humantempflux.png     | Bin 232064 -> 143179 bytes
+ 3 files changed, 918 insertions(+), 6 deletions(-)
+
+commit 16abda13f0675875986e4a97779fdd37c0392eca
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Sun Oct 24 22:24:00 2021 -0400
+
+    updating references and adding image for report
+
+ BIOL3140.bib      |  39 ++++++++++++++++++++++++++++++++++++---
+ humantempflux.png | Bin 0 -> 232064 bytes
+ 2 files changed, 36 insertions(+), 3 deletions(-)
+
+commit 962084c082c69ee593c805a85ad80d784c96b993
+Author: TonyZhiyuanWang <wangcjm@bc.edu>
+Date:   Sun Oct 24 22:10:37 2021 -0400
+
+    disc cite
+
+ CodesRUs_module6.Rmd | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 07dcaccab92e0362b010950787ac1cd492f97f88
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Sun Oct 24 22:06:34 2021 -0400
+
+    changes in results and bib added
+
+ CodesRUs_module6.Rmd | 77 ++++++++++++++++++++++++++++++++++++++++++++++++++--
+ 1 file changed, 75 insertions(+), 2 deletions(-)
+
+commit 44d074584db161717b8aeb112775cf3c4abec751
+Author: nickgraz3 <grazianf@bc.edu>
+Date:   Sun Oct 24 21:50:24 2021 -0400
+
+    Intro, results, and discussion write up done.Just need citation and graphs in
+
+ CodesRUs_module6.Rmd | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
+
+commit 56a26e122980b6a64a22ca17ab7c56dbf9e9229a
+Author: nickgraz3 <grazianf@bc.edu>
+Date:   Sun Oct 24 21:28:28 2021 -0400
+
+    More updates
+
+ CodesRUs_module6.Rmd | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 056e01e5cf3afb001a3eed815b5cf1f588e5aad0
+Author: nickgraz3 <grazianf@bc.edu>
+Date:   Sun Oct 24 21:17:32 2021 -0400
+
+    update
+
+ CodesRUs_module6.Rmd | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+commit 4f8fdb10afe05b2390cbcf8a2bfb774509c09756
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Sun Oct 24 20:57:33 2021 -0400
+
+    deleted unnecessay print statements
+
+ CodesRUS_module6.R | 26 +++++++++++---------------
+ 1 file changed, 11 insertions(+), 15 deletions(-)
+
+commit 9ac5c56702dc7d2a0b2cb4381610fa9e1aa46b16
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Sun Oct 24 20:54:52 2021 -0400
+
+    non log transformed graph included
+
+ Project 6 data/BIOL314020_subject01_day_52.csv     |  559 ----
+ Project 6 data/BIOL314020_subject01_night_52.csv   |  486 ---
+ Project 6 data/BIOL314020_subject02_day_73.csv     |  622 ----
+ Project 6 data/BIOL314020_subject02_night_73.csv   |  619 ----
+ Project 6 data/BIOL314020_subject03_day_59.csv     |  565 ----
+ Project 6 data/BIOL314020_subject03_night_59.csv   |  601 ----
+ Project 6 data/BIOL314020_subject04_day_72.csv     |  549 ----
+ Project 6 data/BIOL314020_subject04_night_72.csv   |  567 ----
+ Project 6 data/BIOL314020_subject05_day_64.csv     |  594 ----
+ Project 6 data/BIOL314020_subject05_night_64.csv   |  531 ----
+ Project 6 data/BIOL314020_subject06_day_61.csv     |  308 --
+ Project 6 data/BIOL314020_subject06_night_61.csv   |  359 ---
+ Project 6 data/BIOL314020_subject07_day_52.csv     | 1763 -----------
+ Project 6 data/BIOL314020_subject07_night_52.csv   | 1784 -----------
+ Project 6 data/BIOL314020_subject08_day_93.csv     |  177 --
+ Project 6 data/BIOL314020_subject08_night_93.csv   |  166 -
+ Project 6 data/BIOL314020_subject09_day_52.csv     | 1687 ----------
+ Project 6 data/BIOL314020_subject09_night_52.csv   | 3344 --------------------
+ Project 6 data/BIOL314020_subject10_day_63.5.csv   |  542 ----
+ Project 6 data/BIOL314020_subject10_night_63.5.csv |  303 --
+ Project 6 data/BIOL314020_subject11_day_95.csv     |  586 ----
+ Project 6 data/BIOL314020_subject11_night_95.csv   |  594 ----
+ Project 6 data/BIOL314020_subject12_day_86.csv     |  532 ----
+ Project 6 data/BIOL314020_subject12_night_86.csv   |  573 ----
+ Project 6 data/BIOL314020_subject13_day_80.csv     |  582 ----
+ Project 6 data/BIOL314020_subject13_night_80.csv   |  595 ----
+ Project 6 data/BIOL314020_subject14_day_65.csv     |  475 ---
+ Project 6 data/BIOL314020_subject14_night_65.csv   |  597 ----
+ Project 6 data/BIOL314020_subject15_day_63.csv     | 1942 ------------
+ Project 6 data/BIOL314020_subject15_night_63.csv   | 1942 ------------
+ Project 6 data/BIOL314020_subject16_day_81.csv     | 1825 -----------
+ Project 6 data/BIOL314020_subject16_night_81.csv   | 1808 -----------
+ Project 6 data/BIOL314020_subject17_day_85.csv     | 1566 ---------
+ Project 6 data/BIOL314020_subject17_night_85.csv   | 1782 -----------
+ Project 6 data/BIOL314020_subject18_day_53.csv     | 1298 --------
+ Project 6 data/BIOL314020_subject19_day_56.csv     |  194 --
+ Project 6 data/BIOL314020_subject19_night_56.csv   |  118 -
+ Project 6 data/BIOL314020_subject20_day_84.csv     | 1741 ----------
+ Project 6 data/BIOL314020_subject20_night_84.csv   | 1692 ----------
+ Project 6 data/BIOL314020_subject21_day_55.csv     | 1803 -----------
+ Project 6 data/BIOL314020_subject21_night_55.csv   | 1802 -----------
+ Project 6 data/BIOL314020_subject22_day_82.csv     | 1872 -----------
+ Project 6 data/BIOL314020_subject22_night_82.csv   | 1796 -----------
+ Project 6 data/BIOL314020_subject23_day_79.csv     | 1779 -----------
+ Project 6 data/BIOL314020_subject23_night_79.csv   | 1619 ----------
+ Project 6 data/BIOL314020_subject24_day_63.csv     |  588 ----
+ Project 6 data/BIOL314020_subject24_night_63.csv   |  609 ----
+ Project 6 data/BIOL314020_subject25_day_49.csv     |  552 ----
+ Project 6 data/BIOL314020_subject25_night_49.csv   |  527 ---
+ Project 6 data/BIOL314020_subject26_day_75.csv     |  590 ----
+ Project 6 data/BIOL314020_subject26_night_75.csv   |  571 ----
+ Project 6 data/BIOL314020_subject27_day_63.csv     | 1673 ----------
+ Project 6 data/BIOL314020_subject27_night_63.csv   | 1801 -----------
+ Project 6 data/BIOL314020_subject28_day_65.csv     | 1762 -----------
+ Project 6 data/BIOL314020_subject28_night_65.csv   | 1825 -----------
+ Project 6 data/BIOL314020_subject29_day_77.csv     |  179 --
+ Project 6 data/BIOL314020_subject29_night_77.csv   |  173 -
+ Project 6 data/BIOL314020_subject30_day_80.csv     | 1802 -----------
+ Project 6 data/BIOL314020_subject30_night_80.csv   | 1803 -----------
+ Project 6 data/BIOL314021_31_Night_55.csv          |  465 ---
+ Project 6 data/BIOL314021_Subject32_day_82.csv     |  446 ---
+ Project 6 data/BIOL314021_Subject32_night_82.csv   |  446 ---
+ Project 6 data/BIOL314021_Subject34_day_61.csv     |  446 ---
+ Project 6 data/BIOL314021_Subject34_night_61.csv   |  430 ---
+ Project 6 data/BIOL314021_subject35_day_57.csv     |  468 ---
+ Project 6 data/BIOL314021_subject35_night_57.csv   |  450 ---
+ Project 6 data/BIOL314021_subject37_day_49.csv     |  451 ---
+ Project 6 data/BIOL314021_subject37_night_49.csv   |  468 ---
+ Project 6 data/BIOL314021_subject38_day_75.csv     |  891 ------
+ Project 6 data/BIOL314021_subject38_night_75.csv   |  909 ------
+ Project 6 data/BIOL314021_subject40_day_54.csv     |  474 ---
+ Project 6 data/BIOL314021_subject40_night_54.csv   |  283 --
+ Project 6 data/BIOL3140_Subject33_Night_123.csv    |  468 ---
+ Project 6 data/BIOL3140_Subject33_day_123.csv      |  928 ------
+ Project 6 data/BIOL3140_Subject36_Night_60.csv     |  552 ----
+ Project 6 data/BIOL3140_Subject37_Night_49.csv     |  467 ---
+ Project 6 data/BIOL3140_Subject39_1PM_50.csv       |  179 --
+ 77 files changed, 70915 deletions(-)
+
+commit 395ab5730ac8f193c825adf7019db2ddadc5af76
+Author: TonyZhiyuanWang <wangcjm@bc.edu>
+Date:   Sun Oct 24 20:23:51 2021 -0400
+
+    discussion
+
+ CodesRUs_module6.Rmd | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+commit f5bf54c6f4c0124287f4609525550c892214ce1f
+Author: TonyZhiyuanWang <wangcjm@bc.edu>
+Date:   Sun Oct 24 19:41:20 2021 -0400
+
+    intro
+
+ CodesRUs_module6.Rmd | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 408672a01d4e894fe996f60091ec8de6b0c45d25
+Author: TonyZhiyuanWang <wangcjm@bc.edu>
+Date:   Sun Oct 24 19:40:43 2021 -0400
+
+    intro
+
+ CodesRUs_module6.Rmd | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 0bfec3efad831f531e06d32f288383d736f8c02a
+Author: TonyZhiyuanWang <wangcjm@bc.edu>
+Date:   Sun Oct 24 19:37:02 2021 -0400
+
+    methods
+
+ CodesRUs_module6.Rmd | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 8a323e7c54e30dc57c7c669daecc4d0202766d3c
+Author: TonyZhiyuanWang <wangcjm@bc.edu>
+Date:   Sun Oct 24 17:59:20 2021 -0400
+
+    format
+
+ CodesRUs_module6.Rmd | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+commit 3684cc55bc019f7840348c5aa20e032a83ccb917
+Author: TonyZhiyuanWang <89791497+TonyZhiyuanWang@users.noreply.github.com>
+Date:   Sun Oct 24 17:55:16 2021 -0400
+
+    Add files via upload
+
+ CodesRUs_module6.Rmd | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+
+commit 67105d0de0307e45b64aa147d8577fe9b81c1525
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Sun Oct 24 15:38:50 2021 -0400
+
+    might've done it
+
+ CodesRUS_module6.R  |  48 +++++++++++++++++++++++++++++++++++++++++-------
+ proj6data/.DS_Store | Bin 12292 -> 14340 bytes
+ 2 files changed, 41 insertions(+), 7 deletions(-)
+
+commit 4125c031a1481be1da00ca50bef35eead87eab4b
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Thu Oct 21 17:19:01 2021 -0400
+
+    project 6
+
+ CodesRUS_module6.R       |   5 +++--
+ Project 6 data/.DS_Store | Bin 14340 -> 0 bytes
+ proj6data/.DS_Store      | Bin 14340 -> 12292 bytes
+ 3 files changed, 3 insertions(+), 2 deletions(-)
+
+commit 2126fe8df959c1e036ae757c4a85dd426bde0eb9
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Thu Oct 21 16:35:39 2021 -0400
+
+    project 6 work
+
+ CodesRUS_module6.R                            |   35 +-
+ proj6data/.DS_Store                           |  Bin 0 -> 14340 bytes
+ proj6data/BIOL314020_subject01_day_52.csv     |  559 +++++
+ proj6data/BIOL314020_subject01_night_52.csv   |  486 ++++
+ proj6data/BIOL314020_subject02_day_73.csv     |  622 +++++
+ proj6data/BIOL314020_subject02_night_73.csv   |  619 +++++
+ proj6data/BIOL314020_subject03_day_59.csv     |  565 +++++
+ proj6data/BIOL314020_subject03_night_59.csv   |  601 +++++
+ proj6data/BIOL314020_subject04_day_72.csv     |  549 ++++
+ proj6data/BIOL314020_subject04_night_72.csv   |  567 +++++
+ proj6data/BIOL314020_subject05_day_64.csv     |  594 +++++
+ proj6data/BIOL314020_subject05_night_64.csv   |  531 ++++
+ proj6data/BIOL314020_subject06_day_61.csv     |  308 +++
+ proj6data/BIOL314020_subject06_night_61.csv   |  359 +++
+ proj6data/BIOL314020_subject07_day_52.csv     | 1763 +++++++++++++
+ proj6data/BIOL314020_subject07_night_52.csv   | 1784 +++++++++++++
+ proj6data/BIOL314020_subject08_day_93.csv     |  177 ++
+ proj6data/BIOL314020_subject08_night_93.csv   |  166 ++
+ proj6data/BIOL314020_subject09_day_52.csv     | 1687 +++++++++++++
+ proj6data/BIOL314020_subject09_night_52.csv   | 3344 +++++++++++++++++++++++++
+ proj6data/BIOL314020_subject10_day_63.5.csv   |  542 ++++
+ proj6data/BIOL314020_subject10_night_63.5.csv |  303 +++
+ proj6data/BIOL314020_subject11_day_95.csv     |  586 +++++
+ proj6data/BIOL314020_subject11_night_95.csv   |  594 +++++
+ proj6data/BIOL314020_subject12_day_86.csv     |  532 ++++
+ proj6data/BIOL314020_subject12_night_86.csv   |  573 +++++
+ proj6data/BIOL314020_subject13_day_80.csv     |  582 +++++
+ proj6data/BIOL314020_subject13_night_80.csv   |  595 +++++
+ proj6data/BIOL314020_subject14_day_65.csv     |  475 ++++
+ proj6data/BIOL314020_subject14_night_65.csv   |  597 +++++
+ proj6data/BIOL314020_subject15_day_63.csv     | 1942 ++++++++++++++
+ proj6data/BIOL314020_subject15_night_63.csv   | 1942 ++++++++++++++
+ proj6data/BIOL314020_subject16_day_81.csv     | 1825 ++++++++++++++
+ proj6data/BIOL314020_subject16_night_81.csv   | 1808 +++++++++++++
+ proj6data/BIOL314020_subject17_day_85.csv     | 1566 ++++++++++++
+ proj6data/BIOL314020_subject17_night_85.csv   | 1782 +++++++++++++
+ proj6data/BIOL314020_subject18_day_53.csv     | 1298 ++++++++++
+ proj6data/BIOL314020_subject19_day_56.csv     |  194 ++
+ proj6data/BIOL314020_subject19_night_56.csv   |  118 +
+ proj6data/BIOL314020_subject20_day_84.csv     | 1741 +++++++++++++
+ proj6data/BIOL314020_subject20_night_84.csv   | 1692 +++++++++++++
+ proj6data/BIOL314020_subject21_day_55.csv     | 1803 +++++++++++++
+ proj6data/BIOL314020_subject21_night_55.csv   | 1802 +++++++++++++
+ proj6data/BIOL314020_subject22_day_82.csv     | 1872 ++++++++++++++
+ proj6data/BIOL314020_subject22_night_82.csv   | 1796 +++++++++++++
+ proj6data/BIOL314020_subject23_day_79.csv     | 1779 +++++++++++++
+ proj6data/BIOL314020_subject23_night_79.csv   | 1619 ++++++++++++
+ proj6data/BIOL314020_subject24_day_63.csv     |  588 +++++
+ proj6data/BIOL314020_subject24_night_63.csv   |  609 +++++
+ proj6data/BIOL314020_subject25_day_49.csv     |  552 ++++
+ proj6data/BIOL314020_subject25_night_49.csv   |  527 ++++
+ proj6data/BIOL314020_subject26_day_75.csv     |  590 +++++
+ proj6data/BIOL314020_subject26_night_75.csv   |  571 +++++
+ proj6data/BIOL314020_subject27_day_63.csv     | 1673 +++++++++++++
+ proj6data/BIOL314020_subject27_night_63.csv   | 1801 +++++++++++++
+ proj6data/BIOL314020_subject28_day_65.csv     | 1762 +++++++++++++
+ proj6data/BIOL314020_subject28_night_65.csv   | 1825 ++++++++++++++
+ proj6data/BIOL314020_subject29_day_77.csv     |  179 ++
+ proj6data/BIOL314020_subject29_night_77.csv   |  173 ++
+ proj6data/BIOL314020_subject30_day_80.csv     | 1802 +++++++++++++
+ proj6data/BIOL314020_subject30_night_80.csv   | 1803 +++++++++++++
+ 61 files changed, 61716 insertions(+), 13 deletions(-)
+
+commit 2a68c388cad05de1d0e140a25e384e4ab828cc5f
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Thu Oct 21 16:00:56 2021 -0400
+
+    starting project 6
+
+ CodesRUS_module6.R                                 |   19 +
+ Project 6 data/.DS_Store                           |  Bin 0 -> 14340 bytes
+ Project 6 data/BIOL314020_subject01_day_52.csv     |  559 ++++
+ Project 6 data/BIOL314020_subject01_night_52.csv   |  486 +++
+ Project 6 data/BIOL314020_subject02_day_73.csv     |  622 ++++
+ Project 6 data/BIOL314020_subject02_night_73.csv   |  619 ++++
+ Project 6 data/BIOL314020_subject03_day_59.csv     |  565 ++++
+ Project 6 data/BIOL314020_subject03_night_59.csv   |  601 ++++
+ Project 6 data/BIOL314020_subject04_day_72.csv     |  549 ++++
+ Project 6 data/BIOL314020_subject04_night_72.csv   |  567 ++++
+ Project 6 data/BIOL314020_subject05_day_64.csv     |  594 ++++
+ Project 6 data/BIOL314020_subject05_night_64.csv   |  531 ++++
+ Project 6 data/BIOL314020_subject06_day_61.csv     |  308 ++
+ Project 6 data/BIOL314020_subject06_night_61.csv   |  359 +++
+ Project 6 data/BIOL314020_subject07_day_52.csv     | 1763 +++++++++++
+ Project 6 data/BIOL314020_subject07_night_52.csv   | 1784 +++++++++++
+ Project 6 data/BIOL314020_subject08_day_93.csv     |  177 ++
+ Project 6 data/BIOL314020_subject08_night_93.csv   |  166 +
+ Project 6 data/BIOL314020_subject09_day_52.csv     | 1687 ++++++++++
+ Project 6 data/BIOL314020_subject09_night_52.csv   | 3344 ++++++++++++++++++++
+ Project 6 data/BIOL314020_subject10_day_63.5.csv   |  542 ++++
+ Project 6 data/BIOL314020_subject10_night_63.5.csv |  303 ++
+ Project 6 data/BIOL314020_subject11_day_95.csv     |  586 ++++
+ Project 6 data/BIOL314020_subject11_night_95.csv   |  594 ++++
+ Project 6 data/BIOL314020_subject12_day_86.csv     |  532 ++++
+ Project 6 data/BIOL314020_subject12_night_86.csv   |  573 ++++
+ Project 6 data/BIOL314020_subject13_day_80.csv     |  582 ++++
+ Project 6 data/BIOL314020_subject13_night_80.csv   |  595 ++++
+ Project 6 data/BIOL314020_subject14_day_65.csv     |  475 +++
+ Project 6 data/BIOL314020_subject14_night_65.csv   |  597 ++++
+ Project 6 data/BIOL314020_subject15_day_63.csv     | 1942 ++++++++++++
+ Project 6 data/BIOL314020_subject15_night_63.csv   | 1942 ++++++++++++
+ Project 6 data/BIOL314020_subject16_day_81.csv     | 1825 +++++++++++
+ Project 6 data/BIOL314020_subject16_night_81.csv   | 1808 +++++++++++
+ Project 6 data/BIOL314020_subject17_day_85.csv     | 1566 +++++++++
+ Project 6 data/BIOL314020_subject17_night_85.csv   | 1782 +++++++++++
+ Project 6 data/BIOL314020_subject18_day_53.csv     | 1298 ++++++++
+ Project 6 data/BIOL314020_subject19_day_56.csv     |  194 ++
+ Project 6 data/BIOL314020_subject19_night_56.csv   |  118 +
+ Project 6 data/BIOL314020_subject20_day_84.csv     | 1741 ++++++++++
+ Project 6 data/BIOL314020_subject20_night_84.csv   | 1692 ++++++++++
+ Project 6 data/BIOL314020_subject21_day_55.csv     | 1803 +++++++++++
+ Project 6 data/BIOL314020_subject21_night_55.csv   | 1802 +++++++++++
+ Project 6 data/BIOL314020_subject22_day_82.csv     | 1872 +++++++++++
+ Project 6 data/BIOL314020_subject22_night_82.csv   | 1796 +++++++++++
+ Project 6 data/BIOL314020_subject23_day_79.csv     | 1779 +++++++++++
+ Project 6 data/BIOL314020_subject23_night_79.csv   | 1619 ++++++++++
+ Project 6 data/BIOL314020_subject24_day_63.csv     |  588 ++++
+ Project 6 data/BIOL314020_subject24_night_63.csv   |  609 ++++
+ Project 6 data/BIOL314020_subject25_day_49.csv     |  552 ++++
+ Project 6 data/BIOL314020_subject25_night_49.csv   |  527 +++
+ Project 6 data/BIOL314020_subject26_day_75.csv     |  590 ++++
+ Project 6 data/BIOL314020_subject26_night_75.csv   |  571 ++++
+ Project 6 data/BIOL314020_subject27_day_63.csv     | 1673 ++++++++++
+ Project 6 data/BIOL314020_subject27_night_63.csv   | 1801 +++++++++++
+ Project 6 data/BIOL314020_subject28_day_65.csv     | 1762 +++++++++++
+ Project 6 data/BIOL314020_subject28_night_65.csv   | 1825 +++++++++++
+ Project 6 data/BIOL314020_subject29_day_77.csv     |  179 ++
+ Project 6 data/BIOL314020_subject29_night_77.csv   |  173 +
+ Project 6 data/BIOL314020_subject30_day_80.csv     | 1802 +++++++++++
+ Project 6 data/BIOL314020_subject30_night_80.csv   | 1803 +++++++++++
+ Project 6 data/BIOL314021_31_Night_55.csv          |  465 +++
+ Project 6 data/BIOL314021_Subject32_day_82.csv     |  446 +++
+ Project 6 data/BIOL314021_Subject32_night_82.csv   |  446 +++
+ Project 6 data/BIOL314021_Subject34_day_61.csv     |  446 +++
+ Project 6 data/BIOL314021_Subject34_night_61.csv   |  430 +++
+ Project 6 data/BIOL314021_subject35_day_57.csv     |  468 +++
+ Project 6 data/BIOL314021_subject35_night_57.csv   |  450 +++
+ Project 6 data/BIOL314021_subject37_day_49.csv     |  451 +++
+ Project 6 data/BIOL314021_subject37_night_49.csv   |  468 +++
+ Project 6 data/BIOL314021_subject38_day_75.csv     |  891 ++++++
+ Project 6 data/BIOL314021_subject38_night_75.csv   |  909 ++++++
+ Project 6 data/BIOL314021_subject40_day_54.csv     |  474 +++
+ Project 6 data/BIOL314021_subject40_night_54.csv   |  283 ++
+ Project 6 data/BIOL3140_Subject33_Night_123.csv    |  468 +++
+ Project 6 data/BIOL3140_Subject33_day_123.csv      |  928 ++++++
+ Project 6 data/BIOL3140_Subject36_Night_60.csv     |  552 ++++
+ Project 6 data/BIOL3140_Subject37_Night_49.csv     |  467 +++
+ Project 6 data/BIOL3140_Subject39_1PM_50.csv       |  179 ++
+ mammal.temp.csv                                    |   52 +
+ 80 files changed, 70986 insertions(+)
+
+commit 71e5f4cfb10c28a38d564d0953ef4ba2b0b0b2ee
+Author: ckenaley <cpkenaley@gmail.com>
+Date:   Thu Oct 21 10:13:10 2021 -0400
+
+    proj5 comments
+
+ CodesRUs_module5_comments.Rmd | 75 +++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 75 insertions(+)
+
+commit f730d6fa1259ae89e05ec610be6ae71a4c9c215f
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Sun Oct 17 23:40:46 2021 -0400
+
+    edit
+
+ CodesRUs_module5.Rmd | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit b71bcd8a5458876e69d8ffc5f103261f57b55431
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Sun Oct 17 23:37:35 2021 -0400
+
+    edits
+
+ CodesRUs_module5.Rmd | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit 5ccb15aa9549ba482ac7cb7766a0f651e942958d
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Sun Oct 17 23:35:34 2021 -0400
+
+    all edits complete
+
+ CodesRUs_module5.Rmd | 17 ++++++++++-------
+ 1 file changed, 10 insertions(+), 7 deletions(-)
+
+commit 95f27051344ef94ab024196ac56b50675eb60151
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Sun Oct 17 23:14:32 2021 -0400
+
+    bibliography
+
+ BIOL3140.bib | 30 ++++++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
+
+commit 7a318f03ac26cfcd6e4116232ebaa32ed119d059
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Sun Oct 17 23:14:02 2021 -0400
+
+    including results data
+
+ CodesRUs_module5.Rmd | 39 +++++++++++++++++++++++++++++++++------
+ 1 file changed, 33 insertions(+), 6 deletions(-)
+
+commit 34d9eca1cd5e4b8c143566391afdb3668f369052
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Sun Oct 17 22:45:58 2021 -0400
+
+    editting and including another reference
+
+ CodesRUs_module5.Rmd | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+commit c3e32d0bfde6570f90c0a2d383b11947460c3144
+Author: TonyZhiyuanWang <wangcjm@bc.edu>
+Date:   Sun Oct 17 18:52:32 2021 -0400
+
+    discussion
+
+ CodesRUs_module5.Rmd | 11 ++++++-----
+ 1 file changed, 6 insertions(+), 5 deletions(-)
+
+commit 80f475c1711b95d27c76ebd0a86b4281ed265f7c
+Author: TonyZhiyuanWang <wangcjm@bc.edu>
+Date:   Sun Oct 17 18:23:53 2021 -0400
+
+    result
+
+ CodesRUs_module5.Rmd | 13 +++----------
+ 1 file changed, 3 insertions(+), 10 deletions(-)
+
+commit 9f65c27499d000f97b974197940de2c5ee7433d0
+Author: TonyZhiyuanWang <wangcjm@bc.edu>
+Date:   Sun Oct 17 18:21:15 2021 -0400
+
+    intro citation
+
+ CodesRUs_module5.Rmd | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 08cdc64cebb4e07eb9e22531390a4b775b97b6ee
+Author: TonyZhiyuanWang <wangcjm@bc.edu>
+Date:   Sun Oct 17 18:16:12 2021 -0400
+
+    contribution
+
+ CodesRUs_module5.Rmd | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+commit 38dc073ae3be39d2caa92d53a38971405a5432e3
+Author: TonyZhiyuanWang <wangcjm@bc.edu>
+Date:   Sun Oct 17 18:12:01 2021 -0400
+
+    intro
+
+ CodesRUs_module5.Rmd | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+commit 3b760ecf29c21a5c6ee0858e335b510123524177
+Author: TonyZhiyuanWang <wangcjm@bc.edu>
+Date:   Sun Oct 17 17:15:46 2021 -0400
+
+    test
+
+ CodesRUs_module5.Rmd | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit bacfc4b2c94f6f3e1cdbfe4c749773619cc6255a
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Sun Oct 17 17:10:56 2021 -0400
+
+    rmd file
+
+ CodesRUs_module5.Rmd | 24 ++++++++++++++++++++++++
+ 1 file changed, 24 insertions(+)
+
+commit 36248ed58f6250f33dbfba7e48e19236f71994dd
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Sun Oct 17 17:09:54 2021 -0400
+
+    code
+
+ CodesRUS_module5.R | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+commit 95eacf751d2dbbcdd8cfbb6ff245d5b826331b44
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Sun Oct 17 16:56:37 2021 -0400
+
+    finished the code
+
+ CodesRUS_module5.R | 19 +++++++------------
+ 1 file changed, 7 insertions(+), 12 deletions(-)
+
+commit 79ab0e54386e2430b088711ddcfe5a59b71392f1
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Sun Oct 17 16:47:11 2021 -0400
+
+    code
+
+ Amanda_active.csv  | 1 +
+ Amanda_couch.csv   | 1 +
+ CodesRUS_module5.R | 2 ++
+ Nick_active.csv    | 1 +
+ Nick_couch.csv     | 2 ++
+ Steven_active.csv  | 1 +
+ Steven_couch.csv   | 1 +
+ Tony_active.csv    | 1 +
+ Tony_couch.csv     | 1 +
+ 9 files changed, 11 insertions(+)
+
+commit fc86d5e718f87845ef8b9c61d0cd8d3d3e150424
+Author: ckenaley <cpkenaley@gmail.com>
+Date:   Thu Oct 14 12:04:11 2021 -0400
+
+    proj4 comments
+
+ module 4/CodesRUS_Module4_comments.Rmd  |  164 +++
+ module 4/CodesRUS_Module4_comments.html | 1913 +++++++++++++++++++++++++++++++
+ 2 files changed, 2077 insertions(+)
+
+commit 12eab49ea1dc5e0345c2f0df8188cc44d8f90be7
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Wed Oct 13 21:13:00 2021 -0400
+
+    code
+
+ CodesRUS_module5.R | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
+
+commit 41fb2d1282a986ce0c93913edb0940b0b166aa1e
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Wed Oct 13 20:59:37 2021 -0400
+
+    correct data files
+
+ Amanda_active.csv           | 50 +++++++++++++++++++++++++++++++++++++++++++++
+ Amanda_couch.csv            | 50 +++++++++++++++++++++++++++++++++++++++++++++
+ Nick_active.csv             | 50 +++++++++++++++++++++++++++++++++++++++++++++
+ Nick_couch.csv              | 50 +++++++++++++++++++++++++++++++++++++++++++++
+ Steven_active.csv           | 50 +++++++++++++++++++++++++++++++++++++++++++++
+ Steven_couch.csv            | 50 +++++++++++++++++++++++++++++++++++++++++++++
+ Tony_active.csv             | 50 +++++++++++++++++++++++++++++++++++++++++++++
+ Tony_couch.csv              | 50 +++++++++++++++++++++++++++++++++++++++++++++
+ module 5/CodesRUS_module5.R |  7 ++++---
+ 9 files changed, 404 insertions(+), 3 deletions(-)
+
+commit 599126fd449412e20a25105dcc5e2ac586318d71
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Wed Oct 13 20:38:00 2021 -0400
+
+    code
+
+ module 5/CodesRUS_module5.R | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
+
+commit 14cae686800b85fe5ad837f75ff3cc5b1d9609ed
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Wed Oct 13 20:33:43 2021 -0400
+
+    module 5
+
+ module 5/.DS_Store         | Bin 0 -> 6148 bytes
+ module 5/Amanda_couch.csv  |  58 ++++++++++++++++++++++++++++++++++++++++++++
+ module 5/Nick_active.csv   |  59 +++++++++++++++++++++++++++++++++++++++++++++
+ module 5/Nick_couch.csv    |  59 +++++++++++++++++++++++++++++++++++++++++++++
+ module 5/Tony_couch.csv    |  59 +++++++++++++++++++++++++++++++++++++++++++++
+ module 5/amanda_active.csv |  58 ++++++++++++++++++++++++++++++++++++++++++++
+ module 5/steven_active.csv |  58 ++++++++++++++++++++++++++++++++++++++++++++
+ module 5/steven_couch.csv  |  59 +++++++++++++++++++++++++++++++++++++++++++++
+ module 5/tony_active.csv   |  58 ++++++++++++++++++++++++++++++++++++++++++++
+ 9 files changed, 468 insertions(+)
+
+commit aeafddee27970e0dda3a0f102f0ad968a56287ee
+Author: ckenaley <cpkenaley@gmail.com>
+Date:   Thu Oct 7 12:09:29 2021 -0400
+
+    proj3 comments
+
+ module 3/CodesRUS_module3_comments.R | 174 +++++++++++++++++++++++++++++++++++
+ 1 file changed, 174 insertions(+)
+
+commit c4995a192fc2aa395256237d549cef6ebf446e0c
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Sun Oct 3 21:36:23 2021 -0400
+
+    correct file
+
+ module 4/anole.dat.csv | 71 ++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 71 insertions(+)
+
+commit b2d5bfcd585f2f7d8a77e39b55caf9aa9f1c33a0
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Sun Oct 3 21:33:53 2021 -0400
+
+    updated name of code for submission
+
+ module 4/CodesRUS_Module4.Rmd | 132 ++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 132 insertions(+)
+
+commit 9a9f5d61b4e42ec4cad597782625bcef1bc82e92
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Sun Oct 3 21:32:24 2021 -0400
+
+    finished reviewing and added another plot
+
+ module 4/CodesRUS_Module4_Practice.Rmd | 18 ++++++++++--------
+ 1 file changed, 10 insertions(+), 8 deletions(-)
+
+commit 9d118b2bd8467bca4400e6d95c5dea92df712023
+Author: nickgraz3 <grazianf@bc.edu>
+Date:   Sun Oct 3 21:01:47 2021 -0400
+
+    Editing
+
+ module 4/CodesRUS_Module4_Practice.Rmd | 12 +++---
+ module 4/anole.dat .csv                | 71 ++++++++++++++++++++++++++++++++++
+ 2 files changed, 77 insertions(+), 6 deletions(-)
+
+commit d65f531eb502154da8f9d555f46eca649c6e2646
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Sun Oct 3 20:05:20 2021 -0400
+
+    .
+
+ module 4/CodesRUS_Module4.Rmd          | 30 ------------------------------
+ module 4/CodesRUS_Module4_Practice.Rmd |  2 +-
+ 2 files changed, 1 insertion(+), 31 deletions(-)
+
+commit 2f297c26252a096881a21802e6cd7826de9b9c2e
+Author: TonyZhiyuanWang <wangcjm@bc.edu>
+Date:   Sat Oct 2 18:46:31 2021 -0400
+
+    add poe
+
+ module 4/BIOL2140.bib | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+
+commit 940f6081f4682d6953fee26abc849d2440cce88c
+Author: TonyZhiyuanWang <wangcjm@bc.edu>
+Date:   Sat Oct 2 18:39:11 2021 -0400
+
+    contributions
+
+ module 4/CodesRUS_Module4_Practice.Rmd | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
+
+commit 78aabf10e510ad71c1cb51fd18cd6a1dc2211109
+Author: TonyZhiyuanWang <wangcjm@bc.edu>
+Date:   Sat Oct 2 18:29:28 2021 -0400
+
+    Add results for Steven
+
+ module 4/CodesRUS_Module4_Practice.Rmd | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+commit 65c78d04d28cbeddf23c066ccf50b9fda599b782
+Author: TonyZhiyuanWang <wangcjm@bc.edu>
+Date:   Sat Oct 2 18:18:06 2021 -0400
+
+    discussion revision
+
+ module 4/CodesRUS_Module4_Practice.Rmd | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 37f25b3bbf46e0938962fa6a7d8e4024950c325d
+Author: TonyZhiyuanWang <wangcjm@bc.edu>
+Date:   Sat Oct 2 17:57:51 2021 -0400
+
+    add discussion
+
+ module 4/CodesRUS_Module4_Practice.Rmd | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+commit b6071012f36daa1e5c9445a243f08bb0fca5f73f
+Author: TonyZhiyuanWang <wangcjm@bc.edu>
+Date:   Sat Oct 2 17:14:21 2021 -0400
+
+    added methods (from me)
+
+ module 4/CodesRUS_Module4_Practice.Rmd | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+commit 8af28da5582a72757513bf958347bd85edb25377
+Author: TonyZhiyuanWang <wangcjm@bc.edu>
+Date:   Sat Oct 2 15:50:34 2021 -0400
+
+    add introduction for steven
+
+ module 4/CodesRUS_Module4_Practice.Rmd | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+commit 954e6030143b8473a117f631789f683161d2737a
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Wed Sep 29 02:19:07 2021 -0400
+
+    finished typing out the project contents
+
+ module 4/BIOL2140.bib                  |   9 +++++
+ module 4/CodesRUS_Module4_Practice.Rmd |  42 ++++++++++++++++++-
+ module 4/anole.eco.csv                 |  71 +++++++++++++++++++++++++++++++++
+ module 4/anole.tre                     |   1 +
+ module 4/svl_small.png                 | Bin 0 -> 111297 bytes
+ 5 files changed, 122 insertions(+), 1 deletion(-)
+
+commit e89893cbfa2eaa4f194bcb779e5f5d9da909186d
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Wed Sep 29 01:47:25 2021 -0400
+
+    Starting Module 4 Work
+
+ module 3/.DS_Store                     | Bin 0 -> 6148 bytes
+ module 3/.gitignore                    |   0
+ module 3/CodesRUS_module3.R            | 139 +++++++++++++++
+ module 3/anole.dat.csv                 |  71 ++++++++
+ module 3/anole.eco.csv                 |  71 ++++++++
+ module 3/anole.tre                     |   1 +
+ module 3/module3_project3.R            | 300 +++++++++++++++++++++++++++++++++
+ module 4/.DS_Store                     | Bin 0 -> 6148 bytes
+ module 4/CodesRUS_Module4.Rmd          |  30 ++++
+ module 4/CodesRUS_Module4_Practice.Rmd |  66 ++++++++
+ 10 files changed, 678 insertions(+)
+
+commit 8bf7f16a38927306c285cffade92eea73cf48b7f
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Sun Sep 26 22:59:40 2021 -0400
+
+    including box plots as well with question #6, but keeping the line plots for more concise visuals
+
+ module3/CodesRUS_module3.R | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
+
+commit 862a16bc0eb652b555be5a383f960fb143720b39
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Sun Sep 26 22:37:52 2021 -0400
+
+    somewhat fixed plot for question 6
+
+ module3/CodesRUS_module3.R | 23 ++++++++---------------
+ 1 file changed, 8 insertions(+), 15 deletions(-)
+
+commit 4c598851845c62908e5c6a2d4463b501a16d2453
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Sun Sep 26 21:23:36 2021 -0400
+
+    updating the repo folder to include data sheets so it can be run
+
+ module3/CodesRUS_module3.R             | 1 +
+ anole.dat.csv => module3/anole.dat.csv | 0
+ anole.eco.csv => module3/anole.eco.csv | 0
+ anole.tre => module3/anole.tre         | 0
+ 4 files changed, 1 insertion(+)
+
+commit 76071b60c88729a8531f5d3ef78d39ea63838dcb
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Sun Sep 26 21:13:58 2021 -0400
+
+    adjusted the final problem by adding more accurate and concise plot of residuals
+
+ module3/CodesRUS_module3.R | 25 ++++++++++++++++++-------
+ 1 file changed, 18 insertions(+), 7 deletions(-)
+
+commit b7faa72a7441933daf36cf9af0ce54e7a604684c
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Sun Sep 26 20:48:13 2021 -0400
+
+    should be all done
+
+ module3/CodesRUS_module3.R | 71 +++++++++++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 70 insertions(+), 1 deletion(-)
+
+commit 4d0849a4a8aa84c43ef8af999e0ac452b6fad8a3
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Sun Sep 26 14:07:08 2021 -0400
+
+    project file
+
+ module3/CodesRUS_module3.R | 50 ++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 50 insertions(+)
+
+commit 11f74af49923ec1f82941820cdb312478982d5ac
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Sun Sep 26 14:04:51 2021 -0400
+
+    restarting project
+
+ module3/CodesRUs_module3.R | 298 ---------------------------------------------
+ 1 file changed, 298 deletions(-)
+
+commit 1f1e0c15783879315837f50deb31dc4b4f6b4f57
+Merge: aa497da c00cec2
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Sun Sep 26 14:02:25 2021 -0400
+
+    Merge branch 'master' of https://github.com/bcorgbio/Codes-R-US
+
+commit aa497da2efb55b855910fe158b018355343dfa38
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Sun Sep 26 13:55:45 2021 -0400
+
+    renamed to be able to work on just the code needed for submission
+
+ module3/module3_project3.R | 300 +++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 300 insertions(+)
+
+commit c00cec22992b17f44a0e446a2a432357c4ee2f0a
+Author: ckenaley <cpkenaley@gmail.com>
+Date:   Sat Sep 25 13:18:21 2021 -0400
+
+    comm update
+
+ module2/codesRUS_module2.R          |   2 +-
+ module2/codesRUS_module2_comments.R | 233 ++++++++++++++++++++++++++++++++++++
+ 2 files changed, 234 insertions(+), 1 deletion(-)
+
+commit db5224fdf29d1be908496db71450d4becb4d568f
+Author: ckenaley <cpkenaley@gmail.com>
+Date:   Sat Sep 25 13:17:22 2021 -0400
+
+    proj2 comments
+
+ module2/codesRUS_module2.R    |  44 ++++++++++++++++++++-
+ pseed.met.rate.csv            |  51 ++++++++++++++++++++++++
+ scales1/scalessep9.R          |  11 +++++-
+ scales1/scalessep9_comments.R |  89 ++++++++++++++++++++++++++++++++++++++++++
+ species.quadrant.pdf          | Bin 0 -> 11667 bytes
+ 5 files changed, 193 insertions(+), 2 deletions(-)
+
+commit b292e87a7a983d66c3f866dc4c148721cfa34727
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Thu Sep 23 21:27:32 2021 -0400
+
+    did some more
+
+ module3/CodesRUs_module3.R | 154 ++++++++++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 153 insertions(+), 1 deletion(-)
+
+commit 28319a6385450acf3461f3b340d283993f287a7a
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Thu Sep 23 10:22:57 2021 -0400
+
+    adding Ecomorph2 parameter to see if better fit
+
+ module3/CodesRUs_module3.R | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
+
+commit 8109a2169fc3967676564208d1bfd0808171d058
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Tue Sep 21 23:05:21 2021 -0400
+
+    started more complex section
+
+ module3/CodesRUs_module3.R | 61 ++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 61 insertions(+)
+
+commit 400073e14e61b9bdc5afe9df0e489db6a783bf76
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Tue Sep 21 21:38:34 2021 -0400
+
+    folder
+
+ module3/.DS_Store          | Bin 0 -> 6148 bytes
+ module3/CodesRUs_module3.R |  78 +++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 78 insertions(+)
+
+commit 5352e00e79aa9060e4060b2018e87e3c0b2a099e
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Tue Sep 21 21:36:04 2021 -0400
+
+    moved into folder
+
+ CodesRUs_module3.R | 78 ------------------------------------------------------
+ 1 file changed, 78 deletions(-)
+
+commit 7b21bbdbcc63c9c16868674d8a65bac0efa6cf77
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Tue Sep 21 21:20:16 2021 -0400
+
+    currently writing notes for the summary(anole.allo)
+
+ CodesRUs_module3.R | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
+
+commit fc4f5bf3a31814156039bd9a0a031905d5679318
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Tue Sep 21 20:57:06 2021 -0400
+
+    half way through visualizing data section
+
+ CodesRUs_module3.R | 52 +++++++++++++++++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 51 insertions(+), 1 deletion(-)
+
+commit 9af471f65c1542a3483a9a2077192dd964b1beb8
+Author: TonyZhiyuanWang <wangcjm@bc.edu>
+Date:   Mon Sep 20 12:04:52 2021 -0400
+
+    test
+
+ CodesRUs_module3.R | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+
+commit 76a44821101f60db5e79f47ac6daf58096dbaa6e
+Merge: f742342 3b716b9
+Author: TonyZhiyuanWang <wangcjm@bc.edu>
+Date:   Mon Sep 20 12:03:49 2021 -0400
+
+    Merge branch 'master' of https://github.com/bcorgbio/Codes-R-US
+
+commit f7423425987df8c15e3e38bf5cc86c9ca86a46a5
+Author: TonyZhiyuanWang <wangcjm@bc.edu>
+Date:   Mon Sep 20 12:01:29 2021 -0400
+
+    mod3data
+
+ anole.dat.csv | 71 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ anole.eco.csv | 71 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ anole.tre     |  1 +
+ 3 files changed, 143 insertions(+)
+
+commit 3b716b9694ba6d826ec4ec40b31b6ddc7cc6275b
+Author: TonyZhiyuanWang <89791497+TonyZhiyuanWang@users.noreply.github.com>
+Date:   Mon Sep 20 11:57:50 2021 -0400
+
+    Delete CodesRUs_module3.R
+
+ CodesRUs_module3.R | 13 -------------
+ 1 file changed, 13 deletions(-)
+
+commit be880b4c613dda953c4191bedab247be802b95ed
+Author: TonyZhiyuanWang <wangcjm@bc.edu>
+Date:   Mon Sep 20 11:53:31 2021 -0400
+
+    load library and data
+
+ CodesRUs_module3.R | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+
+commit a9c3fda76f50b9b89f85d8796e2634fd1188ce0b
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Fri Sep 17 15:18:19 2021 -0400
+
+    switched the plot from pd to linear. might take out the "geom_line()" portion to take out the back and forth lines - would make the linear regression line more clear to see.
+
+ module2/codesRUS_module2.R | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+commit 1e3fe0ef470ec61257fcf8450503082d4e9e06e2
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Thu Sep 16 23:14:42 2021 -0400
+
+    all done - i believe
+
+ module2/codesRUS_module2.R | 3 +++
+ 1 file changed, 3 insertions(+)
+
+commit b4e8c567d455c499bd502f363c59b3af43b7ef9f
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Thu Sep 16 23:14:22 2021 -0400
+
+    i believe i finished everything
+
+ module2/codesRUS_module2.R | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
+
+commit 0d895295e3e81c351891d52165cddd650d34c352
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Thu Sep 16 22:00:10 2021 -0400
+
+    Plotted mean amp.sum vs. swimming speed w/ error bars corresponding to SE of amp.sum
+
+ module2/codesRUS_module2.R | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
+
+commit 2d53f246ad4d7af7f9682591848032fab9f9eede
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Thu Sep 16 15:10:38 2021 -0400
+
+    completed 1&2. will work on SE later.
+
+ module2/codesRUS_module2.R | 10 ++--------
+ 1 file changed, 2 insertions(+), 8 deletions(-)
+
+commit 56aad62bcc8ea883e44edffd596d52841c8a5bc7
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Thu Sep 16 15:08:49 2021 -0400
+
+    completed 1 and 2. going to work on SE and the rest later.
+
+ module2/codesRUS_module2.R | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+commit 57471bad9fd39bc5b2a261b3ee1273c702344713
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Wed Sep 15 22:04:05 2021 -0400
+
+    im a little lost at this point. i can't tell if this is going in the right direction
+
+ module2/codesRUS_module2.R | 24 ++++++++++++++++++------
+ 1 file changed, 18 insertions(+), 6 deletions(-)
+
+commit 609ab1bfd9b24366496f81f9e0d4a4d95322debe
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Wed Sep 15 21:07:03 2021 -0400
+
+    possibly figured it out but unsure. code is still running
+
+ module2/codesRUS_module2.R | 37 ++++++++++++++++++++++++++++++++++---
+ 1 file changed, 34 insertions(+), 3 deletions(-)
+
+commit 873523009aa3a0e488deb6d7b09ae7d3396b6784
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Wed Sep 15 17:28:25 2021 -0400
+
+    added amp.sum stuff
+    haven't run it through yet so not sure if this is right yet
+
+ module2/codesRUS_module2.R | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+
+commit 8a6e88ba8a103b99549a24a39d15caa311484879
+Author: nickgraz3 <grazianf@bc.edu>
+Date:   Wed Sep 15 10:39:17 2021 -0400
+
+    Through Pivoting to Different Questions (but did not apply to amp.sum)
+
+ module2/codesRUS_module2.R | 50 +++++++++++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 49 insertions(+), 1 deletion(-)
+
+commit 71e4db8d7d1a1f53fbdd109bf559a2b898e6089c
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Tue Sep 14 03:32:38 2021 -0400
+
+    first graph of "using customized funtions" completed
+
+ module2/codesRUS_module2.R | 17 ++++++++++++++++-
+ 1 file changed, 16 insertions(+), 1 deletion(-)
+
+commit 006b827266608f4746fefe5277163c6a8c396834
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Mon Sep 13 10:49:42 2021 -0400
+
+    up to "Using Customize Functions"
+
+ module2/codesRUS_module2.R | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
+
+commit cacdcae74d448c942b30f83dc974cc4592bcd558
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Mon Sep 13 10:46:31 2021 -0400
+
+    up to first plot
+
+ module2/codesRUS_module2.R | 28 +++++++++++++++++++++++++---
+ 1 file changed, 25 insertions(+), 3 deletions(-)
+
+commit a93f895c906aa010970af119035d0a34512c5c7e
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Mon Sep 13 10:36:59 2021 -0400
+
+    cleaning up code
+
+ codesRUS_module2.R         | 31 -------------------------------
+ module2/codesRUS_module2.R | 33 +++++++--------------------------
+ 2 files changed, 7 insertions(+), 57 deletions(-)
+
+commit 3d5a85492c0ee1c0e3110b00d3e7f6f44df0ce3e
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Mon Sep 13 10:30:45 2021 -0400
+
+    10:30
+
+ module2/.DS_Store          |   Bin 0 -> 6148 bytes
+ module2/codesRUS_module2.R |    31 +
+ pseed.calibration.csv      |   120 +
+ pseed.fin.amps.csv         | 73353 +++++++++++++++++++++++++++++++++++++++++++
+ pseed.lengths.csv          |     4 +
+ 5 files changed, 73508 insertions(+)
+
+commit 3eeee5e4a2d8a6757de0f6451ac015c6c046e457
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Mon Sep 13 10:21:06 2021 -0400
+
+    added comments
+
+ codesRUS_module2.R | 25 ++++++++++++++++++++++++-
+ 1 file changed, 24 insertions(+), 1 deletion(-)
+
+commit ffb2e573c2dd7641b9140f3f968431afca89dab1
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Mon Sep 13 10:12:14 2021 -0400
+
+    beginning project 2
+
+ codesRUS_module2.R | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+commit c93240ec90ed506167a153647b16273beedd9f72
+Author: TonyZhiyuanWang <wangcjm@bc.edu>
+Date:   Mon Sep 13 10:05:14 2021 -0400
+
+    test push sep13
+
+ scales1/scalessep9.R | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 388ec5231eaa0d76007d57e8417cb982346b4b11
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Sun Sep 12 22:34:58 2021 -0400
+
+    added comments
+
+ scales1/scalessep9.R | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit b4c8d0467d2c8da8e5024ff67cc7e4e27b7f461e
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Sun Sep 12 22:23:09 2021 -0400
+
+    added comments
+
+ scales1/scalessep9.R | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+
+commit 2097d08472b49af3e7f946be1d5a2bb8202a8342
+Merge: cb627d0 b415e76
+Author: TonyZhiyuanWang <wangcjm@bc.edu>
+Date:   Thu Sep 9 19:49:40 2021 -0400
+
+    Merge branch 'master' of https://github.com/bcorgbio/Codes-R-US
+
+commit cb627d0389c6e58b633e8220707660c8d421a0fd
+Author: TonyZhiyuanWang <wangcjm@bc.edu>
+Date:   Thu Sep 9 19:49:11 2021 -0400
+
+    scales test1
+
+ scales1/scalessep9.R | 35 ++++++++++++++++++++++++++++++++++-
+ 1 file changed, 34 insertions(+), 1 deletion(-)
+
+commit 812c89c8d6375886c080d2d1fa16a03e7721cfe2
+Author: TonyZhiyuanWang <wangcjm@bc.edu>
+Date:   Thu Sep 9 19:43:14 2021 -0400
+
+    scales test
+
+ .DS_Store        | Bin 0 -> 6148 bytes
+ .gitignore       |   4 ++++
+ Codes-R-US.Rproj |  13 +++++++++++++
+ 3 files changed, 17 insertions(+)
+
+commit 2acf40025b34a85550fec7653c186a61e545f7e2
+Author: TonyZhiyuanWang <wangcjm@bc.edu>
+Date:   Thu Sep 9 19:41:30 2021 -0400
+
+    scales test
+
+ scales1/.DS_Store            |  Bin 0 -> 6148 bytes
+ scales1/scales.csv           | 1843 ++++++++++++++++++++++++++++++++++++++++++
+ scales1/scalessep9.R         |   24 +
+ scales1/species.quadrant.pdf |  Bin 0 -> 11676 bytes
+ 4 files changed, 1867 insertions(+)
+
+commit b415e76eb0002217d72102fd724c88efc66067d4
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Thu Sep 9 19:34:22 2021 -0400
+
+    let's hope this works
+
+ Codes-R-US.Rproj | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+
+commit 56cf3db32952f26feca83644c9bb267209959f8b
+Author: Amanda Napoli <amandanapoli@amandas-air-5.bc.edu>
+Date:   Wed Sep 8 16:25:01 2021 -0400
+
+    Napoli
+
+ TestR.R | 3 +++
+ 1 file changed, 3 insertions(+)
