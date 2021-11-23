@@ -47,9 +47,12 @@ data.force.max.each.joined%>%
 data.force.max.each.joined$angle[which.max(data.force.max.each.joined$normF)] #112.5
 
 #polynomial model(not finished)
-library(MuMIn)
-
 poly.m2 <- lm(normF~poly(angle,2)) #second order
 poly.m3 <- lm(normF~poly(angle,3)) #third order
 poly.m4 <- lm(normF~poly(angle,4)) #fourth order
 
+AICc(poly.m2, poly.m3, poly.m4)
+
+x.pred <- seq(45, 157.5, length.out=1000)
+
+#normF.pred <- predict()
