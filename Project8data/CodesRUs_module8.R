@@ -5,7 +5,7 @@ library(ggplot2)
 
 ang <- seq(45,157.5,length.out = 11)
 
-k <- list.files("./Project 8 data", full.names = T)
+k <- list.files(pattern = "control|fatigue")
 
 print(k)
 k.l <- list()
