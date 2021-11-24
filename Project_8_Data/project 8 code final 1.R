@@ -5,7 +5,7 @@ library(ggplot2)
 
 ang <- seq(45,157.5,length.out = 11)
 
-k <- list.files(pattern = "control|fatigue")
+k <- list.files("./Project8Data", full.names = T)
 
 k.l <- list()
 for(i in k){
@@ -24,7 +24,8 @@ data<-do.call(rbind,k.l)%>%
   group_by(sub,exp,ang)%>%
   summarise(max.force=max(abs(Force)))%>%
   pivot_wider(names_from = exp, values_from = max.force)
- 
+print(data) 
+
 ##remove all nas
 
 data<-na.omit(data)
@@ -33,16 +34,22 @@ data<-na.omit(data)
 
 by.con<-group_by(data,sub)%>%
 summarize(fmax.ang.con=max(control))
-data<-data%>%left_join(by.con,by="sub")
+
+data<-data %>%
+  left_join(by.con,by="sub")
+
 data<-mutate(data,norm.con=control/fmax.ang.con)
 
 
 by.fat<-group_by(data,sub)%>%
   summarize(fmax.ang.fat=max(fatigue))
-data<-data%>%left_join(by.fat,by="sub")
+
+data<-data%>%
+  left_join(by.fat,by="sub")
+
 data<-mutate(data,norm.fat=fatigue/fmax.ang.fat)
 
-##produce graph for each expriement 
+##produce graph for each experiment 
 
 ang <- seq(45,157.5,length.out = 11)
 data%>%
@@ -53,14 +60,36 @@ data%>%
 data$ang[which.max(data$norm.con)] #Following the analysis, we find the angle with max. force is at 111 degree. So, we have to choose the closest angle-112.5 degree.Also, 112.5 degree has the second highest force value. 
 
 
-#preform AIC test on second,third and fourthorder for control and fatigue
+##producing graphs for each experiment ignoring subject sets
+data.set <- do.call(rbind, k.l)
+data.set$Force <- as.numeric(data.set$Force)
+
+data.max.each <- data.set%>%
+  group_by(exp, ang)%>%
+  dplyr::summarise(maxf=max(abs(Force), na.rm=TRUE), n=n())
+
+data.max.tot <- data.max.each%>%
+  group_by(exp)%>%
+  dplyr::summarise(maxf2=max(maxf))
+
+data.max.joined <- data.max.each%>%
+  left_join(data.max.tot)%>%
+  mutate(normF=maxf/maxf2)
+
+data.max.joined%>%
+  ggplot(aes(ang,normF))+geom_point()+geom_point(aes(x=ang[which.max(normF)], y=normF[which.max(normF)]), col="red", size=4)+facet_wrap(.~exp, ncol=5)
+
+#preform AIC test on second,third and fourth order for control and fatigue
 ang.by.con<-group_by(data,sub)%>%
   summarize(theta_max.con=ang[which.max(norm.con)])
+print(ang.by.con)
 ang.by.fat<-group_by(data,sub)%>%
   summarize(theta_max.fat=ang[which.max(norm.fat)])
+print(ang.by.fat)
 
 
-poly.con<-group_by(data,sub)%>%
+poly.con<- data%>%
+  group_by(sub)%>%
   summarize(
     m2=AICc(lm(norm.con~poly(ang,2))),
     m3=AICc(lm(norm.con~poly(ang,3))),
@@ -108,20 +137,21 @@ fits.fat<-data%>%
   print()
 
 
-best.models.con<-fits.con%>%
+best.models.con <- fits.con%>%
   left_join(poly.con)%>%
   group_by(sub)%>%
-  mutate(best=poly.con==min(poly.con))%>%
+  mutate(best=poly.con==min(poly.con))%>% 
   filter(best==TRUE)%>%
   select(-best)%>%
   print()
 
-best.models.fat<-fits.fat%>%
+best.models.fat <- fits.fat%>%
   left_join(poly.fat)%>%
   group_by(sub)%>%
   mutate(best=poly.fat==min(poly.fat))%>%
   filter(best==TRUE)%>%
-  select(-best)
+  select(-best)%>%
+  print()
 
 
 
