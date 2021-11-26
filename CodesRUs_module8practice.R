@@ -26,19 +26,21 @@ print(k.l)
 force.data<-do.call(rbind,k.l)
 
 force.data$Force <- as.numeric(force.data$Force)
+print(force.data)
 
 data.force.max.each <- force.data%>%
-  group_by(experiment,angle)%>%
+  group_by(experiment,angle,subject)%>%
   dplyr::summarise(maxf=max(abs(Force), na.rm=TRUE), n=n())
+print(data.force.max.each)
 
 data.force.max.tot <- data.force.max.each%>%
-  group_by(experiment)%>%
-  dplyr::summarise(maxf2=max(maxf))
+  group_by(experiment,subject)%>%
+  summarise(maxf2=max(maxf))
+print(data.force.max.tot)
 
 data.force.max.each.joined<-data.force.max.each%>%
-  left_join(data.force.max.tot)%>%
   mutate(normF=maxf/maxf2)
-
+print(data.force.max.each.joined)
 #find the angle with maximum force
 ang <- seq(45,157.5,length.out = 11)
 
@@ -86,3 +88,4 @@ x.pred <- seq(45, 157.5, length.out=1000)
 #normF.pred <- predict()
 normF.pred.contr <- predict(poly.m2.contr, newdata = data.frame(angle=x.pred))
 normF.pred.fat <- predict(poly.m2.fat, newdata = data.frame(angle=x.pred))
+
