@@ -23,7 +23,7 @@ for(i in k){
 data<-do.call(rbind,k.l)%>%
   group_by(sub,exp,ang)%>%
   summarise(max.force=max(abs(Force)))%>%
-  pivot_wider(names_from = exp, values_from = max.force)
+#  pivot_wider(names_from = exp, values_from = max.force)
 print(data) 
 
 ##remove all nas
@@ -65,7 +65,7 @@ data.set <- do.call(rbind, k.l)
 data.set$Force <- as.numeric(data.set$Force)
 
 data.max.each <- data.set%>%
-  group_by(exp, ang)%>%
+  group_by(exp, ang, sub)%>%
   dplyr::summarise(maxf=max(abs(Force), na.rm=TRUE), n=n())
 
 data.max.tot <- data.max.each%>%
@@ -79,6 +79,7 @@ data.max.joined <- data.max.each%>%
 data.max.joined%>%
   ggplot(aes(ang,normF))+geom_point()+geom_point(aes(x=ang[which.max(normF)], y=normF[which.max(normF)]), col="red", size=4)+facet_wrap(.~exp, ncol=5)
 
+print(data.set)
 #preform AIC test on second,third and fourth order for control and fatigue
 ang.by.con<-group_by(data,sub)%>%
   summarize(theta_max.con=ang[which.max(norm.con)])
@@ -87,6 +88,7 @@ ang.by.fat<-group_by(data,sub)%>%
   summarize(theta_max.fat=ang[which.max(norm.fat)])
 print(ang.by.fat)
 
+print(data)
 
 poly.con<- data%>%
   group_by(sub)%>%
@@ -140,7 +142,7 @@ fits.fat<-data%>%
 best.models.con <- fits.con%>%
   left_join(poly.con)%>%
   group_by(sub)%>%
-  mutate(best=poly.con==min(poly.con))%>% 
+  mutate(best=AICc==min(AICc))%>% 
   filter(best==TRUE)%>%
   select(-best)%>%
   print()
@@ -148,12 +150,12 @@ best.models.con <- fits.con%>%
 best.models.fat <- fits.fat%>%
   left_join(poly.fat)%>%
   group_by(sub)%>%
-  mutate(best=poly.fat==min(poly.fat))%>%
+  mutate(best=AICc==min(AICc))%>%
   filter(best==TRUE)%>%
   select(-best)%>%
   print()
 
-
+anova(lm(theta_max~exp, ))
 
 
 
