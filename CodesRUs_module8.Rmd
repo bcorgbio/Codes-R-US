@@ -47,6 +47,7 @@ for(i in k){
 }
 ```
 
+[cpk] Here's your issue, the columns don't match. Have a look at the code in the discussion related to this. 
 ```{r, "data organization and clean up", echo=TRUE, results=FALSE, message=FALSE}
 data <- do.call(rbind, k.l)
 
