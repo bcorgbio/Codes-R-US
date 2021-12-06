@@ -2,7 +2,9 @@
 title: "Project 8"
 author: "CodesRUS"
 date: "11/25/2021"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 bibliography: BIOL3140.bib
 ---
 
@@ -28,14 +30,16 @@ We first created a ganiometer so that we could measure the angle between our upp
 library(tidyverse)
 library(MuMIn)
 library(ggplot2)
+library(dplyr)
 ```
 
 
 ```{r, "loading data and creating proper data set", echo=TRUE, results=FALSE, message=FALSE}
 ang <- seq(45,157.5,length.out = 11)
 
-k <- list.files("./Project8Data", full.names = T)
+k <- list.files(pattern = "control|fatigue")
 
+print(k)
 k.l <- list()
 for(i in k){
   met.dat <- unlist(strsplit(i,"_"))
@@ -45,10 +49,11 @@ for(i in k){
   k.l[[i]] <- read_delim(i,delim = " ", col_names = c("Reading","Force","Unit"), id="Experiment") %>%
     mutate(sub=sub,ang=ang,exp=exp)
 }
+  
 ```
 
 [cpk] Here's your issue, the columns don't match. Have a look at the code in the discussion related to this. 
-```{r, "data organization and clean up", echo=TRUE, results=FALSE, message=FALSE}
+```{r message=FALSE, "data organization and clean up", echo=TRUE, include=FALSE, results=FALSE}
 data <- do.call(rbind, k.l)
 
 data <- data%>%
@@ -69,10 +74,10 @@ data.joined <- data%>%
 ```
 
 ```{r, "finding the angle with maximum force"}
-ang <- seq(45, 157.5, length.out=11)
+angle <- seq(45, 157.5, length.out=11)
 
 data.joined %>%
-  ggplot(aes(ang, norm.force))+geom_point()+geom_point(aes(x=angle[which.max(norm.force)], y=norm.force[which.max(norm.force)]), col="red", size=4)+facet_wrap(~exp, ncol=5)
+  ggplot(aes(ang, norm.force))+geom_point()+geom_point(aes(x=ang[which.max(norm.force)], y=norm.force[which.max(norm.force)]), col="red", size=4)+facet_wrap(~exp, ncol=5)
 
 data.joined$ang[which.max(data.joined$norm.force)]
 ```
@@ -95,28 +100,128 @@ AICc(poly.m2.con, poly.m3.con, poly.m4.con)
 ```
 
 ```{r}
+
+poly.con<-group_by(normf.con,sub)%>%
+  summarize(
+    m2=AICc(lm(norm.force~poly(ang,2))),
+    m3=AICc(lm(norm.force~poly(ang,3))),
+    m4=AICc(lm(norm.force~poly(ang,4)))
+  )%>%
+  pivot_longer(m2:m4,names_to="model",values_to="poly.con")
+
+
+poly.fat<-group_by(normf.fat,sub)%>%
+  summarize(
+    m2=AICc(lm(norm.force~poly(ang,2))),
+    m3=AICc(lm(norm.force~poly(ang,3))),
+    m4=AICc(lm(norm.force~poly(ang,4)))
+  )%>%
+  pivot_longer(m2:m4,names_to="model",values_to="poly.fat")
+
+```
+
+```{r include=FALSE}
 x.pred <- seq(45, 157.5, length.out=1000)
 
-normf.pred.con <- predict(poly.m2.con, newdata=data.frame(ang=x.pred))
+fits.con<-data.joined%>%
+  group_by(sub)%>%
+  summarize(
+    m2=predict(lm(norm.force~poly(ang,2)),newdata=data.frame(ang=x.pred)),
+    m3=predict(lm(norm.force~poly(ang,3)),newdata=data.frame(ang=x.pred)),
+    m4=predict(lm(norm.force~poly(ang,4)),newdata=data.frame(ang=x.pred))
+  )%>%
+  pivot_longer(m2:m4,names_to="model")%>%
+  group_by(sub,model)%>%
+  summarize(theta_max=x.pred[which.max(value)])
 
-normf.con%>%
-  ggplot(aes(ang, norm.force))+geom_point()+geom_point(aes(x=x.pred, y=normf.pred.fat), col="red") + geom_point(aes(x=x.pred[which.max(normf.pred.fat)], y=normf.pred.fat[which.max(normf.pred.fat)]), size=5, col="blue")
+fits.fat<-data.joined%>%
+  group_by(sub)%>%
+  summarize(
+    m2=predict(lm(norm.force~poly(ang,2)),newdata=data.frame(ang=x.pred)),
+    m3=predict(lm(norm.force~poly(ang,3)),newdata=data.frame(ang=x.pred)),
+    m4=predict(lm(norm.force~poly(ang,4)),newdata=data.frame(ang=x.pred))
+  )%>%
+  pivot_longer(m2:m4,names_to="model")%>%
+  group_by(sub,model)%>%
+  summarize(theta_max=x.pred[which.max(value)])
 
-normf.pred.fat <- predict(poly.m2.fat, newdata=data.frame(ang=x.pred))
+best.models.con<-fits.con%>%
+  left_join(poly.con)%>%
+  group_by(sub)%>%
+  mutate(best=poly.con==min(poly.con))%>%
+  filter(best==TRUE)%>%
+  select(-best)
 
-normf.pred.fat %>%
-  ggplot(aes(ang, norm.force))+geom_point()+geom_point(aes(x=x.pred, y=normf.pred.fat), col="red") + geom_point(aes(x=x.pred[which.max(normf.pred.fat)], y=normf.pred.fat[which.max(normf.pred.fat)]), size=5, col="blue")
+best.models.fat<-fits.fat%>%
+  left_join(poly.fat)%>%
+  group_by(sub)%>%
+  mutate(best=poly.fat==min(poly.fat))%>%
+  filter(best==TRUE)%>%
+  select(-best)
 
-x.pred[which.max(normf.pred.fat)]~x.pred[which.max(normf.pred.con)]
 ```
 
 ```{r}
-anova(lm())
+
+best.models.con<-best.models.con%>%
+  mutate(exp="control")
+best.models.fat<-best.models.fat%>%
+  mutate(exp="fatigue")
+
+colnames(best.models.con)[4]="AICs"
+colnames(best.models.fat)[4]="AICs"
+best.models<-rbind(best.models.con,best.models.fat)
+
+anova(lm(theta_max~exp,best.models))
+
 ```
 
 
+```{r}
+
+best.models%>%
+  pivot_wider(id_cols=sub,names_from = exp,values_from=theta_max)%>%
+  mutate(shift=fatigue-control)%>%
+  ungroup()%>%
+  summarize(mean.shift=abs(mean(na.rm=TRUE,shift)),se.shift=sd(na.rm=TRUE,shift)/sqrt(length(shift)))
+
+?mean()
+            
+```
+
+
+
+
+
+
+```{r}
+normf.pred.con <- predict(poly.m2.con, newdata=data.frame(ang=x.pred))
+
+normf.pred.fat <- predict(poly.m2.fat, newdata=data.frame(ang=x.pred))
+
+sss<- data_frame(ang=x.pred,norm.force=normf.pred.con)
+
+normf.con%>%
+  ggplot(aes(ang,norm.force))+geom_point()+geom_point(data = sss, aes(x=x.pred, y=norm.force), col="red") + geom_point(data= sss, aes(x=x.pred[which.max(norm.force)], y=norm.force[which.max(norm.force)]), size=5, col="blue")
+
+
+normf.fat%>%
+  ggplot(aes(ang,norm.force))+geom_point()+geom_point(data = sss, aes(x=x.pred, y=norm.force), col="red") + geom_point(data= sss, aes(x=x.pred[which.max(norm.force)], y=norm.force[which.max(norm.force)]), size=5, col="blue")
+
+
+```
+
+
+
 ## Discussion
+After calculating the difference between control best model and fatigue best model,we find the mean shift of the max angle is 1.9 degree and standard error shift is 1.06. Our result follow the result of Yeoung's study that there is force-length relationship shifts soon after eccentric fatigue.Even though the shift after the eccentric fatigue is not very big,but this still demonstrate the influence of eccentric fatigue on force length relationship of muscle.In the bigger picture,our muscle fatigue not only change the force-length relationship but also play important role to improve the condition of chronic obstructive pulmonary disease patients. After high-intensity exercise training program,patients experiencing muscle fatigue have higher Chronic Respiratory Disease Questionnaire score and increase in 6-min walk distance. Patients who develop muscle fatigue shows better health outcome and physical capacity(@burtin2012effectiveness).Beside  physical health and longevity and athlets, the muscle fatigue can also improve the health condition for patients with certain disease.
+
 
 ## Contributions
+Amanda Napoli:
+Nick Graziano:
+Zhiyuan(Tony) Wang:
+Haoran(Steven) Zeng:data collection,device assembly,R coding,project write-up
+
 
 ## References
