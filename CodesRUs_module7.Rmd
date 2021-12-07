@@ -6,6 +6,12 @@ output: html_document
 bibliography: BIOL3140.bib
 ---
 
+<style>
+div.comment pre { background-color:#ffbbbb; }
+div.comment pre.r { background-color:#ffbbbb; }
+div.comment {color: red;}
+</style>
+
 ### Introduction
 When conducting comparative analyses on traits measured from related species, phylogenetic structures are not always taken in consideration, one reason being that phylogenetic comparative models might overlook the importance of abrupt shifts in traits produced by singular events (@garamszegi2014modern). In order to find out whether phylogenetic signals are indeed present in the Tb/body mass relationship of different species or not, we reexamined the data from Mortola and Lanthier (2004) using Pagel’s lamba, and compared the scaling of Tb variables between the ones we applied with the best fitted PGLS and the original results from Mortola and Lanthier (2004).
 
@@ -29,7 +35,7 @@ library(phytools)
 
 ```{r, include=FALSE}
 m.phy <- read.tree("mammal.tree.pruned.txt")
-m.phy$tip.label <- gsub("(\\w+)_(\\w+)","\\1\\2",m.phy$tip.label)
+m.phy$tip.label <- gsub("(\\w+)_(\\w+)","\\1 \\2",m.phy$tip.label)
 
 m.phy0<- rescale(m.phy, model = "lambda", 0)
 m.phy5 <- rescale(m.phy, model = "lambda", 0.5)
@@ -47,12 +53,21 @@ mammal.temp.log <- mammal.temp %>%
   mutate_at(c("mass.g", "T.high", "T.low", "T.delta"), log)
 ```
 
+  <div class="comment">
+needed a space in the `gsub` operation. I added it. Otherwise, the tip labels don't match the species data. I couldn't run your PGLS models because of this.
+
+</div>
+
 ```{r, "Phylogenetic Relationship of Data set", fig.cap="Figure Set 1: Phylogenetic Relationship of Data Set Visualized in Multiple Ways", warning=FALSE, echo=FALSE}
 plot(m.phy)
 plot(m.phy5)
 plot(m.phy0)
 ```
 
+  <div class="comment">
+Don't need this. It was an example of how phylogenetic signal is computed.
+
+</div>
 The above are representations of the phylogentic relationships of the data set used by Mortola and Lanthier (2004).
 
 ```{r, "Log-Log Regression Model with T.delta", fig.cap="Figure 2: Log-Log Regression Model Using Temperature Difference", warning=FALSE, echo=FALSE}
@@ -89,6 +104,10 @@ mammal.temp.aic <- AICc(mammal.diff.lm, mammal.high.lm, mammal.low.lm)
 mammal.temp.aicw <- aicw(mammal.temp.aic$AICc)
 print(mammal.temp.aicw)
 ```
+  <div class="comment">
+We wanted to compare models for each variable, not models across each variable. 
+
+</div>
 Given the AIC and AICw tests complete, the linear model of mammal.high.lm is seemingly the best fit given the lowest value in chart depicted above. 
 
 ```{r, "Summary of Linear Models", include=FALSE}
@@ -137,7 +156,7 @@ To further investigate the relationship between body mass and temperature in dif
 
 ```{r, "Applying PGLS Analysis and BM/OU models to find the best fit", include=FALSE}
 #without PGLS analysis, but use BM model
-log.BM1 <- gls(T.high~ mass.g, correlation = corBrownian(10, phy = m.phy, form =~species), data = mammal.temp.log, method = "ML")
+log.BM1 <- gls(T.high~ mass.g, correlation = corBrownian(20, phy = m.phy, form =~species), data = mammal.temp.log, method = "ML")
 log.BM2 <- gls(T.low~ mass.g, correlation = corBrownian(1, phy = m.phy, form =~species), data = mammal.temp.log, method = "ML")
 log.BM3 <- gls(T.delta~ mass.g, correlation = corBrownian(1, phy = m.phy, form =~species), data = mammal.temp.log, method = "ML")
 
@@ -149,13 +168,15 @@ pgls.log.BM1 <- gls(T.high~ mass.g, correlation = corBrownian(1, phy = m.phy, fo
 pgls.log.BM2 <- gls(T.low~ mass.g, correlation = corBrownian(1, phy = m.phy, form =~species), data = mammal.temp.log, method = "ML")
 pgls.log.BM3 <- gls(T.delta~mass.g, correlation = corBrownian(1, phy = m.phy, form =~species), data = mammal.temp.log, method = "ML")
 
+ treenew<-m.phy
+treenew$edge.length<-treenew$edge.length*1000 
+
 #without PGLS analysis,but use OU model
-log.OU1 <- gls(T.high~ mass.g, correlation = corMartins(5, phy = treenew, form=~species), data = mammal.temp.log, method = "ML")
+log.OU1 <- gls(T.high~ mass.g, correlation = corMartins(10, phy = treenew, form=~species), data = mammal.temp.log, method = "ML")
 log.OU2<- gls(T.low~ mass.g, correlation= corMartins(5, phy=treenew, form = ~species), data = mammal.temp.log, method = "ML")
 log.OU3 <- gls(T.delta~mass.g, correlation = corMartins(5, phy = treenew, form=~species), data = mammal.temp.log, method = "ML")
 
-treenew<-m.phy
-treenew$edge.length<-treenew$edge.length*1000
+
 
 #with PGLS analysis and OU model
 pgls.OU1 <- gls(T.high~ mass.g, correlation = corMartins(5, phy = treenew, form=~species), data = mammal.temp, method = "ML")
@@ -274,7 +295,7 @@ Based on the ANOVA test above, the mass is determined not to be significant give
 ### Discussion
 As phylogenetic relationships were not analyzed in Mortola and Lanthier’s study, it is important to consider how their findings could differ if they did consider that variable. Initially, the relationships between mass and our three variables (ΔT, T max, and T min) were plotted just as they were in Mortola and Lanthier’s 2004 study with log-log regressions. After assessing the phylogenetic signals of our four variables (Mass, ΔT, T max, and T min), the results showed that all of the variables contained some sort of phylogenetic signaling as each lambda value was between 0 and 1. Mass specifically had the most significant phylogenetic signaling as its lambda value was closest to 1 out of all of the variables. This means that the mass to body temperature relationship of certain species is more likely to resemble that of another species that is phylogenetically similar versus a species found farther away on a tree. The p-value was also less than 0.05 making this statistically significant. After using BM and OU models to determine what model and variable fit best with our data given mass had the most significant phylogenetic signaling, it became clear that T max with the OU model exhibited the data best. This means that T max is the best covariant with mass. Further analysis with ANOVA testing showed from the f values that mass was significant in certain CorMartins analyses (i.e. the models using temperature max and temperature min).  
 
-Based on this data, there is ground to challenge, or at least add to, the findings found by Mortola and Lanthier in their 2004 study. They are not necessarily wrong in their results, but they did not account for all variables. Our data shows that there is in fact phylogenetic signaling that takes place in species regarding mass and temperature relationships. Their results are still significant but could be refined. Similar studies have been completed that agree with our results regarding phylogeny. One such example, (capellini2010phylogeny), concluded that the phylogenetic signal of relevant metabolic rates differed between lineages. This shows how phylogeny plays an important role in mass and temperature relations and adding these important variables would have been beneficial to Mortola and Lanthier’s study. 
+Based on this data, there is ground to challenge, or at least add to, the findings found by Mortola and Lanthier in their 2004 study. They are not necessarily wrong in their results, but they did not account for all variables. Our data shows that there is in fact phylogenetic signaling that takes place in species regarding mass and temperature relationships. Their results are still significant but could be refined. Similar studies have been completed that agree with our results regarding phylogeny. One such example, [@capellini2010phylogeny], concluded that the phylogenetic signal of relevant metabolic rates differed between lineages. This shows how phylogeny plays an important role in mass and temperature relations and adding these important variables would have been beneficial to Mortola and Lanthier’s study. 
 
 ## Contributions
 For this project, Tony worked on the Methods and References sections. Steven worked on the Introduction and References sections. Nick worked on the Results and Discussion sections. Amanda created the graphs and worked on the Results and Discussions sections. Nick and Amanda also did data analysis. All team members carried out editing at the end.
