@@ -81,16 +81,15 @@ for(s in species){
 dat <- rbindlist(dat.l,fill=T)
 
 head(dat)
-saveRDS(data, "massbird.data.RDS")
-dat <- readrDS("massbird.data.RDS")
+saveRDS(dat, "massbird.data.RDS")
+library(tidyverse)
+dat <- readRDS("massbird.data.RDS")
 
-dat%>%
+dat.l%>%
   bind_rows(.id = "species")%>%
   group_by(year,species)%>%
   summarise(count=sum(individualCount,na.rm = T))%>%
   ggplot(aes(x=year,y=count,col=species))+geom_point()
-
-print(dat)
 
 
 ###Querying NOAA's NCDC API
@@ -123,3 +122,232 @@ head(weather.d)
 
 
 ###Data Analysis
+
+##Chimney Swift
+cp <- dat%>%
+  filter(species=="Chaetura pelagica")%>%
+  group_by(year)%>%
+  mutate(date=as.Date(paste0(year,"-",month,"-",day)),
+         j.day=julian(date,origin=as.Date(paste0(unique(year),"-01-01")))
+  )%>%
+  group_by(species,year,j.day,date)%>%
+  summarise(day.tot=sum(individualCount,na.rm=T))%>%
+  group_by(species,year)%>%
+  mutate(prop=cumsum(day.tot/sum(day.tot,na.rm = T)))%>%
+  filter(year>1999)
+
+cp%>%
+  ggplot(aes(j.day,prop))+geom_point()+facet_wrap(year~.)
+
+cp.pred <- cp%>%
+  group_by(year)%>%
+  summarize(
+    pred=predict(nls(prop~SSlogis(j.day,Asym, xmid, scal)),newdata=data.frame(j.day=min(j.day):max(j.day))),#predict the logistic curve for each species
+    j.day=min(j.day):max(j.day),
+  )%>%
+  left_join(cp%>%select(j.day,date)) ## add date back to tibble
+
+cp%>%
+  ggplot(aes(j.day,prop))+geom_point(aes=0.3)+geom_line(data=cp.pred,aes(x=j.day,y=pred),col="blue",size=2)+facet_wrap(year~.)
+
+cp.arrive.date <-cp.pred%>%
+  group_by(year)%>%
+  filter(j.day==j.day[which.min(abs(pred-0.25))])
+
+cp.arrive.date%>%
+  ggplot(aes(year,j.day))+geom_point()
+
+
+##Ruby-throated Hummingbird
+rh <- dat%>%
+  filter(species=="Archilochus colubris")%>%
+  group_by(year)%>%
+  mutate(date=as.Date(paste0(year,"-",month,"-",day)),
+         j.day=julian(date,origin=as.Date(paste0(unique(year),"-01-01")))
+  )%>%
+  group_by(species,year,j.day,date)%>%
+  summarise(day.tot=sum(individualCount,na.rm=T))%>%
+  group_by(species,year)%>%
+  mutate(prop=cumsum(day.tot/sum(day.tot,na.rm = T)))%>%
+  filter(year>1999)
+
+rh%>%
+  ggplot(aes(j.day,prop))+geom_point()+facet_wrap(year~.)
+
+rh.pred <- rh%>%
+  group_by(year)%>%
+  summarize(
+    pred=predict(nls(prop~SSlogis(j.day,Asym, xmid, scal)),newdata=data.frame(j.day=min(j.day):max(j.day))),#predict the logistic curve for each species
+    j.day=min(j.day):max(j.day),
+  )%>%
+  left_join(cp%>%select(j.day,date)) ## add date back to tibble
+
+rh%>%
+  ggplot(aes(j.day,prop))+geom_point(aes=0.3)+geom_line(data=rh.pred,aes(x=j.day,y=pred),col="blue",size=2)+facet_wrap(year~.)
+
+rh.arrive.date <-rh.pred%>%
+  group_by(year)%>%
+  filter(j.day==j.day[which.min(abs(pred-0.25))])
+
+rh.arrive.date%>%
+  ggplot(aes(year,j.day))+geom_point()
+
+#Belted Kingfisher
+bk <- dat%>%
+  filter(species=="Megaceryle alcyon")%>%
+  group_by(year)%>%
+  mutate(date=as.Date(paste0(year,"-",month,"-",day)),
+         j.day=julian(date,origin=as.Date(paste0(unique(year),"-01-01")))
+  )%>%
+  group_by(species,year,j.day,date)%>%
+  summarise(day.tot=sum(individualCount,na.rm=T))%>%
+  group_by(species,year)%>%
+  mutate(prop=cumsum(day.tot/sum(day.tot,na.rm = T)))%>%
+  filter(year>1999)
+
+bk%>%
+  ggplot(aes(j.day,prop))+geom_point()+facet_wrap(year~.)
+
+bk.pred <- bk%>%
+  group_by(year)%>%
+  summarize(
+    pred=predict(nls(prop~SSlogis(j.day,Asym, xmid, scal)),newdata=data.frame(j.day=min(j.day):max(j.day))),#predict the logistic curve for each species
+    j.day=min(j.day):max(j.day),
+  )%>%
+  left_join(cp%>%select(j.day,date)) ## add date back to tibble
+
+bk%>%
+  ggplot(aes(j.day,prop))+geom_point(aes=0.3)+geom_line(data=bk.pred,aes(x=j.day,y=pred),col="blue",size=2)+facet_wrap(year~.)
+
+bk.arrive.date <-bk.pred%>%
+  group_by(year)%>%
+  filter(j.day==j.day[which.min(abs(pred-0.25))])
+
+bk.arrive.date%>%
+  ggplot(aes(year,j.day))+geom_point()
+
+#Yellow-bellied Sapsucker
+ys <- dat%>%
+  filter(species=="Sphyrapicus varius")%>%
+  group_by(year)%>%
+  mutate(date=as.Date(paste0(year,"-",month,"-",day)),
+         j.day=julian(date,origin=as.Date(paste0(unique(year),"-01-01")))
+  )%>%
+  group_by(species,year,j.day,date)%>%
+  summarise(day.tot=sum(individualCount,na.rm=T))%>%
+  group_by(species,year)%>%
+  mutate(prop=cumsum(day.tot/sum(day.tot,na.rm = T)))%>%
+  filter(year>1999)
+
+ys%>%
+  ggplot(aes(j.day,prop))+geom_point()+facet_wrap(year~.)
+
+ys.pred <- ys%>%
+  group_by(year)%>%
+  summarize(
+    pred=predict(nls(prop~SSlogis(j.day,Asym, xmid, scal)),newdata=data.frame(j.day=min(j.day):max(j.day))),#predict the logistic curve for each species
+    j.day=min(j.day):max(j.day),
+  )%>%
+  left_join(cp%>%select(j.day,date)) ## add date back to tibble
+
+ys%>%
+  ggplot(aes(j.day,prop))+geom_point(aes=0.3)+geom_line(data=ys.pred,aes(x=j.day,y=pred),col="blue",size=2)+facet_wrap(year~.)
+
+ys.arrive.date <-ys.pred%>%
+  group_by(year)%>%
+  filter(j.day==j.day[which.min(abs(pred-0.25))])
+
+ys.arrive.date%>%
+  ggplot(aes(year,j.day))+geom_point()
+
+#Common Nighthawk
+ch <- dat%>%
+  filter(species=="Chordeiles minor")%>%
+  group_by(year)%>%
+  mutate(date=as.Date(paste0(year,"-",month,"-",day)),
+         j.day=julian(date,origin=as.Date(paste0(unique(year),"-01-01")))
+  )%>%
+  group_by(species,year,j.day,date)%>%
+  summarise(day.tot=sum(individualCount,na.rm=T))%>%
+  group_by(species,year)%>%
+  mutate(prop=cumsum(day.tot/sum(day.tot,na.rm = T)))%>%
+  filter(year>1999)
+
+ch%>%
+  ggplot(aes(j.day,prop))+geom_point()+facet_wrap(year~.)
+
+ch.pred <- ch%>%
+  group_by(year)%>%
+  summarize(
+    pred=predict(nls(prop~SSlogis(j.day,Asym, xmid, scal)),newdata=data.frame(j.day=min(j.day):max(j.day))),#predict the logistic curve for each species
+    j.day=min(j.day):max(j.day),
+  )%>%
+  left_join(cp%>%select(j.day,date)) ## add date back to tibble
+
+ch%>%
+  ggplot(aes(j.day,prop))+geom_point(aes=0.3)+geom_line(data=ch.pred,aes(x=j.day,y=pred),col="blue",size=2)+facet_wrap(year~.)
+
+ch.arrive.date <-ch.pred%>%
+  group_by(year)%>%
+  filter(j.day==j.day[which.min(abs(pred-0.25))])
+
+ch.arrive.date%>%
+  ggplot(aes(year,j.day))+geom_point()
+
+
+
+
+
+###Preparing weather Data
+weather.d <- weather.d%>%
+  dplyr::mutate(year=as.integer(str_sub(date,1,4)), #add year
+                date=as.Date(date))%>%
+  group_by(year)%>% #group by year so we can compute julian day
+  dplyr::mutate(j.day=julian(date,origin=as.Date(paste0(unique(year),"-01-01"))), #add julian day
+                date2=date,
+                wdir.rad=(180-abs(wdf2-180))*pi/180, #radians so we can use a trig function to compute wind vector, scale degrees first to 180 scale to 2x pi and subtract from 180 (wind comes out of a direction)
+                wvec=cos(wdir.rad)*-1*awnd # we want a negative value for positive value for 2x pi
+  )%>% #store day in new column
+  select(id,year,date2,j.day,tmin,tmax,wvec)%>% #select the rows we need
+  left_join(sta.d%>%select(id,name,migr.day))%>% #add the station id info (ie. name)
+  mutate(j.day=j.day+migr.day)#make j.day ahead of BOS according to the migration days away so we can join weather along path
+
+mc.arr.weath <- mc.arrive.date%>%
+  left_join(weather.d)%>%
+  left_join(mc%>%select(year,date,j.day))
+
+head(mc.arr.weath)
+
+weather.wk <-weather.d %>% 
+  group_by(year,name) %>% 
+  mutate(wk.tmin = frollmean(tmin, n=14,align="right"),
+         wk.tmax = frollmean(tmax, n=14,align="right"),
+         wk.wvec = frollmean(wvec, n=14,align="right")
+  )%>%
+  select(j.day,date2,name,wk.tmin,wk.tmax,wk.wvec)
+
+mc.arr.weath2 <- mc.arrive.date%>%
+  left_join(weather.wk)
+
+head(mc.arr.weath2)
+
+###Linear Mixed-effect Modeling
+#weather at 0, 5, and 10 days away from arrival
+mc.lmer <- lmer(j.day~tmin*tmax*wvec+(1|name),mc.arr.weath,na.action = "na.fail")
+
+Anova(mc.lmer) #Anova from the car package
+
+#0Mean two week weather preceding arrival
+mc.lmer2 <- lmer(j.day~wk.tmin*wk.tmax*wk.wvec+(1|name),mc.arr.weath2,na.action = "na.fail")
+
+Anova(mc.lmer2)
+
+mc.arr.aic <- dredge(mc.lmer2,fixed = c("wk.tmin","wk.tmax","wk.wvec"),)
+
+mc.kb <- kable(mc.arr.aic[1:4,],caption = "Fit values for nested models of the most complicated lme model")
+
+kable_styling(mc.kb)
+
+best.lmer <-  lmer(j.day~wk.tmin+wk.tmax+wk.wvec+(1|name),mc.arr.weath2,na.action = "na.fail")
+
+Anova(best.lmer)
