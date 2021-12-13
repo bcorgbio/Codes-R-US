@@ -297,7 +297,7 @@ ch.arrive.date%>%
 
 
 
-
+ 
 ###Preparing weather Data
 weather.d <- weather.d%>%
   dplyr::mutate(year=as.integer(str_sub(date,1,4)), #add year
