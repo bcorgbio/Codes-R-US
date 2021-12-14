@@ -12,11 +12,9 @@ install.packages("rgbif")
 install.packages("rgdal")
 install.packages("knitr")
 
-
 library(tidyverse)
 library(MuMIn)
 library(rnoaa)
-library(data.table)
 library(ggmap)
 library(usmap)
 library(magick)#for examples
@@ -85,16 +83,12 @@ for(s in species){
                                  basisOfRecord = "HUMAN_OBSERVATION",
                                  stateProvince="Massachusetts")[[2]]
   
-  
 }
 
 dat <- rbindlist(dat.l,fill=T)
 
 head(dat)
-
-saveRDS(data,"massbird.data.RDS")
-
-library(tidyverse)
+saveRDS(dat,"massbird.data.RDS")
 dat <- readRDS("massbird.data.RDS")
 
 dat.l%>%
@@ -126,8 +120,7 @@ print(mob)
 
 
 sta.d <- bind_rows( #bind the rows
-  lapply(sts,function(x) ncdc_stations(stationid = x)$data ) #use lapply to run through stations
-)%>%
+  lapply(sts,function(x) ncdc_stations(stationid = x)$data ))%>% #use lapply to run through stations
   left_join(usmap_transform(.[,c("longitude","latitude")]))%>% #join transformation of lat/long for projection with usmap
   mutate(name=str_sub(name, -5,-4))%>%#simplify the name column, grab just the state
   mutate(migr.day=c(10,5,0))%>% #so we can look at wind speed 0, 5 or 10 days before arrive in boston
@@ -135,19 +128,20 @@ sta.d <- bind_rows( #bind the rows
   print()
 
 plot_usmap(
-  include = c(.northeast_region,.south_region,.east_north_central)
-)+geom_point(data=sta.d,aes(x=longitude.1,y=latitude.1,col=name),size=5)+geom_label(data=sta.d,aes(x=longitude.1,y=latitude.1,col=name,label=name),size=5,nudge_x = 1e6*0.25)+theme(legend.position = "none")
+  include = c(.northeast_region,.south_region,.east_north_central) +
+  geom_point(data=sta.d,aes(x=longitude.1,y=latitude.1,col=name),size=5) + 
+  geom_label(data=sta.d,aes(x=longitude.1,y=latitude.1,col=name,label=name),size=5,nudge_x = 1e6*0.25)+
+  theme(legend.position = "none")
+)
 
 weather.d <- meteo_pull_monitors(sta.d$id,date_min = "2005-01-01")#since 2005 we see an uptick in eBird data
-
 head(weather.d)
 
 #Preparing eBird Data
 
 #Chimney Swift, Chaetura pelagica
 
-cs<- dat.l%>%
-  bind_rows(.id = "species") %>% 
+cs<- dat%>%
   filter(species=="Chaetura pelagica")%>%
   group_by(year)%>%
   mutate(date=as.Date(paste0(year,"-",month,"-",day)),
@@ -171,7 +165,7 @@ cs.pred <- cs%>%
   left_join(cs%>%select(j.day,date)) 
 
 cs%>%
-  ggplot(aes(j.day,prop))+geom_point(aes=0.3)+geom_line(data=rh.pred,aes(x=j.day,y=pred),col="blue",size=2)+facet_wrap(year~.)
+  ggplot(aes(j.day,prop))+geom_point(aes=0.3)+geom_line(data=cs.pred,aes(x=j.day,y=pred),col="blue",size=2)+facet_wrap(year~.)
 
 cs.arrive.date <-cs.pred%>%
   group_by(year)%>%
@@ -182,8 +176,7 @@ cs.arrive.date%>%
 
 #Ruby-throated Hummingbird, Archilochus colubris
 
-rh<- dat.l%>%
-  bind_rows(.id = "species") %>% 
+rh<- dat%>%
   filter(species=="Archilochus colubris")%>%
   group_by(year)%>%
   mutate(date=as.Date(paste0(year,"-",month,"-",day)),
@@ -218,8 +211,7 @@ rh.arrive.date%>%
 
 #Belted Kingfisher, Megaceryle alcyon
 
-bk<- dat.l%>%
-  bind_rows(.id = "species") %>% 
+bk<- dat%>%
   filter(species=="Megaceryle alcyon")%>%
   group_by(year)%>%
   mutate(date=as.Date(paste0(year,"-",month,"-",day)),
@@ -243,7 +235,7 @@ bk.pred <- bk%>%
   left_join(bk%>%select(j.day,date)) 
 
 bk%>%
-  ggplot(aes(j.day,prop))+geom_point(aes=0.3)+geom_line(data=rh.pred,aes(x=j.day,y=pred),col="blue",size=2)+facet_wrap(year~.)
+  ggplot(aes(j.day,prop))+geom_point(aes=0.3)+geom_line(data=bk.pred,aes(x=j.day,y=pred),col="blue",size=2)+facet_wrap(year~.)
 
 bk.arrive.date <-bk.pred%>%
   group_by(year)%>%
@@ -254,8 +246,7 @@ bk.arrive.date%>%
 
 #Yellow-bellied Sapsucker, Sphyrapicus varius
 
-ys<- dat.l%>%
-  bind_rows(.id = "species") %>% 
+ys<- dat%>%
   filter(species=="Sphyrapicus varius")%>%
   group_by(year)%>%
   mutate(date=as.Date(paste0(year,"-",month,"-",day)),
@@ -279,7 +270,7 @@ ys.pred <- ys%>%
   left_join(ys%>%select(j.day,date)) 
 
 ys%>%
-  ggplot(aes(j.day,prop))+geom_point(aes=0.3)+geom_line(data=rh.pred,aes(x=j.day,y=pred),col="blue",size=2)+facet_wrap(year~.)
+  ggplot(aes(j.day,prop))+geom_point(aes=0.3)+geom_line(data=ys.pred,aes(x=j.day,y=pred),col="blue",size=2)+facet_wrap(year~.)
 
 ys.arrive.date <-ys.pred%>%
   group_by(year)%>%
@@ -289,8 +280,7 @@ ys.arrive.date%>%
   ggplot(aes(year,j.day))+geom_point()
 
 #Common Nighthawk, Chordeiles minor
-cn<- dat.l%>%
-  bind_rows(.id = "species") %>% 
+cn<- dat%>%
   filter(species=="Chordeiles minor")%>%
   group_by(year)%>%
   mutate(date=as.Date(paste0(year,"-",month,"-",day)),
@@ -307,7 +297,6 @@ cn%>%
 
 cn.pred <- cn%>%
   nls.control(minFactor = 0.000488281)%>%
-  bind_rows(.id = "species")%>%
   group_by(year)%>%
   summarize(
     pred=predict(nls(prop~SSlogis(j.day,Asym, xmid, scal)),newdata=data.frame(j.day=min(j.day):max(j.day))),
@@ -317,6 +306,16 @@ cn.pred <- cn%>%
 ##I got an error message here
 ##Error: Must group by variables found in `.data`.
 ##Column `year` is not found.
+
+cn%>%
+  ggplot(aes(j.day,prop))+geom_point(aes=0.3)+geom_line(data=cn.pred,aes(x=j.day,y=pred),col="blue",size=2)+facet_wrap(year~.)
+
+cn.arrive.date <-cn.pred%>%
+  group_by(year)%>%
+  filter(j.day==j.day[which.min(abs(pred-0.25))])
+
+cn.arrive.date%>%
+  ggplot(aes(year,j.day))+geom_point()
 
 
 ##Preparing weather Data
