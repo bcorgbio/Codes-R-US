@@ -1,0 +1,22 @@
+---
+title: "Project 9"
+author: "CodesRUS"
+date: "12/13/2021"
+output: html_document
+bibliography: BIOL3140.bib
+---
+
+
+### Introduction
+	Trans-gulf migrants, known as TGMs, are species that endure the long migration over the Gulf of Mexico from Central and South America before arriving on land between Texas and Florida. The birds usually migrate during the springtime in a nonstop flight in hopes to find newer land in which they can forage and breed on. The specific time that the birds arrive on the North American land can have major impacts on the fitness of the bird overall. Birds who arrive sooner tend to have better opportunities to find a mate, whereas birds that arrive later have a more ensured food stability. In response to climate change and warming temperatures, TGMs need to shift the date in which they arrive at their breeding grounds or we could see mass population declines. Scientists are currently debating the extent to which TGMs and other long-distance migrants are shifting their arrival patterns, if they are at all. In order to determine the magnitude of these shifts, scientists have been using field, tracking, and banding methods but data has been limited as there are not many scientists who do this type of work.
+	In more recent years, trends over species conservation and climate change awareness have inspired further research and developments in similar issues. One such study conducted by (@charmantier2008adaptive) highlighted the importance of understanding the mechanisms behind population responses to climate change. Phenotypic plasticity is one such mechanism they studied and found that individual responses to these environmental changes may be fixed in the population but evolve over time. Specifically concerning TGMs, many online databases have arisen that allow you to log observations about birds that can be seen by the public. One in particular, fittingly titled eBird, is one of the most complex and has proven to be especially helpful to scientists. Created by the Cornell Laboratory of Ornithology and the National Audubon Society, eBird launched in 2002 and has over 100 million bird observations made by thousands of different people. The database even allows observers to log historical data so observations from pre-2002 can be read as well. In this project we want to use eBird and meteorological data to study what affects the local weather conditions can have on the arrival times of TGMs in the state of Massachusetts.
+
+### Methods
+
+### Results
+
+### Discussion
+
+### Contributions
+
+### References
