@@ -43,7 +43,7 @@ swift <- occ_data(scientificName = "Chaetura pelagica", stateProvince = "Massach
 humming<- occ_data(scientificName = "Archilochus colubris", stateProvince = "Massachusetts", limit = 200, year = 2018)
 kingfisher<- occ_data(scientificName = "Megaceryle alcyon", stateProvince = "Massachusetts", limit = 200, year = 2018)
 sapsucker<- occ_data(scientificName = "Sphyrapicus varius", stateProvince = "Massachusetts", limit = 200, year = 2018)
-Yellowthroat<- occ_data(scientificName = "Geothlypis trichas", stateProvince = "Massachusetts", limit = 200, year = 2018)
+yellowthroat<- occ_data(scientificName = "Geothlypis trichas", stateProvince = "Massachusetts", limit = 200, year = 2018)
 
 MA <- map_data('state', 'massachusetts')
 
@@ -56,7 +56,7 @@ kingfisher.p <- ggplot(MA, aes(long,lat,group=subregion) )+
 sapsucker.p <- ggplot(MA, aes(long,lat,group=subregion) )+
   geom_polygon(colour = "gray",fill="gray90")+geom_point(data=sapsucker[[2]],aes(x=decimalLongitude,y=decimalLatitude,size=individualCount),alpha=0.3,inherit.aes = F)+ coord_quickmap()+theme_void()
 yellowthroat.p <- ggplot(MA, aes(long,lat,group=subregion) )+
-  geom_polygon(colour = "gray",fill="gray90")+geom_point(data=nighthawk[[2]],aes(x=decimalLongitude,y=decimalLatitude,size=individualCount),alpha=0.3,inherit.aes = F)+ coord_quickmap()+theme_void()
+  geom_polygon(colour = "gray",fill="gray90")+geom_point(data=yellowthroat[[2]],aes(x=decimalLongitude,y=decimalLatitude,size=individualCount),alpha=0.3,inherit.aes = F)+ coord_quickmap()+theme_void()
 
 swift.p2 <- ggdraw() + draw_image("swift.png", scale =0.3, halign=0, valign=1) + draw_plot(swift.p)
 print(swift.p2)
@@ -66,8 +66,8 @@ kingfisher.p2 <- ggdraw() + draw_image("kingfisher.png", scale =0.3, halign=0, v
 print(kingfisher.p2)
 sapsucker.p2 <- ggdraw() + draw_image("sapsucker.png", scale =0.3, halign=0, valign=1) + draw_plot(sapsucker.p)
 print(sapsucker.p2)
-yellowthroat.p2 <- ggdraw() + draw_image("nighthawk.png", scale =0.3, halign=0, valign=1) + draw_plot(nighthawk.p)
-print(nighthawk.p2)
+yellowthroat.p2 <- ggdraw() + draw_image("yellowthroat.png", scale =0.3, halign=0, valign=1) + draw_plot(yellowthroat.p)
+print(yellowthroat.p2)
 
 
 species <- c("Chaetura pelagica","Archilochus colubris","Megaceryle alcyon","Sphyrapicus varius","Geothlypis trichas")
@@ -129,12 +129,12 @@ print(mob)
 
 
 sta.d <- bind_rows( #bind the rows
-  lapply(sts,function(x) ncdc_stations(stationid = x)$data ) #use lapply to run through stations
+  lapply(sts,function(x) ncdc_stations(stationid = x)$data ) 
 )%>%
-  left_join(usmap_transform(.[,c("longitude","latitude")]))%>% #join transformation of lat/long for projection with usmap
-  mutate(name=str_sub(name, -5,-4))%>%#simplify the name column, grab just the state
-  mutate(migr.day=c(10,5,0))%>% #so we can look at wind speed 0, 5 or 10 days before arrive in boston
-  separate(id,into = c("station.type","id"))%>%#need to cut station type out from station id number
+  left_join(usmap_transform(.[,c("longitude","latitude")]))%>% 
+  mutate(name=str_sub(name, -5,-4))%>%
+  mutate(migr.day=c(10,5,0))%>% 
+  separate(id,into = c("station.type","id"))%>%
   print()
 
 plot_usmap(
@@ -331,17 +331,17 @@ cn.arrive.date%>%
 ##Preparing weather Data
 
 weather.d <- weather.d%>%
-  dplyr::mutate(year=as.integer(str_sub(date,1,4)), #add year
+  dplyr::mutate(year=as.integer(str_sub(date,1,4)), 
                 date=as.Date(date))%>%
-  group_by(year)%>% #group by year so we can compute julian day
-  dplyr::mutate(j.day=julian(date,origin=as.Date(paste0(unique(year),"-01-01"))), #add julian day
+  group_by(year)%>% 
+  dplyr::mutate(j.day=julian(date,origin=as.Date(paste0(unique(year),"-01-01"))), 
                 date2=date,
-                wdir.rad=(180-abs(wdf2-180))*pi/180, #radians so we can use a trig function to compute wind vector, scale degrees first to 180 scale to 2x pi and subtract from 180 (wind comes out of a direction)
-                wvec=cos(wdir.rad)*-1*awnd # we want a negative value for positive value for 2x pi
-  )%>% #store day in new column
-  select(id,year,date2,j.day,tmin,tmax,wvec)%>% #select the rows we need
-  left_join(sta.d%>%select(id,name,migr.day))%>% #add the station id info (ie. name)
-  mutate(j.day=j.day+migr.day)#make j.day ahead of BOS according to the migration days away so we can join weather along path
+                wdir.rad=(180-abs(wdf2-180))*pi/180, 
+                wvec=cos(wdir.rad)*-1*awnd 
+  )%>% 
+  select(id,year,date2,j.day,tmin,tmax,wvec)%>% 
+  left_join(sta.d%>%select(id,name,migr.day))%>% 
+  mutate(j.day=j.day+migr.day)
 
 #mean arrival time for five species
 cs.arr.weath <- cs.arrive.date%>%
