@@ -11,34 +11,39 @@ install.packages("rnoaa")
 install.packages("rgbif")
 install.packages("rgdal")
 install.packages("knitr")
+install.packages("kableExtra", dependencies = TRUE)
+install.packages("systemfonts")
+
 
 library(tidyverse)
 library(MuMIn)
 library(rnoaa)
+library(data.table)
 library(ggmap)
 library(usmap)
-library(magick)#for examples
-library(cowplot)#for examples
-library(lme4) #for linear mixed effect models
-library(car) #for LME anova testing
-library(data.table) #for frollmean function (and others)
+library(magick)
+library(cowplot)
+library(lme4) 
+library(car) 
+library(data.table) 
 library(rgbif)
 library(rgdal)
 library(knitr)
+library(kableExtra)
 
-###My choice on species 
+### choice of species 
 #Chimney Swift, Chaetura pelagica
 #Ruby-throated Hummingbird, Archilochus colubris
 #Belted Kingfisher, Megaceryle alcyon
 #Yellow-bellied Sapsucker, Sphyrapicus varius
-#common nightawk, Chordeiles minor
+#Common Yellowthroat,Geothlypis trichas
 
 
 swift <- occ_data(scientificName = "Chaetura pelagica", stateProvince = "Massachusetts", limit = 200, year = 2018)
 humming<- occ_data(scientificName = "Archilochus colubris", stateProvince = "Massachusetts", limit = 200, year = 2018)
 kingfisher<- occ_data(scientificName = "Megaceryle alcyon", stateProvince = "Massachusetts", limit = 200, year = 2018)
 sapsucker<- occ_data(scientificName = "Sphyrapicus varius", stateProvince = "Massachusetts", limit = 200, year = 2018)
-nighthawk<- occ_data(scientificName = "Chordeiles minor", stateProvince = "Massachusetts", limit = 200, year = 2018)
+Yellowthroat<- occ_data(scientificName = "Geothlypis trichas", stateProvince = "Massachusetts", limit = 200, year = 2018)
 
 MA <- map_data('state', 'massachusetts')
 
@@ -50,7 +55,7 @@ kingfisher.p <- ggplot(MA, aes(long,lat,group=subregion) )+
   geom_polygon(colour = "gray",fill="gray90")+geom_point(data=kingfisher[[2]],aes(x=decimalLongitude,y=decimalLatitude,size=individualCount),alpha=0.3,inherit.aes = F)+ coord_quickmap()+theme_void()
 sapsucker.p <- ggplot(MA, aes(long,lat,group=subregion) )+
   geom_polygon(colour = "gray",fill="gray90")+geom_point(data=sapsucker[[2]],aes(x=decimalLongitude,y=decimalLatitude,size=individualCount),alpha=0.3,inherit.aes = F)+ coord_quickmap()+theme_void()
-nighthawk.p <- ggplot(MA, aes(long,lat,group=subregion) )+
+yellowthroat.p <- ggplot(MA, aes(long,lat,group=subregion) )+
   geom_polygon(colour = "gray",fill="gray90")+geom_point(data=nighthawk[[2]],aes(x=decimalLongitude,y=decimalLatitude,size=individualCount),alpha=0.3,inherit.aes = F)+ coord_quickmap()+theme_void()
 
 swift.p2 <- ggdraw() + draw_image("swift.png", scale =0.3, halign=0, valign=1) + draw_plot(swift.p)
@@ -61,11 +66,11 @@ kingfisher.p2 <- ggdraw() + draw_image("kingfisher.png", scale =0.3, halign=0, v
 print(kingfisher.p2)
 sapsucker.p2 <- ggdraw() + draw_image("sapsucker.png", scale =0.3, halign=0, valign=1) + draw_plot(sapsucker.p)
 print(sapsucker.p2)
-nighthawk.p2 <- ggdraw() + draw_image("nighthawk.png", scale =0.3, halign=0, valign=1) + draw_plot(nighthawk.p)
+yellowthroat.p2 <- ggdraw() + draw_image("nighthawk.png", scale =0.3, halign=0, valign=1) + draw_plot(nighthawk.p)
 print(nighthawk.p2)
 
 
-species <- c("Chaetura pelagica","Archilochus colubris","Megaceryle alcyon","Sphyrapicus varius","Chordeiles minor")
+species <- c("Chaetura pelagica","Archilochus colubris","Megaceryle alcyon","Sphyrapicus varius","Geothlypis trichas")
 
 y <- paste0("2000",",","2019")
 m <- paste0("4",",","5")
@@ -83,12 +88,16 @@ for(s in species){
                                  basisOfRecord = "HUMAN_OBSERVATION",
                                  stateProvince="Massachusetts")[[2]]
   
+  
 }
 
 dat <- rbindlist(dat.l,fill=T)
 
 head(dat)
-saveRDS(dat,"massbird.data.RDS")
+
+saveRDS(data,"massbird.data.RDS")
+
+library(tidyverse)
 dat <- readRDS("massbird.data.RDS")
 
 dat.l%>%
@@ -120,7 +129,8 @@ print(mob)
 
 
 sta.d <- bind_rows( #bind the rows
-  lapply(sts,function(x) ncdc_stations(stationid = x)$data ))%>% #use lapply to run through stations
+  lapply(sts,function(x) ncdc_stations(stationid = x)$data ) #use lapply to run through stations
+)%>%
   left_join(usmap_transform(.[,c("longitude","latitude")]))%>% #join transformation of lat/long for projection with usmap
   mutate(name=str_sub(name, -5,-4))%>%#simplify the name column, grab just the state
   mutate(migr.day=c(10,5,0))%>% #so we can look at wind speed 0, 5 or 10 days before arrive in boston
@@ -128,20 +138,19 @@ sta.d <- bind_rows( #bind the rows
   print()
 
 plot_usmap(
-  include = c(.northeast_region,.south_region,.east_north_central) +
-  geom_point(data=sta.d,aes(x=longitude.1,y=latitude.1,col=name),size=5) + 
-  geom_label(data=sta.d,aes(x=longitude.1,y=latitude.1,col=name,label=name),size=5,nudge_x = 1e6*0.25)+
-  theme(legend.position = "none")
-)
+  include = c(.northeast_region,.south_region,.east_north_central)
+)+geom_point(data=sta.d,aes(x=longitude.1,y=latitude.1,col=name),size=5)+geom_label(data=sta.d,aes(x=longitude.1,y=latitude.1,col=name,label=name),size=5,nudge_x = 1e6*0.25)+theme(legend.position = "none")
 
 weather.d <- meteo_pull_monitors(sta.d$id,date_min = "2005-01-01")#since 2005 we see an uptick in eBird data
+
 head(weather.d)
 
 #Preparing eBird Data
 
-#Chimney Swift, Chaetura pelagica
+#Chimney Swift, Chaetura pelagica(refered by cs)
 
-cs<- dat%>%
+cs<- dat.l%>%
+  bind_rows(.id = "species") %>% 
   filter(species=="Chaetura pelagica")%>%
   group_by(year)%>%
   mutate(date=as.Date(paste0(year,"-",month,"-",day)),
@@ -165,7 +174,7 @@ cs.pred <- cs%>%
   left_join(cs%>%select(j.day,date)) 
 
 cs%>%
-  ggplot(aes(j.day,prop))+geom_point(aes=0.3)+geom_line(data=cs.pred,aes(x=j.day,y=pred),col="blue",size=2)+facet_wrap(year~.)
+  ggplot(aes(j.day,prop))+geom_point(aes=0.3)+geom_line(data=rh.pred,aes(x=j.day,y=pred),col="blue",size=2)+facet_wrap(year~.)
 
 cs.arrive.date <-cs.pred%>%
   group_by(year)%>%
@@ -174,9 +183,10 @@ cs.arrive.date <-cs.pred%>%
 cs.arrive.date%>%
   ggplot(aes(year,j.day))+geom_point()
 
-#Ruby-throated Hummingbird, Archilochus colubris
+#Ruby-throated Hummingbird, Archilochus colubris(refered by rh)
 
-rh<- dat%>%
+rh<- dat.l%>%
+  bind_rows(.id = "species") %>% 
   filter(species=="Archilochus colubris")%>%
   group_by(year)%>%
   mutate(date=as.Date(paste0(year,"-",month,"-",day)),
@@ -209,9 +219,10 @@ rh.arrive.date <-rh.pred%>%
 rh.arrive.date%>%
   ggplot(aes(year,j.day))+geom_point()
 
-#Belted Kingfisher, Megaceryle alcyon
+#Belted Kingfisher, Megaceryle alcyon(refered by bk)
 
-bk<- dat%>%
+bk<- dat.l%>%
+  bind_rows(.id = "species") %>% 
   filter(species=="Megaceryle alcyon")%>%
   group_by(year)%>%
   mutate(date=as.Date(paste0(year,"-",month,"-",day)),
@@ -235,7 +246,7 @@ bk.pred <- bk%>%
   left_join(bk%>%select(j.day,date)) 
 
 bk%>%
-  ggplot(aes(j.day,prop))+geom_point(aes=0.3)+geom_line(data=bk.pred,aes(x=j.day,y=pred),col="blue",size=2)+facet_wrap(year~.)
+  ggplot(aes(j.day,prop))+geom_point(aes=0.3)+geom_line(data=rh.pred,aes(x=j.day,y=pred),col="blue",size=2)+facet_wrap(year~.)
 
 bk.arrive.date <-bk.pred%>%
   group_by(year)%>%
@@ -244,9 +255,10 @@ bk.arrive.date <-bk.pred%>%
 bk.arrive.date%>%
   ggplot(aes(year,j.day))+geom_point()
 
-#Yellow-bellied Sapsucker, Sphyrapicus varius
+#Yellow-bellied Sapsucker, Sphyrapicus varius(refered by ys)
 
-ys<- dat%>%
+ys<- dat.l%>%
+  bind_rows(.id = "species") %>% 
   filter(species=="Sphyrapicus varius")%>%
   group_by(year)%>%
   mutate(date=as.Date(paste0(year,"-",month,"-",day)),
@@ -270,7 +282,7 @@ ys.pred <- ys%>%
   left_join(ys%>%select(j.day,date)) 
 
 ys%>%
-  ggplot(aes(j.day,prop))+geom_point(aes=0.3)+geom_line(data=ys.pred,aes(x=j.day,y=pred),col="blue",size=2)+facet_wrap(year~.)
+  ggplot(aes(j.day,prop))+geom_point(aes=0.3)+geom_line(data=rh.pred,aes(x=j.day,y=pred),col="blue",size=2)+facet_wrap(year~.)
 
 ys.arrive.date <-ys.pred%>%
   group_by(year)%>%
@@ -279,9 +291,10 @@ ys.arrive.date <-ys.pred%>%
 ys.arrive.date%>%
   ggplot(aes(year,j.day))+geom_point()
 
-#Common Nighthawk, Chordeiles minor
-cn<- dat%>%
-  filter(species=="Chordeiles minor")%>%
+#Common Yellowthroat,Geothlypis trichas(referred by cn)
+cn<- dat.l%>%
+  bind_rows(.id = "species") %>% 
+  filter(species=="Geothlypis trichas")%>%
   group_by(year)%>%
   mutate(date=as.Date(paste0(year,"-",month,"-",day)),
          j.day=julian(date,origin=as.Date(paste0(unique(year),"-01-01")))
@@ -295,17 +308,14 @@ cn<- dat%>%
 cn%>%
   ggplot(aes(j.day,prop))+geom_point()+facet_wrap(year~.)
 
+
 cn.pred <- cn%>%
-  nls.control(minFactor = 0.000488281)%>%
   group_by(year)%>%
   summarize(
-    pred=predict(nls(prop~SSlogis(j.day,Asym, xmid, scal)),newdata=data.frame(j.day=min(j.day):max(j.day))),
+    pred=predict(nls(prop~SSlogis(j.day,Asym, xmid, scal)),newdata=data.frame(j.day=min(j.day):max(j.day))),#predict the logistic curve for each species
     j.day=min(j.day):max(j.day),
   )%>%
   left_join(cn%>%select(j.day,date))
-##I got an error message here
-##Error: Must group by variables found in `.data`.
-##Column `year` is not found.
 
 cn%>%
   ggplot(aes(j.day,prop))+geom_point(aes=0.3)+geom_line(data=cn.pred,aes(x=j.day,y=pred),col="blue",size=2)+facet_wrap(year~.)
@@ -439,6 +449,7 @@ head(cn.arr.weath2)
 
 ##Linear Mixed-effect Modeling for five species
 
+#cs
 cs.lmer <- lmer(j.day~tmin*tmax*wvec+(1|name),cs.arr.weath,na.action = "na.fail")
 Anova(cs.lmer)
 cs.lmer2 <- lmer(j.day~wk.tmin*wk.tmax*wk.wvec+(1|name),cs.arr.weath2,na.action = "na.fail")
@@ -450,5 +461,71 @@ cs.arr.aic <- dredge(cs.lmer2,fixed = c("wk.tmin","wk.tmax","wk.wvec"),)
 cs.kb <- kable(cs.arr.aic[1:4,],caption = "Fit values for nested models of the most complicated lme model")
 kable_styling(cs.kb)
 
+best.lmer <-  lmer(j.day~wk.tmin+wk.tmax+wk.wvec+(1|name),cs.arr.weath2,na.action = "na.fail")
+
+Anova(best.lmer)
+
+#rh
+rh.lmer <- lmer(j.day~tmin*tmax*wvec+(1|name),rh.arr.weath,na.action = "na.fail")
+Anova(rh.lmer)
+rh.lmer2 <- lmer(j.day~wk.tmin*wk.tmax*wk.wvec+(1|name),rh.arr.weath2,na.action = "na.fail")
+Anova(rh.lmer2)
 
 
+rh.arr.aic <- dredge(rh.lmer2,fixed = c("wk.tmin","wk.tmax","wk.wvec"),)
+
+rh.kb <- kable(rh.arr.aic[1:4,],caption = "Fit values for nested models of the most complicated lme model")
+kable_styling(rh.kb)
+
+best.lmer <-  lmer(j.day~wk.tmin+wk.tmax+wk.wvec+(1|name),rh.arr.weath2,na.action = "na.fail")
+
+Anova(best.lmer)
+
+#bk
+
+bk.lmer <- lmer(j.day~tmin*tmax*wvec+(1|name),bk.arr.weath,na.action = "na.fail")
+Anova(bk.lmer)
+bk.lmer2 <- lmer(j.day~wk.tmin*wk.tmax*wk.wvec+(1|name),bk.arr.weath2,na.action = "na.fail")
+Anova(bk.lmer2)
+
+
+bk.arr.aic <- dredge(bk.lmer2,fixed = c("wk.tmin","wk.tmax","wk.wvec"),)
+
+bk.kb <- kable(bk.arr.aic[1:4,],caption = "Fit values for nested models of the most complicated lme model")
+kable_styling(bk.kb)
+
+best.lmer <-  lmer(j.day~wk.tmin+wk.tmax+wk.wvec+(1|name),bk.arr.weath2,na.action = "na.fail")
+
+Anova(best.lmer)
+
+#ys
+ys.lmer <- lmer(j.day~tmin*tmax*wvec+(1|name),ys.arr.weath,na.action = "na.fail")
+Anova(ys.lmer)
+ys.lmer2 <- lmer(j.day~wk.tmin*wk.tmax*wk.wvec+(1|name),ys.arr.weath2,na.action = "na.fail")
+Anova(ys.lmer2)
+
+
+ys.arr.aic <- dredge(ys.lmer2,fixed = c("wk.tmin","wk.tmax","wk.wvec"),)
+
+ys.kb <- kable(ys.arr.aic[1:4,],caption = "Fit values for nested models of the most complicated lme model")
+kable_styling(ys.kb)
+
+best.lmer <-  lmer(j.day~wk.tmin+wk.tmax+wk.wvec+(1|name),bk.arr.weath2,na.action = "na.fail")
+
+Anova(best.lmer)
+
+#cn
+
+cn.lmer <- lmer(j.day~tmin*tmax*wvec+(1|name),cn.arr.weath,na.action = "na.fail")
+Anova(cn.lmer)
+cn.lmer2 <- lmer(j.day~wk.tmin*wk.tmax*wk.wvec+(1|name),cn.arr.weath2,na.action = "na.fail")
+Anova(cn.lmer2) 
+
+cn.arr.aic <- dredge(cn.lmer2,fixed = c("wk.tmin","wk.tmax","wk.wvec"),)
+
+cn.kb <- kable(cn.arr.aic[1:4,],caption = "Fit values for nested models of the most complicated lme model")
+kable_styling(cn.kb)
+
+best.lmer <-  lmer(j.day~wk.tmin+wk.tmax+wk.wvec+(1|name),bk.arr.weath2,na.action = "na.fail")
+
+Anova(best.lmer)
