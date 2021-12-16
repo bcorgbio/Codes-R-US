@@ -95,7 +95,7 @@ dat <- rbindlist(dat.l,fill=T)
 
 head(dat)
 
-saveRDS(data,"massbird.data.RDS")
+saveRDS(dat,"massbird.data.RDS")
 
 library(tidyverse)
 dat <- readRDS("massbird.data.RDS")
@@ -174,7 +174,7 @@ cs.pred <- cs%>%
   left_join(cs%>%select(j.day,date)) 
 
 cs%>%
-  ggplot(aes(j.day,prop))+geom_point(aes=0.3)+geom_line(data=rh.pred,aes(x=j.day,y=pred),col="blue",size=2)+facet_wrap(year~.)
+  ggplot(aes(j.day,prop))+geom_point(aes=0.3)+geom_line(data=cs.pred,aes(x=j.day,y=pred),col="blue",size=2)+facet_wrap(year~.)
 
 cs.arrive.date <-cs.pred%>%
   group_by(year)%>%
@@ -246,7 +246,7 @@ bk.pred <- bk%>%
   left_join(bk%>%select(j.day,date)) 
 
 bk%>%
-  ggplot(aes(j.day,prop))+geom_point(aes=0.3)+geom_line(data=rh.pred,aes(x=j.day,y=pred),col="blue",size=2)+facet_wrap(year~.)
+  ggplot(aes(j.day,prop))+geom_point(aes=0.3)+geom_line(data=bk.pred,aes(x=j.day,y=pred),col="blue",size=2)+facet_wrap(year~.)
 
 bk.arrive.date <-bk.pred%>%
   group_by(year)%>%
@@ -282,7 +282,7 @@ ys.pred <- ys%>%
   left_join(ys%>%select(j.day,date)) 
 
 ys%>%
-  ggplot(aes(j.day,prop))+geom_point(aes=0.3)+geom_line(data=rh.pred,aes(x=j.day,y=pred),col="blue",size=2)+facet_wrap(year~.)
+  ggplot(aes(j.day,prop))+geom_point(aes=0.3)+geom_line(data=ys.pred,aes(x=j.day,y=pred),col="blue",size=2)+facet_wrap(year~.)
 
 ys.arrive.date <-ys.pred%>%
   group_by(year)%>%
