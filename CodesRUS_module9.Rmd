@@ -8,13 +8,12 @@ bibliography: BIOL3140.bib
 
 
 ### Introduction
-	Trans-gulf migrants, known as TGMs, are species that endure the long migration over the Gulf of Mexico from Central and South America before arriving on land between Texas and Florida. The birds usually migrate during the springtime in a nonstop flight in hopes to find newer land in which they can forage and breed on. The specific time that the birds arrive on the North American land can have major impacts on the fitness of the bird overall. Birds who arrive sooner tend to have better opportunities to find a mate, whereas birds that arrive later have a more ensured food stability. In response to climate change and warming temperatures, TGMs need to shift the date in which they arrive at their breeding grounds or we could see mass population declines. Scientists are currently debating the extent to which TGMs and other long-distance migrants are shifting their arrival patterns, if they are at all. In order to determine the magnitude of these shifts, scientists have been using field, tracking, and banding methods but data has been limited as there are not many scientists who do this type of work.
-	In more recent years, trends over species conservation and climate change awareness have inspired further research and developments in similar issues. One such study conducted by (@charmantier2008adaptive) highlighted the importance of understanding the mechanisms behind population responses to climate change. Phenotypic plasticity is one such mechanism they studied and found that individual responses to these environmental changes may be fixed in the population but evolve over time. Specifically concerning TGMs, many online databases have arisen that allow you to log observations about birds that can be seen by the public. One in particular, fittingly titled eBird, is one of the most complex and has proven to be especially helpful to scientists. Created by the Cornell Laboratory of Ornithology and the National Audubon Society, eBird launched in 2002 and has over 100 million bird observations made by thousands of different people. The database even allows observers to log historical data so observations from pre-2002 can be read as well. In this project we want to use eBird and meteorological data to study what affects the local weather conditions can have on the arrival times of TGMs in the state of Massachusetts.
+  Trans-gulf migrants, known as TGMs, are species that endure the long migration over the Gulf of Mexico from Central and South America before arriving on land between Texas and Florida. The birds usually migrate during the springtime in a nonstop flight in hopes to find newer land in which they can forage and breed on. The specific time that the birds arrive on the North American land can have major impacts on the fitness of the bird overall. Birds who arrive sooner tend to have better opportunities to find a mate, whereas birds that arrive later have a more ensured food stability. In response to climate change and warming temperatures, TGMs need to shift the date in which they arrive at their breeding grounds or we could see mass population declines. Scientists are currently debating the extent to which TGMs and other long-distance migrants are shifting their arrival patterns, if they are at all. In order to determine the magnitude of these shifts, scientists have been using field, tracking, and banding methods but data has been limited as there are not many scientists who do this type of work.
+  
+  In more recent years, trends over species conservation and climate change awareness have inspired further research and developments in similar issues. One such study conducted by (@charmantier2008adaptive) highlighted the importance of understanding the mechanisms behind population responses to climate change. Phenotypic plasticity is one such mechanism they studied and found that individual responses to these environmental changes may be fixed in the population but evolve over time. Specifically concerning TGMs, many online databases have arisen that allow you to log observations about birds that can be seen by the public. One in particular, fittingly titled eBird, is one of the most complex and has proven to be especially helpful to scientists. Created by the Cornell Laboratory of Ornithology and the National Audubon Society, eBird launched in 2002 and has over 100 million bird observations made by thousands of different people. The database even allows observers to log historical data so observations from pre-2002 can be read as well. In this project we want to use eBird and meteorological data to study what affects the local weather conditions can have on the arrival times of TGMs in the state of Massachusetts.
 
 ### Methods
-In order to find the effect of local weather conditions on the arrival time of TGMs in Massachusetts, we first use f loop to load all the data of human observation in Massachusetts from eBird database. Then, we use a token obtained from NOAA website to download weather data of three sample locations. After that, we move to the data analysis section. To prepare the eBird data, we plot the proportion of the population that has arrived and predict their arrival time. At the end of this part, we plot how this arrival day varies with year to see the influence of climate on arrival date. To prepare for weather data, we calculate wind direction and join the weather data with species. Next, we calculate the mean of our weather variables 5 and 10 days before by using frollmean() function to get more accurate information. Finally, we use lme from lme4 package to produce Linear Mixed-effect Model. Anova test is performed to find the best fit model and dredg() function is used for model testing.
-
-In order to find the effect of local weather conditions on the arrival time of TGMs in Massachusetts, we first use f loop to load all the data of human observation in Massachusetts from eBird database. Then, we use a token obtained from NOAA website to download weather data of three sample locations. After that, we move to the data analysis section. To prepare the eBird data, we plot the proportion of the population that has arrived and predict their arrival time. At the end of this part, we plot how this arrival day varies with year to see the influence of climate on arrival date. To prepare for wealth data, we calculate wind direction and join the wealth data with species. Next, we calculate the mean of our weather variables 5 and 10 days before by using frollmean() function to get more accurate information. Finally, we use lme from lme4 package to produce Linear Mixed-effect Model. Anova test is performed to find the best fit model and dredg() function is used for model testing. 
+In order to find the effect of local weather conditions on the arrival time of TGMs in Massachusetts, we first used a for loop to load all the data of human observation in Massachusetts from eBird database. Then, we used a token obtained from NOAA website to download weather data of three sample locations. After that, we moved to the data analysis section. To prepare the eBird data, we plotted the proportion of the population that arrived and predicted their arrival time. At the end of this part, we plotted how this arrival day varies with year to see the influence of climate on arrival date. To prepare for weather data, we calculated wind direction and joined the weather data with the species data. Next, we calculated the mean of our weather variables 5 and 10 days beforehand by using the frollmean() function to get more accurate information. Finally, we used lme from lme4 package to produce Linear Mixed-effect Model. Anova tested were performed to find the best fit model and dredg() function was used for model testing.
 
 ### Results
 
@@ -76,9 +75,10 @@ print(sapsucker.p2)
 yellowthroat.p2 <- ggdraw() + draw_image("yellowthroat.png", scale =0.3, halign=0, valign=1) + draw_plot(yellowthroat.p)
 print(yellowthroat.p2)
 ```
-The above are the records for each of the 5 species selected in Massachusetts, 2018.
 
-```{r, "loading data and creating proper data set", echo=TRUE, results=FALSE, message=FALSE}
+  The above are the records for each of the 5 species selected in Massachusetts, 2018.
+
+```{r, "loading data and creating proper data set", echo=TRUE, results=FALSE, message=FALSE, cache=TRUE}
 species <- c("Chaetura pelagica","Archilochus colubris","Megaceryle alcyon","Sphyrapicus varius","Geothlypis trichas")
 
 y <- paste0("2000",",","2019")
@@ -112,13 +112,14 @@ dat.l%>%
   summarise(count=sum(individualCount,na.rm = T))%>%
   ggplot(aes(x=year,y=count,col=species))+geom_point()
 ```
-To begin our analysis, collection and sorting of data needed to occur for each species selected within a specific state during a range of years. A data set was created to do such.
+
+  To begin our analysis, collection and sorting of data needed to occur for each species selected within a specific state during a range of years. A data set was created to do such.
 
 ```{r, "querying NOAA's NCDC API", warning=FALSE, results=FALSE}
 options(noaakey = "VYpNYgvfxWWfUIWmcjVZxUUJwebzTmLB")
 
 sts <- c(
-  "GHCND:USW00013894", #Mobible, AL 2k away about 10 days away @200 km/day
+  "GHCND:USW00013894", #Mobile, AL 2k away about 10 days away @200 km/day
   "GHCND:USW00013881", #Charlotte, NC 1000 km away about 6 days away @200 km/day
   "GHCND:USW00014739" #Boston
 )
@@ -150,6 +151,7 @@ weather.d <- meteo_pull_monitors(sta.d$id,date_min = "2005-01-01") #since 2005 w
 
 head(weather.d)
 ```
+
 Using NOAA's NCDC API, weather parameters during certain time frames were collected and placed within data sets. Weather sampling locations for this project are represented above. 
 
 ```{r, "eBird data for chimney swift (cs)", warning=FALSE, results=FALSE}
@@ -187,7 +189,8 @@ cs.arrive.date <-cs.pred%>%
 cs.arrive.date%>%
   ggplot(aes(year,j.day))+geom_point()
 ```
-For Chimney Swift, the arrivals are depicted above with the estimation of arrivals. Then, using this data we plotted how the arrival day varied depending on the year. Based on the plots, the Julian day when 25% of the population arrived were 127-130.
+
+  For Chimney Swift, the arrivals are depicted above with the estimation of arrivals. Then, using this data we plotted how the arrival day varied depending on the year. Based on the plots, the Julian day when 25% of the population arrived were 127-130. For all species, there was no clear cut trend that occurred in arrival date as time continued. 
 
 ```{r, "eBird data for ruby-throated hummingbird", warning=FALSE, results=FALSE}
 rh<- dat.l%>%
@@ -225,7 +228,8 @@ rh.arrive.date%>%
   ggplot(aes(year,j.day))+geom_point()
 
 ```
-For Ruby-throated Hummingbird, the Julian day when 25% of the population arrived were 129-132.
+
+  For Ruby-throated Hummingbird, the Julian day when 25% of the population arrived were 129-132.
 
 ```{r, "eBird data for belted kingfisher (bk)", warning=FALSE, results=FALSE}
 
@@ -264,7 +268,8 @@ bk.arrive.date%>%
   ggplot(aes(year,j.day))+geom_point()
 
 ```
-For Belted Kingfisher, the Julian day when 25% of the population arrived were 105-108.
+
+  For Belted Kingfisher, the Julian day when 25% of the population arrived were 105-108.
 
 ```{r, "eBird data for yellow-bellied sapsucker (ys)", warning=FALSE, results=FALSE}
 ys<- dat.l%>%
@@ -302,7 +307,8 @@ ys.arrive.date%>%
   ggplot(aes(year,j.day))+geom_point()
 
 ```
-For Yellow-bellied Sapsucker, the Julian day when 25% of the population arrived were 105-113.
+
+  For Yellow-bellied Sapsucker, the Julian day when 25% of the population arrived were 105-113.
 
 ```{r, "eBird data for common yellowthroat (cn)", warning=FALSE, results=FALSE}
 #Common Yellowthroat,Geothlypis trichas(referred by cn)
@@ -341,9 +347,11 @@ cn.arrive.date <-cn.pred%>%
 cn.arrive.date%>%
   ggplot(aes(year,j.day))+geom_point()
 ```
-For Common Yellowthroat, the Julian day when 25% of the population arrived were 131-133.
+
+  For Common Yellowthroat, the Julian day when 25% of the population arrived were 131-133. Given this data set, it is possible to partially conclude an earlier arrival time as the years continued. Yet, with so many outliers and no clear trend apparent, such a conclusion was not made. 
 
 Overall, depending on the species, it seems like the average arrival timings were either around 105-110 or 128-133.
+
 ```{r, "weather data", echo=TRUE, include=FALSE, results=FALSE, message=FALSE}
 weather.d <- weather.d%>%
   dplyr::mutate(year=as.integer(str_sub(date,1,4)), 
@@ -464,7 +472,9 @@ cn.arr.weath2 <- cn.arrive.date%>%
 head(cn.arr.weath2)
 ```
 
-```{r, "linear mixed-effect modeling for cs species", results=FALSE, message=FALSE, warning=FALSE}
+Based on the collection of weather and bird data that underwent data analysis, a linear mixed-effect modeling for each of the species was conducted.
+
+```{r, "linear mixed-effect modeling for cs species", include=TRUE, results=TRUE, message=FALSE, warning=FALSE}
 cs.lmer <- lmer(j.day~tmin*tmax*wvec+(1|name),cs.arr.weath,na.action = "na.fail")
 Anova(cs.lmer)
 cs.lmer2 <- lmer(j.day~wk.tmin*wk.tmax*wk.wvec+(1|name),cs.arr.weath2,na.action = "na.fail")
@@ -480,9 +490,10 @@ best.lmer <-  lmer(j.day~wk.tmin+wk.tmax+wk.wvec+(1|name),cs.arr.weath2,na.actio
 
 Anova(best.lmer)
 ```
-Based on the collection of weather and bird data that underwent data analysis, a linear mixed-effect modeling for each of the species was conducted. For the Chimney swift species, it was found that tmin and wind velocity are significant. Through the best model ANOVA analysis, wind velocity is a significant variable.
 
-```{r, "linear mixed-effect modeling for rh species", results=FALSE, message=FALSE, warning=FALSE}
+For the Chimney swift species, it was found that tmin and wind velocity are significant. Through the best model ANOVA analysis, wind velocity is a significant variable.
+
+```{r, "linear mixed-effect modeling for rh species", include=TRUE, results=TRUE, message=FALSE, warning=FALSE}
 rh.lmer <- lmer(j.day~tmin*tmax*wvec+(1|name),rh.arr.weath,na.action = "na.fail")
 Anova(rh.lmer)
 rh.lmer2 <- lmer(j.day~wk.tmin*wk.tmax*wk.wvec+(1|name),rh.arr.weath2,na.action = "na.fail")
@@ -499,9 +510,10 @@ best.lmer <-  lmer(j.day~wk.tmin+wk.tmax+wk.wvec+(1|name),rh.arr.weath2,na.actio
 Anova(best.lmer)
 
 ```
+
 For the Ruby-throated Hummingbird species, it was found that tmin and wind velocity are significant. Through the best model ANOVA analysis, wind velocity was the most significant variable.
 
-```{r, "linear mixed-effect modeling for bk species", results=FALSE, message=FALSE, warning=FALSE}
+```{r, "linear mixed-effect modeling for bk species", include=TRUE, results=TRUE, message=FALSE, warning=FALSE}
 
 bk.lmer <- lmer(j.day~tmin*tmax*wvec+(1|name),bk.arr.weath,na.action = "na.fail")
 Anova(bk.lmer)
@@ -518,9 +530,10 @@ best.lmer <-  lmer(j.day~wk.tmin+wk.tmax+wk.wvec+(1|name),bk.arr.weath2,na.actio
 
 Anova(best.lmer)
 ```
+
 For the Belted-Kingfisher species, it was found that wind velocity is significant. Through the best model ANOVA analysis, wind velocity and tmin are significant variables.
 
-```{r, "linear mixed-effect modeling for ys species", results=FALSE, message=FALSE, warning=FALSE}
+```{r, "linear mixed-effect modeling for ys species", include=TRUE, results=TRUE, message=FALSE, warning=FALSE}
 ys.lmer <- lmer(j.day~tmin*tmax*wvec+(1|name),ys.arr.weath,na.action = "na.fail")
 Anova(ys.lmer)
 ys.lmer2 <- lmer(j.day~wk.tmin*wk.tmax*wk.wvec+(1|name),ys.arr.weath2,na.action = "na.fail")
@@ -537,9 +550,10 @@ best.lmer <-  lmer(j.day~wk.tmin+wk.tmax+wk.wvec+(1|name),ys.arr.weath2,na.actio
 
 Anova(best.lmer)
 ```
+
 For the Yellow-bellied Sapsucker species, it was found that there is no significance in any variable. Through the best model ANOVA analysis, there's no specific significance for any variable.
 
-```{r, "linear mixed-effect modeling for ys species", results=FALSE, message=FALSE, warning=FALSE}
+```{r, "linear mixed-effect modeling for cn species", include=FALSE, results=TRUE, message=FALSE, warning=FALSE}
 cn.lmer <- lmer(j.day~tmin*tmax*wvec+(1|name),cn.arr.weath,na.action = "na.fail")
 Anova(cn.lmer)
 cn.lmer2 <- lmer(j.day~wk.tmin*wk.tmax*wk.wvec+(1|name),cn.arr.weath2,na.action = "na.fail")
@@ -554,13 +568,14 @@ best.lmer <-  lmer(j.day~wk.tmin+wk.tmax+wk.wvec+(1|name),cn.arr.weath2,na.actio
 
 Anova(best.lmer)
 ```
+
 For the Common Yellowthroat species, it was found that wind velocity is significant along with both variables tmin and tmax together. Through the best model ANOVA analysis, wind velocity and tmin are significant variables.
 
 ### Discussion
-
+After analyzing the data we are able to accurately consider the effects to which weather patterns and climate change have affected the trans-gulf migration of many bird species. We specifically took five species into account: Chimney Swift, Ruby-Throated Hummingbird, Yellow-Bellied Sapsucker, Belted Kingfisher, and the common yellowthroat. We first found the estimated arrival times to the breeding ground over a range of years in attempts to determine if they varied year-by-year. The date in which the species arrives has an effect on its food supply and mating success. While we found differing arrival dates for most of the species, they seemed for the most part sporadic from year to year. It did not seem as if there was a definitive trend over sooner or later arrival dates as time went on. We could estimate the average arrival times to fall within two general ranges: either the species arrived around 105-115 days, or they arrived between 128-133 days. This shows that there was some consistent arrival date between species, but not enough to make any sort of correlation. Next we looked at how weather patterns affected the migration of the species. For most species we found that the tmin was significant and did in fact play a role in the migration of the birds, also in a few of the species we found that wind velocity played a significant role, and lastly there was one species in which tmax played a significant role. There was only one species in which the weather played no role at all. This provides similar results to a similar study (@shamounassociations), in which they concluded that clearer weather conditions were proven to relate to more intense and profound migration patterns in comparison to when weather was not as favorable. Our data is significant because it allows us to understand that while climate change may be affecting the behavior of TGMs, it is hard to determine how many years have to go by before the effects become easily visible to scientists. We can conclude that certain variables, as described above, like certain weather conditions did in fact affect the migration roots of bird species coming to MA. Although there are some studies, such as (@robson2011ecological), in which they conclude that climate change has been associated with certain shifts in biological events such as the spring migratory arrival of birds, we have more difficulty concluding that climate change has a direct effect on that as our Julian days were very sporadic from year to year.
 
 
 ### Contributions
-Steven worked on R-coding, the Methods write-up, and data analysis. Nick worked on the Introduction, Results, and Discussion sections. Tony helped with problem solving during the coding process. Amanda helped with the coding portion of the project along with the Results and References sections. Amanda and Steven worked on data analysis. All team members carried out editing at the end.
+Steven worked on R-coding, the Methods write-up, and data analysis. Nick worked on the Introduction, Results, and Discussion sections. Tony helped with problem solving during the coding process along with the Discussion section and reference materials. Amanda helped with the coding portion of the project along with the Results and References sections. Amanda and Steven worked on data analysis. All team members carried out editing at the end.
 
 ### References
